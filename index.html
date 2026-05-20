@@ -546,17 +546,34 @@
         </td>
 
         <!-- Right Side: Supergraphic and 45 Years Logo -->
-        <td width="150" valign="bottom" align="right" style="width:150px; padding:0; position:relative;">
-            <!-- Logo 45: margin right 23, margin top 15. We use absolute for web, fallback for Outlook -->
-            <div style="position:absolute; right:23px; top:15px; z-index:2;">
-                <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; max-width:55px; height:auto;">
-            </div>
-            
-            <!-- Website Text overlay -->
-            <a href="https://${tpl.websiteUrl}" target="_blank" style="display:block; position:absolute; right:${tpl.websiteMr}px; bottom:${tpl.websiteMb}px; z-index:3; font-family:Interstate,Arial,sans-serif; font-size:5.5pt; font-weight:bold; color:#ffffff; text-decoration:none; mso-line-height-rule:exactly;">${tpl.websiteUrl}</a>
+        <td width="200" valign="bottom" align="right" style="width:200px; padding:0;">
+            <table cellpadding="0" cellspacing="0" border="0" width="200" style="width:200px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                <tr>
+                    <!-- Logo 45: margin right 23, margin top 15. height is 80 to push supergraphic to bottom -->
+                    <td valign="top" align="right" height="80" style="height:80px; padding-top:15px; padding-right:23px;">
+                        <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; max-width:55px; height:auto;">
+                    </td>
+                </tr>
+                <tr>
+                    <!-- Supergraphic as Background -->
+                    <td valign="bottom" align="right" width="200" height="20" bgcolor="${tpl.primaryColor}" background="${supergraphicUrl}" style="width:200px; height:20px; background-color:${tpl.primaryColor}; background-image:url('${supergraphicUrl}'); background-repeat:no-repeat; background-position:right bottom;">
+                        <!--[if gte mso 9]>
+                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:200px;height:20px;">
+                        <v:fill type="frame" src="${supergraphicUrl}" color="${tpl.primaryColor}" />
+                        <v:textbox inset="0,0,0,0">
+                        <![endif]-->
+                        
+                        <div style="padding-right:${tpl.websiteMr}px; padding-bottom:${tpl.websiteMb}px; line-height:1;">
+                            <a href="https://${tpl.websiteUrl}" target="_blank" style="font-family:Interstate,Arial,sans-serif; font-size:5.5pt; font-weight:bold; color:#ffffff; text-decoration:none; mso-line-height-rule:exactly;">${tpl.websiteUrl}</a>
+                        </div>
 
-            <!-- Supergraphic: height 20, width 200, margin right 0, bottom 0 -->
-            <img src="${supergraphicUrl}" width="200" height="20" alt="Footer Graphic" style="display:block; border:none; outline:none; width:200px; height:20px; position:absolute; right:0; bottom:0; z-index:1;">
+                        <!--[if gte mso 9]>
+                        </v:textbox>
+                        </v:rect>
+                        <![endif]-->
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>`;
