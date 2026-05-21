@@ -504,7 +504,7 @@
           nameMarginLeft: 23,
           nameMarginTop: 23,
           logoWidth: 130,
-          logoHeight: 'auto',
+          logoHeight: "auto",
           logoMarginTop: 0,
           logoMarginLeft: 8,
           col1Width: 138,
@@ -535,7 +535,7 @@
         const campusSelect = document.getElementById("inputCampus");
 
         // Reset
-        campusSelect.innerHTML = '<option value="">-- Pilih Alamat --</option>';
+        campusSelect.innerHTML = '<option value="">-- Pilih Lokasi --</option>';
         CAMPUS_DATA.forEach((c) => {
           const opt = document.createElement("option");
           opt.value = c.id;
@@ -604,11 +604,11 @@
         const email =
           document.getElementById("inputEmail").value || "email@binus.edu";
 
-        const campus = getSelectedCampus();
-        const campusName = campus ? campus.name : "Nama Kampus";
-        const campusAddr = campus
-          ? campus.address.replace(/\n/g, "<br>")
-          : "Alamat Kampus";
+        const campusName =
+          campusSelect.options[campusSelect.selectedIndex]?.text !== "-- Pilih Lokasi --" ? campusSelect.options[campusSelect.selectedIndex]?.text : "Nama Lokasi";
+        const campusAddr =
+          document.getElementById("addressPreview").innerHTML ||
+          "Detail Alamat<br>Kota, Kode Pos";
 
         // Build Image Paths with Absolute URLs for Outlook compatibility
         // Uses the current URL context (e.g. http://127.0.0.1:8080/)
@@ -644,7 +644,7 @@
     <tr>
         <!-- Col 1: Left Logo -->
         <td width="${tpl.col1Width}" rowspan="2" valign="top" align="left" style="width:${tpl.col1Width}px; padding-top:${tpl.logoMarginTop}px; padding-left:${tpl.logoMarginLeft}px;">
-            <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; width:${tpl.logoWidth}px; max-width:${tpl.logoWidth}px; height:${typeof tpl.logoHeight === 'number' ? tpl.logoHeight + 'px' : tpl.logoHeight};">
+            <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; width:${tpl.logoWidth}px; max-width:${tpl.logoWidth}px; height:${typeof tpl.logoHeight === "number" ? tpl.logoHeight + "px" : tpl.logoHeight};">
         </td>
         
         <!-- Col 2: Center Content -->
