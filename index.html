@@ -266,9 +266,10 @@
         <div class="input-group">
             <label>Template</label>
             <select id="inputTemplate" onchange="onConfigChange()">
+                <option value="">-- Pilih Template --</option>
+                <option value="bina-nusantara">BINA NUSANTARA</option>
                 <option value="binus-univ">BINUS University</option>
                 <option value="binus-school">BINUS School</option>
-                <option value="bina-nusantara">BINA NUSANTARA</option>
             </select>
         </div>
 
@@ -299,9 +300,6 @@
             <label>Email</label>
             <input type="email" id="inputEmail" placeholder="Contoh: esther@binus.edu" oninput="onConfigChange()">
         </div>
-
-        <hr class="section-divider">
-        <div class="section-label">Alamat</div>
 
         <div class="input-group">
             <label>Alamat</label>
@@ -369,7 +367,9 @@
             textColor: '#4c4d4e',
             websiteUrl: 'www.binus.ac.id',
             websiteMb: 5,
-            websiteMr: 90
+            websiteMr: 90,
+            nameMarginLeft: 23,
+            nameMarginTop: 23
         },
         'binus-school': {
             name: 'BINUS School',
@@ -379,7 +379,9 @@
             textColor: '#4c4d4e',
             websiteUrl: 'www.binus.sch.id',
             websiteMb: 7,
-            websiteMr: 85
+            websiteMr: 85,
+            nameMarginLeft: 23,
+            nameMarginTop: 23
         },
         'bina-nusantara': {
             name: 'BINA NUSANTARA',
@@ -389,7 +391,9 @@
             textColor: '#4c4d4e',
             websiteUrl: 'www.binus.edu',
             websiteMb: 6,
-            websiteMr: 98
+            websiteMr: 98,
+            nameMarginLeft: 23,
+            nameMarginTop: 23
         }
     };
 
@@ -455,6 +459,11 @@
     // ============================
     function renderSignature() {
         const templateId = document.getElementById('inputTemplate').value;
+        if (!templateId) {
+            document.getElementById('signature-preview').innerHTML = '<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;">Silakan pilih template terlebih dahulu.</div>';
+            return;
+        }
+
         const tpl = TEMPLATES[templateId];
         const sz = SIZE_CONFIG[currentSize];
 
@@ -500,9 +509,9 @@
             <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; max-width:130px; height:auto;">
         </td>
         
-        <!-- Center Content: Nama starts at margin left 138 -->
-        <td valign="top" align="left" style="padding-top:23px; padding-left:0px;">
-            <!-- Nama: margin top 23 -->
+        <!-- Center Content: Nama starts at padding-left configured by template -->
+        <td valign="top" align="left" style="padding-top:${tpl.nameMarginTop}px; padding-left:${tpl.nameMarginLeft}px;">
+            <!-- Nama -->
             <div style="font-family:Interstate,Arial,sans-serif; font-size:6.5pt; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
             
             <!-- Department: margin left 1 (139-138), margin top 2 from nama -->
@@ -555,10 +564,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <!-- Supergraphic as Background -->
-                    <td valign="bottom" align="right" width="200" height="20" bgcolor="${tpl.primaryColor}" background="${supergraphicUrl}" style="width:200px; height:20px; background-color:${tpl.primaryColor}; background-image:url('${supergraphicUrl}'); background-repeat:no-repeat; background-position:right bottom;">
+                    <!-- Supergraphic as Background: height 26px to preserve aspect ratio for 200px width -->
+                    <td valign="bottom" align="right" width="200" height="26" bgcolor="${tpl.primaryColor}" background="${supergraphicUrl}" style="width:200px; height:26px; background-color:${tpl.primaryColor}; background-image:url('${supergraphicUrl}'); background-repeat:no-repeat; background-size:cover; background-position:right bottom;">
                         <!--[if gte mso 9]>
-                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:200px;height:20px;">
+                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:200px;height:26px;">
                         <v:fill type="frame" src="${supergraphicUrl}" color="${tpl.primaryColor}" />
                         <v:textbox inset="0,0,0,0">
                         <![endif]-->
