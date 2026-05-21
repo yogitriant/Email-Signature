@@ -604,6 +604,7 @@
         const email =
           document.getElementById("inputEmail").value || "email@binus.edu";
 
+        const campusSelect = document.getElementById("inputCampus");
         const campusName =
           campusSelect.options[campusSelect.selectedIndex]?.text !== "-- Pilih Lokasi --" ? campusSelect.options[campusSelect.selectedIndex]?.text : "Nama Lokasi";
         const campusAddr =
