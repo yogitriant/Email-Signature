@@ -604,12 +604,11 @@
         const email =
           document.getElementById("inputEmail").value || "email@binus.edu";
 
-        const campusSelect = document.getElementById("inputCampus");
-        const campusName =
-          campusSelect.options[campusSelect.selectedIndex]?.text !== "-- Pilih Lokasi --" ? campusSelect.options[campusSelect.selectedIndex]?.text : "Nama Lokasi";
-        const campusAddr =
-          document.getElementById("addressPreview").innerHTML ||
-          "Detail Alamat<br>Kota, Kode Pos";
+        const campus = getSelectedCampus();
+        const campusName = campus ? campus.name : "Nama Lokasi";
+        const campusAddr = campus
+          ? campus.address.replace(/\n/g, "<br>")
+          : "Detail Alamat<br>Kota, Kode Pos";
 
         // Build Image Paths with Absolute URLs for Outlook compatibility
         // Uses the current URL context (e.g. http://127.0.0.1:8080/)
