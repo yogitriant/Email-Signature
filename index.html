@@ -1,503 +1,628 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Generator Signature Email Lembaga</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 30px 20px;
-            color: #1e293b;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecf4 50%, #f5f3ff 100%);
-            min-height: 100vh;
-        }
+      body {
+        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 30px 20px;
+        color: #1e293b;
+        line-height: 1.6;
+        background: linear-gradient(
+          135deg,
+          #f0f4ff 0%,
+          #e8ecf4 50%,
+          #f5f3ff 100%
+        );
+        min-height: 100vh;
+      }
 
-        .page-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .page-header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #0056b3, #1a73e8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 6px;
-        }
-        .page-header p {
-            font-size: 14px;
-            color: #64748b;
-        }
+      .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .page-header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #0056b3, #1a73e8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 6px;
+      }
+      .page-header p {
+        font-size: 14px;
+        color: #64748b;
+      }
 
+      .main-layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+      }
+
+      /* ---- Form Panel ---- */
+      .form-panel {
+        width: 360px;
+        min-width: 360px;
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e2e8f0;
+        position: sticky;
+        top: 20px;
+      }
+      .form-panel h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .form-panel h2::before {
+        content: "⚙️";
+      }
+
+      .input-group {
+        margin-bottom: 12px;
+      }
+      .input-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #475569;
+        margin-bottom: 4px;
+      }
+      .input-group input,
+      .input-group select {
+        width: 100%;
+        padding: 9px 11px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 13px;
+        font-family: inherit;
+        color: #1e293b;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        background: #f8fafc;
+      }
+      .input-group input:focus,
+      .input-group select:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        background: white;
+      }
+
+      .section-divider {
+        border: none;
+        border-top: 1px dashed #e2e8f0;
+        margin: 14px 0;
+      }
+      .section-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #94a3b8;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      /* Size selector */
+      .size-selector {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 0;
+      }
+      .size-btn {
+        flex: 1;
+        padding: 8px 4px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px;
+        background: #f8fafc;
+        cursor: pointer;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+      .size-btn:hover {
+        border-color: #93c5fd;
+        color: #3b82f6;
+      }
+      .size-btn.active {
+        border-color: #3b82f6;
+        background: #eff6ff;
+        color: #1d4ed8;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      }
+      .size-btn span {
+        display: block;
+        font-size: 10px;
+        font-weight: 400;
+        color: #94a3b8;
+        margin-top: 2px;
+      }
+      .size-btn.active span {
+        color: #60a5fa;
+      }
+
+      /* Address preview */
+      .address-preview {
+        margin-top: 6px;
+        padding: 8px 10px;
+        background: #f1f5f9;
+        border-radius: 6px;
+        font-size: 11px;
+        color: #64748b;
+        line-height: 1.5;
+        border-left: 3px solid #3b82f6;
+        display: none;
+      }
+      .address-preview.show {
+        display: block;
+      }
+
+      /* ---- Preview Panel ---- */
+      .preview-panel {
+        flex: 1;
+        background: white;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e2e8f0;
+      }
+      .preview-panel h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .preview-panel h2::before {
+        content: "👁️";
+      }
+      .preview-subtitle {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-bottom: 18px;
+      }
+      .preview-subtitle .size-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        background: #eff6ff;
+        color: #2563eb;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 11px;
+      }
+
+      #signature-preview {
+        margin-top: 10px;
+        overflow-x: auto;
+        min-height: 100px;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .btn-copy {
+        background: linear-gradient(135deg, #0056b3, #1a73e8);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        font-family: inherit;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-copy:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
+      }
+      .btn-copy:active {
+        transform: translateY(0);
+      }
+
+      .instruction {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-top: 14px;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: 8px;
+        border-left: 3px solid #3b82f6;
+        line-height: 1.5;
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #10b981;
+        color: white;
+        padding: 14px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1000;
+      }
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      @media (max-width: 900px) {
         .main-layout {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            gap: 30px;
-            align-items: flex-start;
+          flex-direction: column;
         }
-
-        /* ---- Form Panel ---- */
         .form-panel {
-            width: 360px;
-            min-width: 360px;
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
-            position: sticky;
-            top: 20px;
+          width: 100%;
+          min-width: unset;
+          position: static;
         }
-        .form-panel h2 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .form-panel h2::before { content: '⚙️'; }
-
-        .input-group { margin-bottom: 12px; }
-        .input-group label {
-            display: block;
-            font-weight: 600;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #475569;
-            margin-bottom: 4px;
-        }
-        .input-group input,
-        .input-group select {
-            width: 100%;
-            padding: 9px 11px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 13px;
-            font-family: inherit;
-            color: #1e293b;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            background: #f8fafc;
-        }
-        .input-group input:focus,
-        .input-group select:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
-            background: white;
-        }
-
-        .section-divider {
-            border: none;
-            border-top: 1px dashed #e2e8f0;
-            margin: 14px 0;
-        }
-        .section-label {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #94a3b8;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        /* Size selector */
-        .size-selector {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 0;
-        }
-        .size-btn {
-            flex: 1;
-            padding: 8px 4px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 8px;
-            background: #f8fafc;
-            cursor: pointer;
-            text-align: center;
-            font-size: 12px;
-            font-weight: 600;
-            color: #64748b;
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-        .size-btn:hover { border-color: #93c5fd; color: #3b82f6; }
-        .size-btn.active {
-            border-color: #3b82f6;
-            background: #eff6ff;
-            color: #1d4ed8;
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
-        }
-        .size-btn span { display: block; font-size: 10px; font-weight: 400; color: #94a3b8; margin-top: 2px; }
-        .size-btn.active span { color: #60a5fa; }
-
-        /* Address preview */
-        .address-preview {
-            margin-top: 6px;
-            padding: 8px 10px;
-            background: #f1f5f9;
-            border-radius: 6px;
-            font-size: 11px;
-            color: #64748b;
-            line-height: 1.5;
-            border-left: 3px solid #3b82f6;
-            display: none;
-        }
-        .address-preview.show { display: block; }
-
-        /* ---- Preview Panel ---- */
-        .preview-panel {
-            flex: 1;
-            background: white;
-            border-radius: 16px;
-            padding: 28px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
-        }
-        .preview-panel h2 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .preview-panel h2::before { content: '👁️'; }
-        .preview-subtitle {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-bottom: 18px;
-        }
-        .preview-subtitle .size-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            background: #eff6ff;
-            color: #2563eb;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 11px;
-        }
-
-        #signature-preview {
-            margin-top: 10px;
-            overflow-x: auto;
-            min-height: 100px;
-        }
-
-        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
-        .btn-copy {
-            background: linear-gradient(135deg, #0056b3, #1a73e8);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            font-family: inherit;
-            transition: transform 0.15s, box-shadow 0.15s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-copy:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0,86,179,0.3);
-        }
-        .btn-copy:active { transform: translateY(0); }
-
-        .instruction {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-top: 14px;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 8px;
-            border-left: 3px solid #3b82f6;
-            line-height: 1.5;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #10b981;
-            color: white;
-            padding: 14px 24px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 8px 30px rgba(16,185,129,0.3);
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-            z-index: 1000;
-        }
-        .toast.show { transform: translateY(0); opacity: 1; }
-
-        @media (max-width: 900px) {
-            .main-layout { flex-direction: column; }
-            .form-panel { width: 100%; min-width: unset; position: static; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="page-header">
+      <h1>Email Signature Generator</h1>
+      <p>
+        Pilih template, ukuran, dan isi data Anda untuk membuat signature
+        standar lembaga.
+      </p>
+    </div>
 
-<div class="page-header">
-    <h1>Email Signature Generator</h1>
-    <p>Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.</p>
-</div>
-
-<div class="main-layout">
-    <!-- ======== FORM PANEL ======== -->
-    <div class="form-panel">
+    <div class="main-layout">
+      <!-- ======== FORM PANEL ======== -->
+      <div class="form-panel">
         <h2>Konfigurasi</h2>
 
         <div class="input-group">
-            <label>Template</label>
-            <select id="inputTemplate" onchange="onConfigChange()">
-                <option value="">-- Pilih Template --</option>
-                <option value="bina-nusantara">BINA NUSANTARA</option>
-                <option value="binus-univ">BINUS University</option>
-                <option value="binus-school">BINUS School</option>
-            </select>
+          <label>Template</label>
+          <select id="inputTemplate" onchange="onConfigChange()">
+            <option value="">-- Pilih Template --</option>
+            <option value="bina-nusantara">BINA NUSANTARA</option>
+            <option value="binus-univ">BINUS University</option>
+            <option value="binus-school">BINUS School</option>
+          </select>
         </div>
 
-        <hr class="section-divider">
+        <hr class="section-divider" />
         <div class="section-label">Informasi Pribadi</div>
 
         <div class="input-group">
-            <label>Nama Lengkap</label>
-            <input type="text" id="inputName" placeholder="Contoh: Dr. Esther Widhi Andangsari, M,Si., Psi." oninput="onConfigChange()">
+          <label>Nama Lengkap</label>
+          <input
+            type="text"
+            id="inputName"
+            placeholder="Contoh: Dr. Esther Widhi Andangsari, M,Si., Psi."
+            oninput="onConfigChange()"
+          />
         </div>
         <div class="input-group">
-            <label>Jabatan</label>
-            <input type="text" id="inputTitle" placeholder="Contoh: Head of Psychology Department" oninput="onConfigChange()">
+          <label>Jabatan</label>
+          <input
+            type="text"
+            id="inputTitle"
+            placeholder="Contoh: Head of Psychology Department"
+            oninput="onConfigChange()"
+          />
         </div>
 
-        <hr class="section-divider">
+        <hr class="section-divider" />
         <div class="section-label">Kontak</div>
 
         <div class="input-group">
-            <label>Telepon</label>
-            <input type="text" id="inputPhone" placeholder="Contoh: +62 21 5345830" oninput="onConfigChange()">
+          <label>Telepon</label>
+          <input
+            type="text"
+            id="inputPhone"
+            placeholder="Contoh: +62 21 5345830"
+            oninput="onConfigChange()"
+          />
         </div>
         <div class="input-group">
-            <label>Mobile</label>
-            <input type="text" id="inputMobile" placeholder="Contoh: +62 (811) 894575" oninput="onConfigChange()">
+          <label>Mobile</label>
+          <input
+            type="text"
+            id="inputMobile"
+            placeholder="Contoh: +62 (811) 894575"
+            oninput="onConfigChange()"
+          />
         </div>
         <div class="input-group">
-            <label>Email</label>
-            <input type="email" id="inputEmail" placeholder="Contoh: esther@binus.edu" oninput="onConfigChange()">
+          <label>Email</label>
+          <input
+            type="email"
+            id="inputEmail"
+            placeholder="Contoh: esther@binus.edu"
+            oninput="onConfigChange()"
+          />
         </div>
 
         <div class="input-group">
-            <label>Alamat</label>
-            <select id="inputCampus" onchange="onCampusChange()">
-                <option value="">-- Pilih Alamat --</option>
-            </select>
-            <div class="address-preview" id="addressPreview"></div>
+          <label>Alamat</label>
+          <select id="inputCampus" onchange="onCampusChange()">
+            <option value="">-- Pilih Alamat --</option>
+          </select>
+          <div class="address-preview" id="addressPreview"></div>
         </div>
-    </div>
+      </div>
 
-    <!-- ======== PREVIEW PANEL ======== -->
-    <div class="preview-panel">
+      <!-- ======== PREVIEW PANEL ======== -->
+      <div class="preview-panel">
         <h2>Preview Signature</h2>
         <div class="preview-subtitle">Preview Real-time</div>
 
         <div id="signature-preview"></div>
 
         <div class="btn-group">
-            <button class="btn-copy" onclick="copySignature()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                Salin Signature
-            </button>
+          <button class="btn-copy" onclick="copySignature()">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path
+                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+              ></path>
+            </svg>
+            Salin Signature
+          </button>
         </div>
 
         <div class="instruction">
-            <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka <strong>Outlook → Settings → Signature</strong>, lalu tekan <strong>Ctrl + V (Paste)</strong>.<br>
-            <strong>Penting:</strong> Agar logo tampil di email penerima, pastikan gambar sudah di-host di server publik (URL absolut).
+          <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka
+          <strong>Outlook → Settings → Signature</strong>, lalu tekan
+          <strong>Ctrl + V (Paste)</strong>.<br />
+          <strong>Penting:</strong> Agar logo tampil di email penerima, pastikan
+          gambar sudah di-host di server publik (URL absolut).
         </div>
+      </div>
     </div>
-</div>
 
-<div class="toast" id="toast">✅ Signature berhasil disalin ke clipboard!</div>
+    <div class="toast" id="toast">
+      ✅ Signature berhasil disalin ke clipboard!
+    </div>
 
-<script>
-    // ============================
-    //  CAMPUS DATA
-    // ============================
-    const CAMPUS_DATA = [
+    <script>
+      // ============================
+      //  CAMPUS DATA
+      // ============================
+      const CAMPUS_DATA = [
         {
-            id: 'kijang',
-            name: 'Kijang Campus - BINUS University',
-            address: 'Jl. Kemanggisan Ilir III No. 45, Kemanggisan, Palmerah,\nJakarta Barat 11480,\nJakarta Raya Indonesia'
-        },
-        {
-            id: 'anggrek',
-            name: 'BINUS Kampus Anggrek',
-            address: 'Jl. Kebon Jeruk Raya No. 27,\nKebon Jeruk, Jakarta Barat 11530,\nIndonesia'
+          id: "kijang",
+          name: "Kijang Campus - BINUS University",
+          address:
+            "Jl. Kemanggisan Ilir III No. 45, Kemanggisan, Palmerah,\nJakarta Barat 11480,\nJakarta Raya Indonesia",
         },
         {
-            id: 'serpong',
-            name: 'BINUS SCHOOL Serpong',
-            address: 'Jl. Lengkong Karya – Jelupang No. 58,\nLengkong Karya, Kec. Serpong Utara,\nKota Tangerang Selatan, Banten 15322'
-        }
-    ];
-
-    // ============================
-    //  TEMPLATE CONFIGURATION
-    // ============================
-    const TEMPLATES = {
-        'binus-univ': {
-            name: 'BINUS University',
-            prefix: 'BU',
-            dir: 'BINUS University',
-            primaryColor: '#00529C',
-            textColor: '#4c4d4e',
-            websiteUrl: 'www.binus.ac.id',
-            websiteMb: 5,
-            websiteMr: 90,
-            nameMarginLeft: 23,
-            nameMarginTop: 23
+          id: "anggrek",
+          name: "BINUS Kampus Anggrek",
+          address:
+            "Jl. Kebon Jeruk Raya No. 27,\nKebon Jeruk, Jakarta Barat 11530,\nIndonesia",
         },
-        'binus-school': {
-            name: 'BINUS School',
-            prefix: 'BS',
-            dir: 'BINUS School',
-            primaryColor: '#00529C',
-            textColor: '#4c4d4e',
-            websiteUrl: 'www.binus.sch.id',
-            websiteMb: 7,
-            websiteMr: 85,
-            nameMarginLeft: 23,
-            nameMarginTop: 23
+        {
+          id: "serpong",
+          name: "BINUS SCHOOL Serpong",
+          address:
+            "Jl. Lengkong Karya – Jelupang No. 58,\nLengkong Karya, Kec. Serpong Utara,\nKota Tangerang Selatan, Banten 15322",
         },
-        'bina-nusantara': {
-            name: 'BINA NUSANTARA',
-            prefix: 'BN',
-            dir: 'BINA NUSANTARA',
-            primaryColor: '#6b2a7f',
-            textColor: '#4c4d4e',
-            websiteUrl: 'www.binus.edu',
-            websiteMb: 6,
-            websiteMr: 98,
-            nameMarginLeft: 23,
-            nameMarginTop: 23
-        }
-    };
+      ];
 
-    // ============================
-    //  SIZE DIMENSIONS MAP
-    // ============================
-    const SIZE_CONFIG = {
-        600: { total: 600, height: 103, logoLeftTd: 130, divider: 1, logoRightTd: 100, nameFontSize: '6.5pt', textFontSize: '5.3pt' }
-    };
+      // ============================
+      //  TEMPLATE CONFIGURATION
+      // ============================
+      const TEMPLATES = {
+        "binus-univ": {
+          name: "BINUS University",
+          prefix: "BU",
+          dir: "BINUS University",
+          primaryColor: "#00529C",
+          textColor: "#4c4d4e",
+          websiteUrl: "www.binus.ac.id",
+          websiteMb: 5,
+          websiteMr: 90,
+          nameMarginLeft: 23,
+          nameMarginTop: 23,
+        },
+        "binus-school": {
+          name: "BINUS School",
+          prefix: "BS",
+          dir: "BINUS School",
+          primaryColor: "#67102e",
+          textColor: "#4c4d4e",
+          websiteUrl: "www.binus.sch.id",
+          websiteMb: 7,
+          websiteMr: 85,
+          nameMarginLeft: 23,
+          nameMarginTop: 23,
+        },
+        "bina-nusantara": {
+          name: "BINA NUSANTARA",
+          prefix: "BN",
+          dir: "BINA NUSANTARA",
+          primaryColor: "#6b2a7f",
+          textColor: "#4c4d4e",
+          websiteUrl: "www.binus.edu",
+          websiteMb: 6,
+          websiteMr: 98,
+          nameMarginLeft: 23,
+          nameMarginTop: 23,
+        },
+      };
 
-    let currentSize = 600;
+      // ============================
+      //  SIZE DIMENSIONS MAP
+      // ============================
+      const SIZE_CONFIG = {
+        600: {
+          total: 600,
+          height: 103,
+          logoLeftTd: 130,
+          divider: 1,
+          logoRightTd: 100,
+          nameFontSize: "6.5pt",
+          textFontSize: "5.3pt",
+        },
+      };
 
-    // ============================
-    //  POPULATE ALAMAT DROPDOWN
-    // ============================
-    function populateCampusDropdown() {
-        const campusSelect = document.getElementById('inputCampus');
+      let currentSize = 600;
+
+      // ============================
+      //  POPULATE ALAMAT DROPDOWN
+      // ============================
+      function populateCampusDropdown() {
+        const campusSelect = document.getElementById("inputCampus");
 
         // Reset
         campusSelect.innerHTML = '<option value="">-- Pilih Alamat --</option>';
-        CAMPUS_DATA.forEach(c => {
-            const opt = document.createElement('option');
-            opt.value = c.id;
-            opt.textContent = c.name;
-            campusSelect.appendChild(opt);
+        CAMPUS_DATA.forEach((c) => {
+          const opt = document.createElement("option");
+          opt.value = c.id;
+          opt.textContent = c.name;
+          campusSelect.appendChild(opt);
         });
 
         // Reset preview
-        document.getElementById('addressPreview').classList.remove('show');
-        document.getElementById('addressPreview').textContent = '';
-    }
+        document.getElementById("addressPreview").classList.remove("show");
+        document.getElementById("addressPreview").textContent = "";
+      }
 
-    function getSelectedCampus() {
-        const campusId = document.getElementById('inputCampus').value;
-        return CAMPUS_DATA.find(c => c.id === campusId) || null;
-    }
+      function getSelectedCampus() {
+        const campusId = document.getElementById("inputCampus").value;
+        return CAMPUS_DATA.find((c) => c.id === campusId) || null;
+      }
 
-    function onCampusChange() {
+      function onCampusChange() {
         const campus = getSelectedCampus();
-        const preview = document.getElementById('addressPreview');
+        const preview = document.getElementById("addressPreview");
         if (campus) {
-            preview.innerHTML = '<strong>' + campus.name + '</strong><br>' + campus.address.replace(/\n/g, '<br>');
-            preview.classList.add('show');
+          preview.innerHTML =
+            "<strong>" +
+            campus.name +
+            "</strong><br>" +
+            campus.address.replace(/\n/g, "<br>");
+          preview.classList.add("show");
         } else {
-            preview.classList.remove('show');
-            preview.textContent = '';
+          preview.classList.remove("show");
+          preview.textContent = "";
         }
         renderSignature();
-    }
+      }
 
-
-    // ============================
-    //  UNIFIED CONFIG CHANGE
-    // ============================
-    function onConfigChange() {
+      // ============================
+      //  UNIFIED CONFIG CHANGE
+      // ============================
+      function onConfigChange() {
         // If template changed, re-populate campus dropdown
         populateCampusDropdown();
         renderSignature();
-    }
+      }
 
-    // ============================
-    //  RENDER SIGNATURE
-    // ============================
-    function renderSignature() {
-        const templateId = document.getElementById('inputTemplate').value;
+      // ============================
+      //  RENDER SIGNATURE
+      // ============================
+      function renderSignature() {
+        const templateId = document.getElementById("inputTemplate").value;
         if (!templateId) {
-            document.getElementById('signature-preview').innerHTML = '<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;">Silakan pilih template terlebih dahulu.</div>';
-            return;
+          document.getElementById("signature-preview").innerHTML =
+            '<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;">Silakan pilih template terlebih dahulu.</div>';
+          return;
         }
 
         const tpl = TEMPLATES[templateId];
         const sz = SIZE_CONFIG[currentSize];
 
-        const name   = document.getElementById('inputName').value   || 'Nama Lengkap Anda';
-        const title  = document.getElementById('inputTitle').value  || 'Jabatan Anda';
-        const phone  = document.getElementById('inputPhone').value  || '+62 21 ...';
-        const mobile = document.getElementById('inputMobile').value || '+62 (8xx) xxxxxx';
-        const email  = document.getElementById('inputEmail').value  || 'email@binus.edu';
+        const name =
+          document.getElementById("inputName").value || "Nama Lengkap Anda";
+        const title =
+          document.getElementById("inputTitle").value || "Jabatan Anda";
+        const phone =
+          document.getElementById("inputPhone").value || "+62 21 ...";
+        const mobile =
+          document.getElementById("inputMobile").value || "+62 (8xx) xxxxxx";
+        const email =
+          document.getElementById("inputEmail").value || "email@binus.edu";
 
         const campus = getSelectedCampus();
-        const campusName = campus ? campus.name : 'Nama Kampus';
-        const campusAddr = campus ? campus.address.replace(/\n/g, '<br>') : 'Alamat Kampus';
+        const campusName = campus ? campus.name : "Nama Kampus";
+        const campusAddr = campus
+          ? campus.address.replace(/\n/g, "<br>")
+          : "Alamat Kampus";
 
         // Build Image Paths with Absolute URLs for Outlook compatibility
         // Uses the current URL context (e.g. http://127.0.0.1:8080/)
         let baseUrl = window.location.href;
-        baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1);
+        baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/") + 1);
 
         const baseDir = `Asset Image/${tpl.dir}`;
-        const logoLeftUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
-        const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`); 
-        const supergraphicUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} supergraphic.png`);
-        const iconPhoneUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
-        const iconMobileUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
-        const iconEmailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+        const logoLeftUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
+        const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
+        const supergraphicUrl =
+          baseUrl +
+          encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} supergraphic.png`);
+        const iconPhoneUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
+        const iconMobileUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
+        const iconEmailUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
 
         // Icon builder — uses images provided
         const iconSz = currentSize >= 600 ? 12 : 9;
         function renderIcon(url) {
-            return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
+          return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
         }
 
-        const iconPhone  = renderIcon(iconPhoneUrl);
-        const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+        const iconPhone = renderIcon(iconPhoneUrl);
+        const iconMailUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
 
         const html = `
 <table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" height="103" style="width:${sz.total}px; max-width:${sz.total}px; height:103px; max-height:103px; background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt;">
@@ -581,39 +706,40 @@
     </tr>
 </table>`;
 
-        document.getElementById('signature-preview').innerHTML = html;
-    }
+        document.getElementById("signature-preview").innerHTML = html;
+      }
 
-    // ============================
-    //  COPY TO CLIPBOARD
-    // ============================
-    function copySignature() {
-        const signatureTable = document.querySelector('#signature-preview table');
+      // ============================
+      //  COPY TO CLIPBOARD
+      // ============================
+      function copySignature() {
+        const signatureTable = document.querySelector(
+          "#signature-preview table",
+        );
         const range = document.createRange();
         range.selectNode(signatureTable);
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
         try {
-            document.execCommand('copy');
-            showToast();
+          document.execCommand("copy");
+          showToast();
         } catch (err) {
-            alert('Gagal menyalin. Silakan seleksi manual dan copy.');
+          alert("Gagal menyalin. Silakan seleksi manual dan copy.");
         }
         window.getSelection().removeAllRanges();
-    }
+      }
 
-    function showToast() {
-        const t = document.getElementById('toast');
-        t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 2500);
-    }
+      function showToast() {
+        const t = document.getElementById("toast");
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2500);
+      }
 
-    // ============================
-    //  INIT
-    // ============================
-    populateCampusDropdown();
-    renderSignature();
-</script>
-
-</body>
+      // ============================
+      //  INIT
+      // ============================
+      populateCampusDropdown();
+      renderSignature();
+    </script>
+  </body>
 </html>
