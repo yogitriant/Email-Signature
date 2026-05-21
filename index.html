@@ -698,11 +698,26 @@
     </tr>
     <tr>
         <!-- Row 2: Supergraphic spanning Col 2 & 3 -->
-        <td colspan="2" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0;">
-            <div style="width:200px; height:20px; margin-left:auto; margin-right:0; margin-bottom:0; position:relative; font-size:0; line-height:0;">
-                <img src="${supergraphicUrl}" width="200" height="20" alt="" style="display:block; width:200px; height:20px; border:none; outline:none;">
-                <a href="https://${tpl.websiteUrl}" target="_blank" style="position:absolute; top:50%; right:${tpl.websiteMr}px; transform:translateY(-50%); font-family:Interstate,Arial,sans-serif; font-size:5.5pt; font-weight:bold; color:#ffffff; text-decoration:none; line-height:1; mso-line-height-rule:exactly;">${tpl.websiteUrl}</a>
+        <td colspan="2" valign="bottom" align="right" width="200" height="26" style="padding:0; margin:0; font-size:0; line-height:0; width:200px; height:26px; background-image:url('${supergraphicUrl}'); background-repeat:no-repeat; background-position:center; background-size:200px 26px;">
+            <!--[if gte mso 9]>
+            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:200px;height:26px;">
+                <v:fill type="frame" src="${supergraphicUrl}" color="#ffffff" />
+                <v:textbox inset="0,0,0,0">
+                    <table cellpadding="0" cellspacing="0" border="0" width="200" height="26">
+                        <tr>
+                            <td valign="middle" align="right" style="padding-right:${tpl.websiteMr}px; font-size:5.5pt;">
+                                <a href="https://${tpl.websiteUrl}" target="_blank" style="font-family:Interstate,Arial,sans-serif; font-size:5.5pt; font-weight:bold; color:#ffffff; text-decoration:none;">${tpl.websiteUrl}</a>
+                            </td>
+                        </tr>
+                    </table>
+                </v:textbox>
+            </v:rect>
+            <![endif]-->
+            <!--[if !mso]><!-->
+            <div style="width:200px; height:26px; display:table-cell; vertical-align:middle; text-align:right;">
+                <a href="https://${tpl.websiteUrl}" target="_blank" style="font-family:Interstate,Arial,sans-serif; font-size:5.5pt; font-weight:bold; color:#ffffff; text-decoration:none; padding-right:${tpl.websiteMr}px; display:inline-block; line-height:1; mso-line-height-rule:exactly;">${tpl.websiteUrl}</a>
             </div>
+            <!--<![endif]-->
         </td>
     </tr>
 </table>`;
@@ -713,21 +728,31 @@
       // ============================
       //  COPY TO CLIPBOARD
       // ============================
-      function copySignature() {
-        const signatureTable = document.querySelector(
-          "#signature-preview table",
-        );
-        const range = document.createRange();
-        range.selectNode(signatureTable);
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
+      async function copySignature() {
+        const signatureTable = document.getElementById("signature-html");
+        
         try {
-          document.execCommand("copy");
+          // Use modern Clipboard API to preserve HTML comments (VML for Outlook)
+          const htmlContent = signatureTable.outerHTML;
+          const blobHtml = new Blob([htmlContent], { type: "text/html" });
+          const clipboardItem = new ClipboardItem({ "text/html": blobHtml });
+          await navigator.clipboard.write([clipboardItem]);
           showToast();
         } catch (err) {
-          alert("Gagal menyalin. Silakan seleksi manual dan copy.");
+          console.warn("ClipboardItem API failed, falling back to execCommand", err);
+          // Fallback for older browsers
+          const range = document.createRange();
+          range.selectNode(signatureTable);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+          try {
+            document.execCommand("copy");
+            showToast();
+          } catch (e) {
+            alert("Gagal menyalin. Silakan seleksi manual dan copy.");
+          }
+          window.getSelection().removeAllRanges();
         }
-        window.getSelection().removeAllRanges();
       }
 
       function showToast() {
