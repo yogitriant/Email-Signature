@@ -467,8 +467,13 @@
           websiteUrl: "www.binus.ac.id",
           websiteMb: 5,
           websiteMr: 90,
-          nameMarginLeft: 23,
+          nameMarginLeft: 31,
           nameMarginTop: 23,
+          logoWidth: 98,
+          logoHeight: 70,
+          logoMarginTop: 0,
+          logoMarginLeft: 10,
+          col1Width: 108,
         },
         "binus-school": {
           name: "BINUS School",
@@ -479,8 +484,13 @@
           websiteUrl: "www.binus.sch.id",
           websiteMb: 7,
           websiteMr: 85,
-          nameMarginLeft: 23,
+          nameMarginLeft: 31,
           nameMarginTop: 23,
+          logoWidth: 67,
+          logoHeight: 55,
+          logoMarginTop: 0,
+          logoMarginLeft: 13,
+          col1Width: 80,
         },
         "bina-nusantara": {
           name: "BINA NUSANTARA",
@@ -493,6 +503,11 @@
           websiteMr: 98,
           nameMarginLeft: 23,
           nameMarginTop: 23,
+          logoWidth: 130,
+          logoHeight: 'auto',
+          logoMarginTop: 0,
+          logoMarginLeft: 8,
+          col1Width: 138,
         },
       };
 
@@ -628,12 +643,12 @@
 <table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" height="103" style="width:${sz.total}px; max-width:${sz.total}px; height:103px; max-height:103px; background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt;">
     <tr>
         <!-- Col 1: Left Logo -->
-        <td width="138" rowspan="2" valign="top" align="left" style="width:138px; padding-top:0px; padding-left:8px;">
-            <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; max-width:130px; height:auto;">
+        <td width="${tpl.col1Width}" rowspan="2" valign="top" align="left" style="width:${tpl.col1Width}px; padding-top:${tpl.logoMarginTop}px; padding-left:${tpl.logoMarginLeft}px;">
+            <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; width:${tpl.logoWidth}px; max-width:${tpl.logoWidth}px; height:${typeof tpl.logoHeight === 'number' ? tpl.logoHeight + 'px' : tpl.logoHeight};">
         </td>
         
         <!-- Col 2: Center Content -->
-        <td width="389" valign="top" align="left" style="width:389px; padding-top:${tpl.nameMarginTop}px; padding-left:${tpl.nameMarginLeft}px;">
+        <td width="${sz.total - tpl.col1Width - 73}" valign="top" align="left" style="width:${sz.total - tpl.col1Width - 73}px; padding-top:${tpl.nameMarginTop}px; padding-left:${tpl.nameMarginLeft}px;">
             <!-- Nama -->
             <div style="font-family:Interstate,Arial,sans-serif; font-size:6.5pt; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
             
