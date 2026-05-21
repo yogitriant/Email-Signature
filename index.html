@@ -735,7 +735,7 @@
       //  COPY TO CLIPBOARD
       // ============================
       async function copySignature() {
-        const signatureTable = document.getElementById("signature-html");
+        const signatureTable = document.querySelector("#signature-preview table");
         
         try {
           // Use modern Clipboard API to preserve HTML comments (VML for Outlook)
