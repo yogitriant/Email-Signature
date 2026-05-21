@@ -392,7 +392,7 @@
             websiteUrl: 'www.binus.edu',
             websiteMb: 6,
             websiteMr: 98,
-            nameMarginLeft: 23,
+            nameMarginLeft: 0,
             nameMarginTop: 23
         }
     };
@@ -401,7 +401,7 @@
     //  SIZE DIMENSIONS MAP
     // ============================
     const SIZE_CONFIG = {
-        600: { total: 600, height: 100, logoLeftTd: 130, divider: 1, logoRightTd: 100, nameFontSize: '6.5pt', textFontSize: '5.3pt' }
+        600: { total: 600, height: 103, logoLeftTd: 130, divider: 1, logoRightTd: 100, nameFontSize: '6.5pt', textFontSize: '5.3pt' }
     };
 
     let currentSize = 600;
@@ -500,7 +500,7 @@
         const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
 
         const html = `
-<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" height="100" style="width:${sz.total}px; max-width:${sz.total}px; height:100px; background-color:#ffffff; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" height="103" style="width:${sz.total}px; max-width:${sz.total}px; height:103px; max-height:103px; background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt;">
     <tr>
         <!-- Col 1: Left Logo -->
         <td width="138" rowspan="2" valign="top" align="left" style="width:138px; padding-top:0px; padding-left:8px;">
@@ -516,10 +516,11 @@
             <div style="font-family:Interstate,Arial,sans-serif; font-size:5.5pt; color:${tpl.textColor}; line-height:1.2; margin-top:2px; padding:0; margin-left:1px; mso-line-height-rule:exactly;">${title}</div>
             
             <!-- Kontak & Alamat Nested Table -->
-            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:7px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+            <!-- mt-9 from department to reach exactly Y=50 -->
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:9px; margin-left:1px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                 <tr>
-                    <!-- Phone numbers (mt-11 from department -> mt-7 on table + 4px padding here) -->
-                    <td valign="top" style="padding-top:4px; padding-right:4px;">
+                    <!-- Phone numbers (mt-11 from department -> mt-9 on table + 2px padding here) -->
+                    <td valign="top" style="padding-top:2px; padding-right:0px;">
                         <div style="margin-bottom:2px; line-height:1;">
                             <img src="${iconPhoneUrl}" alt="Phone" style="display:inline-block; vertical-align:middle; max-width:10px; height:auto; margin-right:4px;">
                             <span style="font-family:Interstate,Arial,sans-serif; font-size:5.3pt; color:${tpl.textColor}; vertical-align:middle; mso-line-height-rule:exactly;">${phone}</span>
