@@ -685,10 +685,9 @@
           ? campus.address.replace(/\n/g, "<br>")
           : "Detail Alamat<br>Kota, Kode Pos";
 
-        // Build Image Paths with Absolute URLs for Outlook compatibility
-        // Uses the current URL context (e.g. http://127.0.0.1:8080/)
-        let baseUrl = window.location.href;
-        baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/") + 1);
+        // Build Image Paths with Absolute Public URLs for Outlook compatibility
+        // Uses the GitHub Raw URL so images load on mobile phones and for recipients
+        const baseUrl = "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
 
         const baseDir = `Asset Image/${tpl.dir}`;
         const logoLeftUrl =
