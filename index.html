@@ -21,9 +21,9 @@
         line-height: 1.6;
         background: linear-gradient(
           135deg,
-          #f0f4ff 0%,
-          #e8ecf4 50%,
-          #f5f3ff 100%
+          #f5f0f8 0%,
+          #eef6fb 50%,
+          #fdf8f0 100%
         );
         min-height: 100vh;
       }
@@ -31,11 +31,12 @@
       .page-header {
         text-align: center;
         margin-bottom: 30px;
+        position: relative;
       }
       .page-header h1 {
         font-size: 28px;
         font-weight: 700;
-        background: linear-gradient(135deg, #0056b3, #1a73e8);
+        background: linear-gradient(135deg, #7A2182, #008ED3);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -44,6 +45,40 @@
       .page-header p {
         font-size: 14px;
         color: #64748b;
+      }
+
+      /* Language Toggle */
+      .lang-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1.5px solid #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      }
+      .lang-btn {
+        padding: 6px 14px;
+        border: none;
+        background: #f8fafc;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+      .lang-btn:first-child {
+        border-right: 1px solid #e2e8f0;
+      }
+      .lang-btn:hover {
+        background: #f0e8f4;
+        color: #7A2182;
+      }
+      .lang-btn.active {
+        background: linear-gradient(135deg, #7A2182, #008ED3);
+        color: white;
       }
 
       .main-layout {
@@ -61,8 +96,8 @@
         background: white;
         border-radius: 16px;
         padding: 24px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 24px rgba(122, 33, 130, 0.06);
+        border: 1px solid #e8dced;
         position: sticky;
         top: 20px;
       }
@@ -108,8 +143,8 @@
       .input-group input:focus,
       .input-group select:focus {
         outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        border-color: #7A2182;
+        box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
         background: white;
       }
 
@@ -148,14 +183,14 @@
         transition: all 0.2s;
       }
       .size-btn:hover {
-        border-color: #93c5fd;
-        color: #3b82f6;
+        border-color: #c9a0d0;
+        color: #7A2182;
       }
       .size-btn.active {
-        border-color: #3b82f6;
-        background: #eff6ff;
-        color: #1d4ed8;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        border-color: #7A2182;
+        background: #f5edf7;
+        color: #5a1862;
+        box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
       }
       .size-btn span {
         display: block;
@@ -165,19 +200,19 @@
         margin-top: 2px;
       }
       .size-btn.active span {
-        color: #60a5fa;
+        color: #b07cb8;
       }
 
       /* Address preview */
       .address-preview {
         margin-top: 6px;
         padding: 8px 10px;
-        background: #f1f5f9;
+        background: #faf5fb;
         border-radius: 6px;
         font-size: 11px;
         color: #64748b;
         line-height: 1.5;
-        border-left: 3px solid #3b82f6;
+        border-left: 3px solid #7A2182;
         display: none;
       }
       .address-preview.show {
@@ -190,8 +225,8 @@
         background: white;
         border-radius: 16px;
         padding: 28px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 24px rgba(0, 142, 211, 0.06);
+        border: 1px solid #dde9f0;
       }
       .preview-panel h2 {
         font-size: 18px;
@@ -213,8 +248,8 @@
       .preview-subtitle .size-badge {
         display: inline-block;
         padding: 2px 8px;
-        background: #eff6ff;
-        color: #2563eb;
+        background: #f5edf7;
+        color: #7A2182;
         border-radius: 4px;
         font-weight: 600;
         font-size: 11px;
@@ -232,7 +267,7 @@
         margin-top: 20px;
       }
       .btn-copy {
-        background: linear-gradient(135deg, #0056b3, #1a73e8);
+        background: linear-gradient(135deg, #7A2182, #008ED3);
         color: white;
         border: none;
         padding: 12px 24px;
@@ -250,7 +285,7 @@
       }
       .btn-copy:hover {
         transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
+        box-shadow: 0 6px 20px rgba(122, 33, 130, 0.3);
       }
       .btn-copy:active {
         transform: translateY(0);
@@ -258,12 +293,12 @@
 
       .instruction {
         font-size: 12px;
-        color: #94a3b8;
+        color: #64748b;
         margin-top: 14px;
         padding: 12px;
-        background: #f8fafc;
+        background: #faf8fc;
         border-radius: 8px;
-        border-left: 3px solid #3b82f6;
+        border-left: 3px solid #F08700;
         line-height: 1.5;
       }
 
@@ -272,13 +307,13 @@
         position: fixed;
         bottom: 30px;
         right: 30px;
-        background: #10b981;
+        background: linear-gradient(135deg, #76b743, #008ED3);
         color: white;
         padding: 14px 24px;
         border-radius: 10px;
         font-weight: 600;
         font-size: 14px;
-        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 8px 30px rgba(118, 183, 67, 0.3);
         transform: translateY(100px);
         opacity: 0;
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -303,22 +338,25 @@
   </head>
   <body>
     <div class="page-header">
-      <h1>Email Signature Generator</h1>
-      <p>
-        Pilih template, ukuran, dan isi data Anda untuk membuat signature
-        standar lembaga.
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-lang-id" onclick="setLang('id')">ID</button>
+        <button class="lang-btn" id="btn-lang-en" onclick="setLang('en')">EN</button>
+      </div>
+      <h1 data-i18n="title">Email Signature Generator</h1>
+      <p data-i18n="subtitle">
+        Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.
       </p>
     </div>
 
     <div class="main-layout">
       <!-- ======== FORM PANEL ======== -->
       <div class="form-panel">
-        <h2>Konfigurasi</h2>
+        <h2 data-i18n="configTitle">Konfigurasi</h2>
 
         <div class="input-group">
-          <label>Template</label>
+          <label data-i18n="templateLabel">Template</label>
           <select id="inputTemplate" onchange="onConfigChange()">
-            <option value="">-- Pilih Template --</option>
+            <option value="" data-i18n="selectTemplate">-- Pilih Template --</option>
             <option value="bina-nusantara">BINA NUSANTARA</option>
             <option value="binus-univ">BINUS University</option>
             <option value="binus-school">BINUS School</option>
@@ -326,7 +364,7 @@
         </div>
 
         <div class="input-group">
-          <label>Ukuran</label>
+          <label data-i18n="sizeLabel">Ukuran</label>
           <div class="size-selector">
             <button class="size-btn active" onclick="setSize(600)" id="btn-size-600">
               Desktop
@@ -344,10 +382,10 @@
         </div>
 
         <hr class="section-divider" />
-        <div class="section-label">Informasi Pribadi</div>
+        <div class="section-label" data-i18n="personalInfo">Informasi Pribadi</div>
 
         <div class="input-group">
-          <label>Nama Lengkap</label>
+          <label data-i18n="nameLabel">Nama Lengkap</label>
           <input
             type="text"
             id="inputName"
@@ -356,7 +394,7 @@
           />
         </div>
         <div class="input-group">
-          <label>Jabatan</label>
+          <label data-i18n="titleLabel">Jabatan</label>
           <input
             type="text"
             id="inputTitle"
@@ -366,10 +404,10 @@
         </div>
 
         <hr class="section-divider" />
-        <div class="section-label">Kontak</div>
+        <div class="section-label" data-i18n="contactLabel">Kontak</div>
 
         <div class="input-group">
-          <label>Telepon</label>
+          <label data-i18n="phoneLabel">Telepon</label>
           <input
             type="text"
             id="inputPhone"
@@ -378,7 +416,7 @@
           />
         </div>
         <div class="input-group">
-          <label>Mobile</label>
+          <label data-i18n="mobileLabel">Mobile</label>
           <input
             type="text"
             id="inputMobile"
@@ -397,9 +435,9 @@
         </div>
 
         <div class="input-group">
-          <label>Alamat</label>
+          <label data-i18n="addressLabel">Alamat</label>
           <select id="inputCampus" onchange="onCampusChange()">
-            <option value="">-- Pilih Alamat --</option>
+            <option value="" data-i18n="selectLocation">-- Pilih Lokasi --</option>
           </select>
           <div class="address-preview" id="addressPreview"></div>
         </div>
@@ -407,8 +445,8 @@
 
       <!-- ======== PREVIEW PANEL ======== -->
       <div class="preview-panel">
-        <h2>Preview Signature</h2>
-        <div class="preview-subtitle">Preview Real-time</div>
+        <h2 data-i18n="previewTitle">Preview Signature</h2>
+        <div class="preview-subtitle" data-i18n="previewSubtitle">Pratinjau Langsung</div>
 
         <div id="signature-preview"></div>
 
@@ -429,11 +467,11 @@
                 d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
               ></path>
             </svg>
-            Salin Signature
+            <span data-i18n="copyBtn">Salin Signature</span>
           </button>
         </div>
 
-        <div class="instruction">
+        <div class="instruction" data-i18n="instruction">
           <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka
           <strong>Outlook → Settings → Signature</strong>, lalu tekan
           <strong>Ctrl + V (Paste)</strong>.<br />
@@ -448,6 +486,80 @@
     </div>
 
     <script>
+      // ============================
+      //  BILINGUAL SYSTEM (i18n)
+      // ============================
+      const i18n = {
+        id: {
+          title: "Generator Signature Email",
+          subtitle: "Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.",
+          configTitle: "Konfigurasi",
+          templateLabel: "Template",
+          selectTemplate: "-- Pilih Template --",
+          sizeLabel: "Ukuran",
+          personalInfo: "Informasi Pribadi",
+          nameLabel: "Nama Lengkap",
+          titleLabel: "Jabatan",
+          contactLabel: "Kontak",
+          phoneLabel: "Telepon",
+          mobileLabel: "HP",
+          addressLabel: "Alamat",
+          selectLocation: "-- Pilih Lokasi --",
+          previewTitle: "Preview Signature",
+          previewSubtitle: "Pratinjau Langsung",
+          copyBtn: "Salin Signature",
+          instruction: "<strong>Cara Penggunaan:</strong> Setelah klik \"Salin Signature\", buka <strong>Outlook → Settings → Signature</strong>, lalu tekan <strong>Ctrl + V (Paste)</strong>.<br /><strong>Penting:</strong> Agar logo tampil di email penerima, pastikan gambar sudah di-host di server publik (URL absolut).",
+          toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
+          noTemplate: "Silakan pilih template terlebih dahulu."
+        },
+        en: {
+          title: "Email Signature Generator",
+          subtitle: "Select a template, size, and fill in your details to create a standard corporate signature.",
+          configTitle: "Configuration",
+          templateLabel: "Template",
+          selectTemplate: "-- Select Template --",
+          sizeLabel: "Size",
+          personalInfo: "Personal Information",
+          nameLabel: "Full Name",
+          titleLabel: "Job Title",
+          contactLabel: "Contact",
+          phoneLabel: "Phone",
+          mobileLabel: "Mobile",
+          addressLabel: "Address",
+          selectLocation: "-- Select Location --",
+          previewTitle: "Signature Preview",
+          previewSubtitle: "Real-time Preview",
+          copyBtn: "Copy Signature",
+          instruction: "<strong>How to use:</strong> After clicking \"Copy Signature\", open <strong>Outlook → Settings → Signature</strong>, and press <strong>Ctrl + V (Paste)</strong>.<br /><strong>Important:</strong> Ensure images are hosted on a public server so recipients can see the logos.",
+          toastSuccess: "✅ Signature successfully copied to clipboard!",
+          noTemplate: "Please select a template first."
+        }
+      };
+
+      let currentLang = 'id';
+
+      function setLang(lang) {
+        currentLang = lang;
+        // Update toggle buttons
+        document.getElementById('btn-lang-id').classList.toggle('active', lang === 'id');
+        document.getElementById('btn-lang-en').classList.toggle('active', lang === 'en');
+        
+        // Update all text nodes with data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (i18n[lang][key]) {
+            el.innerHTML = i18n[lang][key];
+          }
+        });
+
+        // Update toast text
+        document.getElementById('toast').textContent = i18n[lang].toastSuccess;
+
+        // Re-populate dropdowns to translate default options
+        populateCampusDropdown();
+        renderSignature();
+      }
+
       // ============================
       //  CAMPUS DATA
       // ============================
@@ -610,7 +722,7 @@
         const campusSelect = document.getElementById("inputCampus");
 
         // Reset
-        campusSelect.innerHTML = '<option value="">-- Pilih Lokasi --</option>';
+        campusSelect.innerHTML = `<option value="" data-i18n="selectLocation">${i18n[currentLang].selectLocation}</option>`;
         CAMPUS_DATA.forEach((c) => {
           const opt = document.createElement("option");
           opt.value = c.id;
@@ -661,7 +773,7 @@
         const templateId = document.getElementById("inputTemplate").value;
         if (!templateId) {
           document.getElementById("signature-preview").innerHTML =
-            '<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;">Silakan pilih template terlebih dahulu.</div>';
+            `<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;" data-i18n="noTemplate">${i18n[currentLang].noTemplate}</div>`;
           return;
         }
 
