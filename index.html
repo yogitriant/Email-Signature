@@ -526,6 +526,15 @@
           logoMarginTop: 0,
           logoMarginLeft: 8,
           col1Width: 138,
+          sizes: {
+            450: {
+              logoWidth: 60,
+              logoMarginLeft: 10,
+              col1Width: 70,
+              nameMarginLeft: 5,
+              nameMarginTop: 15,
+            }
+          }
         },
       };
 
@@ -548,11 +557,12 @@
           tableMt: 9,
           divPl: 11,
           divPr: 6,
+          col3Width: 73,
         },
         450: {
           total: 450,
           scale: 0.75,
-          nameFontSize: "5.5pt",
+          nameFontSize: "6pt",
           textFontSize: "4.6pt",
           supergraphicHeight: 19,
           annivLogoWidth: 37,
@@ -564,6 +574,7 @@
           tableMt: 9,
           divPl: 4,
           divPr: 7,
+          col3Width: 65,
         },
         320: {
           total: 320,
@@ -580,6 +591,7 @@
           tableMt: 5,
           divPl: 3,
           divPr: 3,
+          col3Width: 40,
         },
       };
 
@@ -704,16 +716,28 @@
         const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
 
         // Precompute Scaled Layout Variables
-        const s_col1Width = Math.round(tpl.col1Width * sz.scale);
-        const s_logoWidth = Math.round(tpl.logoWidth * sz.scale);
-        const s_logoHeight = typeof tpl.logoHeight === "number" ? Math.round(tpl.logoHeight * sz.scale) + "px" : tpl.logoHeight;
-        const s_logoMt = Math.round(tpl.logoMarginTop * sz.scale);
-        const s_logoMl = Math.round(tpl.logoMarginLeft * sz.scale);
+        const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
+        const getVal = (prop) => tplOverride[prop] !== undefined ? tplOverride[prop] : Math.round(tpl[prop] * sz.scale);
+
+        const s_col1Width = getVal("col1Width");
+        const s_logoWidth = getVal("logoWidth");
         
-        const s_nameMt = Math.round(tpl.nameMarginTop * sz.scale);
-        const s_nameMl = Math.round(tpl.nameMarginLeft * sz.scale);
+        let s_logoHeight = "auto";
+        if (tplOverride.logoHeight !== undefined) {
+            s_logoHeight = typeof tplOverride.logoHeight === "number" ? tplOverride.logoHeight + "px" : tplOverride.logoHeight;
+        } else if (typeof tpl.logoHeight === "number") {
+            s_logoHeight = Math.round(tpl.logoHeight * sz.scale) + "px";
+        } else {
+            s_logoHeight = tpl.logoHeight;
+        }
+
+        const s_logoMt = getVal("logoMarginTop");
+        const s_logoMl = getVal("logoMarginLeft");
         
-        const s_col3Width = Math.round(73 * sz.scale);
+        const s_nameMt = getVal("nameMarginTop");
+        const s_nameMl = getVal("nameMarginLeft");
+        
+        const s_col3Width = sz.col3Width;
         const s_col2Width = sz.total - s_col1Width - s_col3Width;
         
         const s_supergraphicWidth = Math.round(200 * sz.scale);
