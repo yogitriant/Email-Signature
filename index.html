@@ -510,7 +510,11 @@
           copyBtn: "Salin Signature",
           instruction: "<strong>Cara Penggunaan:</strong> Setelah klik \"Salin Signature\", buka <strong>Outlook → Settings → Signature</strong>, lalu tekan <strong>Ctrl + V (Paste)</strong>.<br /><strong>Penting:</strong> Agar logo tampil di email penerima, pastikan gambar sudah di-host di server publik (URL absolut).",
           toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
-          noTemplate: "Silakan pilih template terlebih dahulu."
+          noTemplate: "Silakan pilih template terlebih dahulu.",
+          placeholderName: "Nama Lengkap Anda",
+          placeholderTitle: "Jabatan Anda",
+          placeholderLocation: "Nama Lokasi",
+          placeholderAddress: "Detail Alamat<br>Kota, Kode Pos"
         },
         en: {
           title: "Email Signature Generator",
@@ -532,7 +536,11 @@
           copyBtn: "Copy Signature",
           instruction: "<strong>How to use:</strong> After clicking \"Copy Signature\", open <strong>Outlook → Settings → Signature</strong>, and press <strong>Ctrl + V (Paste)</strong>.<br /><strong>Important:</strong> Ensure images are hosted on a public server so recipients can see the logos.",
           toastSuccess: "✅ Signature successfully copied to clipboard!",
-          noTemplate: "Please select a template first."
+          noTemplate: "Please select a template first.",
+          placeholderName: "Your Full Name",
+          placeholderTitle: "Your Job Title",
+          placeholderLocation: "Location Name",
+          placeholderAddress: "Address Detail<br>City, Postal Code"
         }
       };
 
@@ -781,9 +789,9 @@
         const sz = SIZE_CONFIG[currentSize];
 
         const name =
-          document.getElementById("inputName").value || "Nama Lengkap Anda";
+          document.getElementById("inputName").value || i18n[currentLang].placeholderName;
         const title =
-          document.getElementById("inputTitle").value || "Jabatan Anda";
+          document.getElementById("inputTitle").value || i18n[currentLang].placeholderTitle;
         const phone =
           document.getElementById("inputPhone").value || "+62 21 ...";
         const mobile =
@@ -792,10 +800,10 @@
           document.getElementById("inputEmail").value || "email@binus.edu";
 
         const campus = getSelectedCampus();
-        const campusName = campus ? campus.name : "Nama Lokasi";
+        const campusName = campus ? campus.name : i18n[currentLang].placeholderLocation;
         const campusAddr = campus
           ? campus.address.replace(/\n/g, "<br>")
-          : "Detail Alamat<br>Kota, Kode Pos";
+          : i18n[currentLang].placeholderAddress;
 
         // Build Image Paths with Absolute Public URLs for Outlook compatibility
         // Uses the GitHub Raw URL so images load on mobile phones and for recipients
