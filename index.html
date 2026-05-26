@@ -325,6 +325,24 @@
           </select>
         </div>
 
+        <div class="input-group">
+          <label>Ukuran</label>
+          <div class="size-selector">
+            <button class="size-btn active" onclick="setSize(600)" id="btn-size-600">
+              Desktop
+              <span>600px</span>
+            </button>
+            <button class="size-btn" onclick="setSize(450)" id="btn-size-450">
+              Tablet
+              <span>450px</span>
+            </button>
+            <button class="size-btn" onclick="setSize(320)" id="btn-size-320">
+              Mobile
+              <span>320px</span>
+            </button>
+          </div>
+        </div>
+
         <hr class="section-divider" />
         <div class="section-label">Informasi Pribadi</div>
 
@@ -517,16 +535,55 @@
       const SIZE_CONFIG = {
         600: {
           total: 600,
-          height: 103,
-          logoLeftTd: 130,
-          divider: 1,
-          logoRightTd: 100,
+          scale: 1.0,
           nameFontSize: "6.5pt",
           textFontSize: "5.3pt",
+          supergraphicHeight: 26,
+          annivLogoWidth: 50,
+          annivLogoHeight: 45,
+          annivPt: 15,
+          annivPr: 23,
+          iconsWidth: 8,
+          dividerHeight: 32,
+        },
+        450: {
+          total: 450,
+          scale: 0.75,
+          nameFontSize: "5.5pt",
+          textFontSize: "4.5pt",
+          supergraphicHeight: 19,
+          annivLogoWidth: 37,
+          annivLogoHeight: 34,
+          annivPt: 11,
+          annivPr: 17,
+          iconsWidth: 6,
+          dividerHeight: 24,
+        },
+        320: {
+          total: 320,
+          scale: 0.533,
+          nameFontSize: "4.5pt",
+          textFontSize: "3.5pt",
+          supergraphicHeight: 14,
+          annivLogoWidth: 26,
+          annivLogoHeight: 24,
+          annivPt: 8,
+          annivPr: 12,
+          iconsWidth: 4,
+          dividerHeight: 17,
         },
       };
 
       let currentSize = 600;
+
+      function setSize(size) {
+        currentSize = size;
+        document.querySelectorAll(".size-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        document.getElementById(`btn-size-${size}`).classList.add("active");
+        renderSignature();
+      }
 
       // ============================
       //  POPULATE ALAMAT DROPDOWN
@@ -635,54 +692,71 @@
         }
 
         const iconPhone = renderIcon(iconPhoneUrl);
-        const iconMailUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+        const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+
+        // Precompute Scaled Layout Variables
+        const s_col1Width = Math.round(tpl.col1Width * sz.scale);
+        const s_logoWidth = Math.round(tpl.logoWidth * sz.scale);
+        const s_logoHeight = typeof tpl.logoHeight === "number" ? Math.round(tpl.logoHeight * sz.scale) + "px" : tpl.logoHeight;
+        const s_logoMt = Math.round(tpl.logoMarginTop * sz.scale);
+        const s_logoMl = Math.round(tpl.logoMarginLeft * sz.scale);
+        
+        const s_nameMt = Math.round(tpl.nameMarginTop * sz.scale);
+        const s_nameMl = Math.round(tpl.nameMarginLeft * sz.scale);
+        
+        const s_col3Width = Math.round(73 * sz.scale);
+        const s_col2Width = sz.total - s_col1Width - s_col3Width;
+        
+        const s_supergraphicWidth = Math.round(200 * sz.scale);
+        
+        const s_tableMt = Math.round(9 * sz.scale);
+        const s_divPl = Math.round(11 * sz.scale);
+        const s_divPr = Math.round(6 * sz.scale);
 
         const html = `
 <table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" style="width:${sz.total}px; max-width:${sz.total}px; background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt;">
     <tr>
         <!-- Col 1: Left Logo -->
-        <td width="${tpl.col1Width}" rowspan="2" valign="top" align="left" style="width:${tpl.col1Width}px; padding-top:${tpl.logoMarginTop}px; padding-left:${tpl.logoMarginLeft}px;">
-            <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; width:${tpl.logoWidth}px; max-width:${tpl.logoWidth}px; height:${typeof tpl.logoHeight === "number" ? tpl.logoHeight + "px" : tpl.logoHeight};">
+        <td width="${s_col1Width}" rowspan="2" valign="top" align="left" style="width:${s_col1Width}px; padding-top:${s_logoMt}px; padding-left:${s_logoMl}px;">
+            <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; width:${s_logoWidth}px; max-width:${s_logoWidth}px; height:${s_logoHeight};">
         </td>
         
         <!-- Col 2: Center Content -->
-        <td width="${sz.total - tpl.col1Width - 73}" valign="top" align="left" style="width:${sz.total - tpl.col1Width - 73}px; padding-top:${tpl.nameMarginTop}px; padding-left:${tpl.nameMarginLeft}px;">
+        <td width="${s_col2Width}" valign="top" align="left" style="width:${s_col2Width}px; padding-top:${s_nameMt}px; padding-left:${s_nameMl}px;">
             <!-- Nama -->
-            <div style="font-family:Interstate,Arial,sans-serif; font-size:6.5pt; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
+            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.nameFontSize}; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
             
             <!-- Department: margin left 1 (139-138), margin top 2 from nama -->
-            <div style="font-family:Interstate,Arial,sans-serif; font-size:5.5pt; color:${tpl.textColor}; line-height:1.2; margin-top:2px; padding:0; margin-left:1px; mso-line-height-rule:exactly;">${title}</div>
+            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:2px; padding:0; margin-left:1px; mso-line-height-rule:exactly;">${title}</div>
             
             <!-- Kontak & Alamat Nested Table -->
-            <!-- mt-9 from department to reach exactly Y=50 -->
-            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:9px; margin-left:1px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:1px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                 <tr>
-                    <!-- Phone numbers (mt-11 from department -> mt-9 on table + 2px padding here) -->
+                    <!-- Phone numbers -->
                     <td valign="top" style="padding-top:2px; padding-right:0px;">
                         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                             <tr>
-                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="8" style="display:block; border:none; max-width:8px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:5.3pt; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
+                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
                             </tr>
                             <tr>
-                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="8" style="display:block; border:none; max-width:8px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:5.3pt; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
+                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
                             </tr>
                             <tr>
-                                <td valign="middle"><img src="${iconEmailUrl}" width="8" style="display:block; border:none; max-width:8px;"></td>
-                                <td valign="middle" style="padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:5.3pt; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
+                                <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
+                                <td valign="middle" style="padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
                             </tr>
                         </table>
                     </td>
                     
-                    <!-- Divider: margin left 11 from nomor telepon margin right 6 -->
-                    <td valign="top" style="padding-left:11px; padding-right:6px;">
-                        <div style="width:1px; height:32px; background-color:#cccccc; font-size:1px; line-height:1px;">&nbsp;</div>
+                    <!-- Divider -->
+                    <td valign="top" style="padding-left:${s_divPl}px; padding-right:${s_divPr}px;">
+                        <div style="width:1px; height:${sz.dividerHeight}px; background-color:#cccccc; font-size:1px; line-height:1px;">&nbsp;</div>
                     </td>
                     
-                    <!-- Alamat: perfectly aligned with top of phone numbers, mt-7 from department -->
-                    <td valign="top" style="padding-top:0px; font-family:Interstate,Arial,sans-serif; font-size:5.3pt; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
+                    <!-- Alamat -->
+                    <td valign="top" style="padding-top:0px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
                         <div style="font-weight:bold; color:${tpl.textColor}; margin-bottom:1px;">${campusName}</div>
                         <div>${campusAddr}</div>
                     </td>
@@ -691,17 +765,17 @@
         </td>
 
         <!-- Col 3: 45 Years Logo -->
-        <td width="73" valign="top" align="right" style="width:73px; padding-top:15px; padding-right:23px;">
-            <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; width:50px; height:45px; max-width:50px;">
+        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; padding-top:${sz.annivPt}px; padding-right:${sz.annivPr}px;">
+            <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; width:${sz.annivLogoWidth}px; height:${sz.annivLogoHeight}px; max-width:${sz.annivLogoWidth}px;">
         </td>
     </tr>
     <tr>
         <!-- Row 2: Supergraphic spanning Col 2 & 3 -->
-        <td colspan="2" valign="bottom" align="right" height="26" style="padding:0; margin:0; font-size:0; line-height:0; height:26px;">
-            <table cellpadding="0" cellspacing="0" border="0" width="200" height="26" style="width:200px; height:26px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin-left:auto; margin-right:0; margin-bottom:0;">
+        <td colspan="2" valign="bottom" align="right" height="${sz.supergraphicHeight}" style="padding:0; margin:0; font-size:0; line-height:0; height:${sz.supergraphicHeight}px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="${s_supergraphicWidth}" height="${sz.supergraphicHeight}" style="width:${s_supergraphicWidth}px; height:${sz.supergraphicHeight}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin-left:auto; margin-right:0; margin-bottom:0;">
                 <tr>
-                    <td width="200" height="26" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0; width:200px; height:26px;">
-                        <img src="${supergraphicUrl}" alt="www.binus.edu" width="200" height="26" style="display:block; width:200px; height:26px; border:none; outline:none;">
+                    <td width="${s_supergraphicWidth}" height="${sz.supergraphicHeight}" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0; width:${s_supergraphicWidth}px; height:${sz.supergraphicHeight}px;">
+                        <img src="${supergraphicUrl}" alt="www.binus.edu" width="${s_supergraphicWidth}" height="${sz.supergraphicHeight}" style="display:block; width:${s_supergraphicWidth}px; height:${sz.supergraphicHeight}px; border:none; outline:none;">
                     </td>
                 </tr>
             </table>
