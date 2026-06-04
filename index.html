@@ -8,6 +8,19 @@
       rel="stylesheet"
     />
     <style>
+      @font-face {
+        font-family: 'Interstate';
+        src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Regular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Interstate';
+        src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Bold.otf') format('opentype');
+        font-weight: bold;
+        font-style: normal;
+      }
+
       * {
         box-sizing: border-box;
         margin: 0;
@@ -15,7 +28,7 @@
       }
 
       body {
-        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Interstate", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         padding: 30px 20px;
         color: #1e293b;
         line-height: 1.6;
@@ -807,7 +820,7 @@
         // Uses the GitHub Raw URL so images load on mobile phones and for recipients
         const baseUrl = "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
 
-        const baseDir = `Asset Image/${tpl.dir}`;
+        const baseDir = `Asset/Image/${tpl.dir}`;
         const logoLeftUrl =
           baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
         const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
