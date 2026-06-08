@@ -402,7 +402,8 @@
           <input
             type="text"
             id="inputName"
-            placeholder="Contoh: Dr. Esther Widhi Andangsari, M,Si., Psi."
+            data-i18n-ph="phName"
+            placeholder="Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi."
             oninput="onConfigChange()"
           />
         </div>
@@ -411,6 +412,7 @@
           <input
             type="text"
             id="inputTitle"
+            data-i18n-ph="phTitle"
             placeholder="Contoh: Head of Psychology Department"
             oninput="onConfigChange()"
           />
@@ -424,6 +426,7 @@
           <input
             type="text"
             id="inputPhone"
+            data-i18n-ph="phPhone"
             placeholder="Contoh: +62 21 5345830"
             oninput="onConfigChange()"
           />
@@ -433,6 +436,7 @@
           <input
             type="text"
             id="inputMobile"
+            data-i18n-ph="phMobile"
             placeholder="Contoh: +62 (811) 894575"
             oninput="onConfigChange()"
           />
@@ -442,6 +446,7 @@
           <input
             type="email"
             id="inputEmail"
+            data-i18n-ph="phEmail"
             placeholder="Contoh: esther@binus.edu"
             oninput="onConfigChange()"
           />
@@ -525,7 +530,12 @@
           placeholderName: "Nama Lengkap Anda",
           placeholderTitle: "Jabatan Anda",
           placeholderLocation: "Nama Lokasi",
-          placeholderAddress: "Detail Alamat<br>Kota, Kode Pos"
+          placeholderAddress: "Detail Alamat<br>Kota, Kode Pos",
+          phName: "Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi.",
+          phTitle: "Contoh: Head of Psychology Department",
+          phPhone: "Contoh: +62 21 5345830",
+          phMobile: "Contoh: +62 (811) 894575",
+          phEmail: "Contoh: esther@binus.edu"
         },
         en: {
           title: "Email Signature Generator",
@@ -551,7 +561,12 @@
           placeholderName: "Your Full Name",
           placeholderTitle: "Your Job Title",
           placeholderLocation: "Location Name",
-          placeholderAddress: "Address Detail<br>City, Postal Code"
+          placeholderAddress: "Address Detail<br>City, Postal Code",
+          phName: "e.g. Dr. Esther Widhi Andangsari, M.Si., Psi.",
+          phTitle: "e.g. Head of Psychology Department",
+          phPhone: "e.g. +62 21 5345830",
+          phMobile: "e.g. +62 (811) 894575",
+          phEmail: "e.g. esther@binus.edu"
         }
       };
 
@@ -568,6 +583,14 @@
           const key = el.getAttribute('data-i18n');
           if (i18n[lang][key]) {
             el.innerHTML = i18n[lang][key];
+          }
+        });
+
+        // Update input placeholders
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+          const key = el.getAttribute('data-i18n-ph');
+          if (i18n[lang][key]) {
+            el.placeholder = i18n[lang][key];
           }
         });
 
