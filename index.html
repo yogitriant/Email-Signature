@@ -829,10 +829,11 @@
       // ============================
       //  POPULATE ALAMAT DROPDOWN
       // ============================
-      function populateCampusDropdown() {
+      function populateCampusDropdown(preserveValue) {
         const campusSelect = document.getElementById("inputCampus");
+        const previousValue = preserveValue || "";
 
-        // Reset
+        // Rebuild options
         campusSelect.innerHTML = `<option value="" data-i18n="selectLocation">${i18n[currentLang].selectLocation}</option>`;
         CAMPUS_DATA.forEach((c) => {
           const opt = document.createElement("option");
@@ -841,9 +842,15 @@
           campusSelect.appendChild(opt);
         });
 
-        // Reset preview
-        document.getElementById("addressPreview").classList.remove("show");
-        document.getElementById("addressPreview").textContent = "";
+        // Restore previous selection if valid
+        if (previousValue && CAMPUS_DATA.find(c => c.id === previousValue)) {
+          campusSelect.value = previousValue;
+          onCampusChange();
+        } else {
+          // Reset preview
+          document.getElementById("addressPreview").classList.remove("show");
+          document.getElementById("addressPreview").textContent = "";
+        }
       }
 
       function getSelectedCampus() {
@@ -872,8 +879,8 @@
       //  UNIFIED CONFIG CHANGE
       // ============================
       function onConfigChange() {
-        // If template changed, re-populate campus dropdown
-        populateCampusDropdown();
+        const currentCampus = document.getElementById("inputCampus").value;
+        populateCampusDropdown(currentCampus);
         renderSignature();
       }
 
