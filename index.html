@@ -442,7 +442,7 @@
           />
         </div>
         <div class="input-group">
-          <label>Email</label>
+          <label data-i18n="emailLabel">Email <span style="color: #dc2626;">*</span></label>
           <input
             type="email"
             id="inputEmail"
@@ -514,18 +514,20 @@
           selectTemplate: "-- Pilih Template --",
           sizeLabel: "Ukuran",
           personalInfo: "Informasi Pribadi",
-          nameLabel: "Nama Lengkap",
-          titleLabel: "Jabatan",
+          nameLabel: 'Nama Lengkap <span style="color: #dc2626;">*</span>',
+          titleLabel: 'Jabatan <span style="color: #dc2626;">*</span>',
           contactLabel: "Kontak",
-          phoneLabel: "Telepon",
+          phoneLabel: 'Telepon <span style="color: #dc2626;">*</span>',
           mobileLabel: "HP",
-          addressLabel: "Alamat",
+          emailLabel: 'Email <span style="color: #dc2626;">*</span>',
+          addressLabel: 'Alamat <span style="color: #dc2626;">*</span>',
           selectLocation: "-- Pilih Lokasi --",
           previewTitle: "Preview Signature",
           previewSubtitle: "Pratinjau Langsung",
           copyBtn: "Salin Signature",
           instruction: "<strong>Cara Penggunaan:</strong> Setelah klik \"Salin Signature\", buka <strong>Outlook → Settings → Signature</strong>, lalu tekan <strong>Ctrl + V (Paste)</strong>.",
           toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
+          validationError: "❌ Harap lengkapi semua isian yang wajib (*)",
           noTemplate: "Silakan pilih template terlebih dahulu.",
           placeholderName: "Nama Lengkap Anda",
           placeholderTitle: "Jabatan Anda",
@@ -545,18 +547,20 @@
           selectTemplate: "-- Select Template --",
           sizeLabel: "Size",
           personalInfo: "Personal Information",
-          nameLabel: "Full Name",
-          titleLabel: "Job Title",
+          nameLabel: 'Full Name <span style="color: #dc2626;">*</span>',
+          titleLabel: 'Job Title <span style="color: #dc2626;">*</span>',
           contactLabel: "Contact",
-          phoneLabel: "Phone",
+          phoneLabel: 'Phone <span style="color: #dc2626;">*</span>',
           mobileLabel: "Mobile",
-          addressLabel: "Address",
+          emailLabel: 'Email <span style="color: #dc2626;">*</span>',
+          addressLabel: 'Address <span style="color: #dc2626;">*</span>',
           selectLocation: "-- Select Location --",
           previewTitle: "Signature Preview",
           previewSubtitle: "Real-time Preview",
           copyBtn: "Copy Signature",
           instruction: "<strong>How to use:</strong> After clicking \"Copy Signature\", open <strong>Outlook → Settings → Signature</strong>, and press <strong>Ctrl + V (Paste)</strong>.",
           toastSuccess: "✅ Signature successfully copied to clipboard!",
+          validationError: "❌ Please fill in all required fields (*)",
           noTemplate: "Please select a template first.",
           placeholderName: "Your Full Name",
           placeholderTitle: "Your Job Title",
@@ -1073,6 +1077,30 @@
       //  COPY TO CLIPBOARD
       // ============================
       async function copySignature() {
+        const templateId = document.getElementById("inputTemplate").value;
+        const name = document.getElementById("inputName").value.trim();
+        const title = document.getElementById("inputTitle").value.trim();
+        const phone = document.getElementById("inputPhone").value.trim();
+        const email = document.getElementById("inputEmail").value.trim();
+        const campus = document.getElementById("inputCampus").value;
+
+        // Validation
+        if (!templateId || !name || !title || !phone || !email || !campus) {
+          const toast = document.getElementById("toast");
+          toast.textContent = i18n[currentLang].validationError;
+          toast.style.background = "#dc2626";
+          toast.classList.add("show");
+          setTimeout(() => {
+            toast.classList.remove("show");
+            // Reset back to success style for future use
+            setTimeout(() => {
+              toast.style.background = "#10b981";
+              toast.textContent = i18n[currentLang].toastSuccess;
+            }, 300);
+          }, 3000);
+          return;
+        }
+
         const signatureTable = document.querySelector("#signature-preview table");
         
         try {
