@@ -895,12 +895,9 @@
           document.getElementById("inputName").value || i18n[currentLang].placeholderName;
         const title =
           document.getElementById("inputTitle").value || i18n[currentLang].placeholderTitle;
-        const phone =
-          document.getElementById("inputPhone").value || "+62 21 ...";
-        const mobile =
-          document.getElementById("inputMobile").value || "+62 (8xx) xxxxxx";
-        const email =
-          document.getElementById("inputEmail").value || "email@binus.edu";
+        const phone = document.getElementById("inputPhone").value.trim();
+        const mobile = document.getElementById("inputMobile").value.trim();
+        const email = document.getElementById("inputEmail").value.trim();
 
         const campus = getSelectedCampus();
         const campusName = campus ? campus.name : i18n[currentLang].placeholderLocation;
@@ -987,18 +984,18 @@
                     <!-- Phone numbers -->
                     <td valign="top" style="padding-top:2px; padding-right:0px;">
                         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-                            <tr>
+                            ${phone ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
                                 <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
-                            </tr>
-                            <tr>
+                            </tr>` : ''}
+                            ${mobile ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
                                 <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
-                            </tr>
-                            <tr>
+                            </tr>` : ''}
+                            ${email ? `<tr>
                                 <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
                                 <td valign="middle" style="padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
-                            </tr>
+                            </tr>` : ''}
                         </table>
                     </td>
                     
