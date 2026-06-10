@@ -1,1002 +1,993 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Generator Signature Email Lembaga</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      @font-face {
-        font-family: 'Interstate';
-        src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Regular.otf') format('opentype');
-        font-weight: normal;
-        font-style: normal;
-      }
-      @font-face {
-        font-family: 'Interstate';
-        src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Bold.otf') format('opentype');
-        font-weight: bold;
-        font-style: normal;
-      }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>Generator Signature Email Lembaga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Interstate';
+      src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-      body {
-        font-family: "Interstate", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        padding: 30px 20px;
-        color: #1e293b;
-        line-height: 1.6;
-        background: linear-gradient(
-          135deg,
+    @font-face {
+      font-family: 'Interstate';
+      src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Bold.otf') format('opentype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Interstate", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px 20px;
+      color: #1e293b;
+      line-height: 1.6;
+      background: linear-gradient(135deg,
           #f5f0f8 0%,
           #eef6fb 50%,
-          #fdf8f0 100%
-        );
-        min-height: 100vh;
-      }
+          #fdf8f0 100%);
+      min-height: 100vh;
+    }
 
-      .page-header {
-        text-align: center;
-        margin-bottom: 30px;
-        position: relative;
-      }
-      .page-header h1 {
-        font-size: 28px;
-        font-weight: 700;
-        background: linear-gradient(135deg, #7A2182, #008ED3);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 6px;
-      }
-      .page-header p {
-        font-size: 14px;
-        color: #64748b;
-      }
+    .page-header {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
 
-      /* Language Toggle */
-      .lang-toggle {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1.5px solid #e2e8f0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      }
-      .lang-btn {
-        padding: 6px 14px;
-        border: none;
-        background: #f8fafc;
-        cursor: pointer;
-        font-size: 12px;
-        font-weight: 600;
-        color: #64748b;
-        font-family: inherit;
-        transition: all 0.2s;
-      }
-      .lang-btn:first-child {
-        border-right: 1px solid #e2e8f0;
-      }
-      .lang-btn:hover {
-        background: #f0e8f4;
-        color: #7A2182;
-      }
-      .lang-btn.active {
-        background: linear-gradient(135deg, #7A2182, #008ED3);
-        color: white;
-      }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7A2182, #008ED3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
 
+    .page-header p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* Language Toggle */
+    .lang-toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .lang-btn {
+      padding: 6px 14px;
+      border: none;
+      background: #f8fafc;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .lang-btn:first-child {
+      border-right: 1px solid #e2e8f0;
+    }
+
+    .lang-btn:hover {
+      background: #f0e8f4;
+      color: #7A2182;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, #7A2182, #008ED3);
+      color: white;
+    }
+
+    .main-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    /* ---- Form Panel ---- */
+    .form-panel {
+      width: 360px;
+      min-width: 360px;
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(122, 33, 130, 0.06);
+      border: 1px solid #e8dced;
+      position: sticky;
+      top: 20px;
+    }
+
+    .form-panel h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-panel h2::before {
+      content: "⚙️";
+    }
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      color: #1e293b;
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+      background: #f8fafc;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus {
+      outline: none;
+      border-color: #7A2182;
+      box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
+      background: white;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px dashed #e2e8f0;
+      margin: 14px 0;
+    }
+
+    .section-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* Size selector */
+    .size-selector {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 0;
+    }
+
+    .size-btn {
+      flex: 1;
+      padding: 8px 4px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f8fafc;
+      cursor: pointer;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .size-btn:hover {
+      border-color: #c9a0d0;
+      color: #7A2182;
+    }
+
+    .size-btn.active {
+      border-color: #7A2182;
+      background: #f5edf7;
+      color: #5a1862;
+      box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
+    }
+
+    .size-btn span {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    .size-btn.active span {
+      color: #b07cb8;
+    }
+
+    /* Address preview */
+    .address-preview {
+      margin-top: 6px;
+      padding: 8px 10px;
+      background: #faf5fb;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.5;
+      border-left: 3px solid #7A2182;
+      display: none;
+    }
+
+    .address-preview.show {
+      display: block;
+    }
+
+    /* ---- Preview Panel ---- */
+    .preview-panel {
+      flex: 1;
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(0, 142, 211, 0.06);
+      border: 1px solid #dde9f0;
+    }
+
+    .preview-panel h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-panel h2::before {
+      content: "👁️";
+    }
+
+    .preview-subtitle {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 18px;
+    }
+
+    .preview-subtitle .size-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #f5edf7;
+      color: #7A2182;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    #signature-preview {
+      margin-top: 10px;
+      overflow-x: auto;
+      min-height: 100px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-copy {
+      background: linear-gradient(135deg, #7A2182, #008ED3);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: inherit;
+      transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-copy:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(122, 33, 130, 0.3);
+    }
+
+    .btn-copy:active {
+      transform: translateY(0);
+    }
+
+    .instruction {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 14px;
+      padding: 12px;
+      background: #faf8fc;
+      border-radius: 8px;
+      border-left: 3px solid #F08700;
+      line-height: 1.5;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #76b743, #008ED3);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 8px 30px rgba(118, 183, 67, 0.3);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
       .main-layout {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        gap: 30px;
-        align-items: flex-start;
+        flex-direction: column;
       }
 
-      /* ---- Form Panel ---- */
       .form-panel {
-        width: 360px;
-        min-width: 360px;
-        background: white;
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 4px 24px rgba(122, 33, 130, 0.06);
-        border: 1px solid #e8dced;
-        position: sticky;
-        top: 20px;
-      }
-      .form-panel h2 {
-        font-size: 18px;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 18px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .form-panel h2::before {
-        content: "⚙️";
-      }
-
-      .input-group {
-        margin-bottom: 12px;
-      }
-      .input-group label {
-        display: block;
-        font-weight: 600;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #475569;
-        margin-bottom: 4px;
-      }
-      .input-group input,
-      .input-group select {
         width: 100%;
-        padding: 9px 11px;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 8px;
-        font-size: 13px;
-        font-family: inherit;
-        color: #1e293b;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-        background: #f8fafc;
+        min-width: unset;
+        position: static;
       }
-      .input-group input:focus,
-      .input-group select:focus {
-        outline: none;
-        border-color: #7A2182;
-        box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
-        background: white;
-      }
+    }
+  </style>
+</head>
 
-      .section-divider {
-        border: none;
-        border-top: 1px dashed #e2e8f0;
-        margin: 14px 0;
-      }
-      .section-label {
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #94a3b8;
-        font-weight: 600;
-        margin-bottom: 10px;
-      }
-
-      /* Size selector */
-      .size-selector {
-        display: flex;
-        gap: 6px;
-        margin-bottom: 0;
-      }
-      .size-btn {
-        flex: 1;
-        padding: 8px 4px;
-        border: 1.5px solid #e2e8f0;
-        border-radius: 8px;
-        background: #f8fafc;
-        cursor: pointer;
-        text-align: center;
-        font-size: 12px;
-        font-weight: 600;
-        color: #64748b;
-        font-family: inherit;
-        transition: all 0.2s;
-      }
-      .size-btn:hover {
-        border-color: #c9a0d0;
-        color: #7A2182;
-      }
-      .size-btn.active {
-        border-color: #7A2182;
-        background: #f5edf7;
-        color: #5a1862;
-        box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
-      }
-      .size-btn span {
-        display: block;
-        font-size: 10px;
-        font-weight: 400;
-        color: #94a3b8;
-        margin-top: 2px;
-      }
-      .size-btn.active span {
-        color: #b07cb8;
-      }
-
-      /* Address preview */
-      .address-preview {
-        margin-top: 6px;
-        padding: 8px 10px;
-        background: #faf5fb;
-        border-radius: 6px;
-        font-size: 11px;
-        color: #64748b;
-        line-height: 1.5;
-        border-left: 3px solid #7A2182;
-        display: none;
-      }
-      .address-preview.show {
-        display: block;
-      }
-
-      /* ---- Preview Panel ---- */
-      .preview-panel {
-        flex: 1;
-        background: white;
-        border-radius: 16px;
-        padding: 28px;
-        box-shadow: 0 4px 24px rgba(0, 142, 211, 0.06);
-        border: 1px solid #dde9f0;
-      }
-      .preview-panel h2 {
-        font-size: 18px;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 6px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .preview-panel h2::before {
-        content: "👁️";
-      }
-      .preview-subtitle {
-        font-size: 12px;
-        color: #94a3b8;
-        margin-bottom: 18px;
-      }
-      .preview-subtitle .size-badge {
-        display: inline-block;
-        padding: 2px 8px;
-        background: #f5edf7;
-        color: #7A2182;
-        border-radius: 4px;
-        font-weight: 600;
-        font-size: 11px;
-      }
-
-      #signature-preview {
-        margin-top: 10px;
-        overflow-x: auto;
-        min-height: 100px;
-      }
-
-      .btn-group {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-      }
-      .btn-copy {
-        background: linear-gradient(135deg, #7A2182, #008ED3);
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 14px;
-        font-family: inherit;
-        transition:
-          transform 0.15s,
-          box-shadow 0.15s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .btn-copy:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(122, 33, 130, 0.3);
-      }
-      .btn-copy:active {
-        transform: translateY(0);
-      }
-
-      .instruction {
-        font-size: 12px;
-        color: #64748b;
-        margin-top: 14px;
-        padding: 12px;
-        background: #faf8fc;
-        border-radius: 8px;
-        border-left: 3px solid #F08700;
-        line-height: 1.5;
-      }
-
-      /* Toast */
-      .toast {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: linear-gradient(135deg, #76b743, #008ED3);
-        color: white;
-        padding: 14px 24px;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 14px;
-        box-shadow: 0 8px 30px rgba(118, 183, 67, 0.3);
-        transform: translateY(100px);
-        opacity: 0;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 1000;
-      }
-      .toast.show {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      @media (max-width: 900px) {
-        .main-layout {
-          flex-direction: column;
-        }
-        .form-panel {
-          width: 100%;
-          min-width: unset;
-          position: static;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page-header">
-      <div class="lang-toggle">
-        <button class="lang-btn active" id="btn-lang-id" onclick="setLang('id')">ID</button>
-        <button class="lang-btn" id="btn-lang-en" onclick="setLang('en')">EN</button>
-      </div>
-      <h1 data-i18n="title">Email Signature Generator</h1>
-      <p data-i18n="subtitle">
-        Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.
-      </p>
+<body>
+  <div class="page-header">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-lang-id" onclick="setLang('id')">ID</button>
+      <button class="lang-btn" id="btn-lang-en" onclick="setLang('en')">EN</button>
     </div>
+    <h1 data-i18n="title">Email Signature Generator</h1>
+    <p data-i18n="subtitle">
+      Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.
+    </p>
+  </div>
 
-    <div class="main-layout">
-      <!-- ======== FORM PANEL ======== -->
-      <div class="form-panel">
-        <h2 data-i18n="configTitle">Konfigurasi</h2>
+  <div class="main-layout">
+    <!-- ======== FORM PANEL ======== -->
+    <div class="form-panel">
+      <h2 data-i18n="configTitle">Konfigurasi</h2>
 
-        <div class="input-group">
-          <label data-i18n="templateLabel">Template</label>
-          <select id="inputTemplate" onchange="onConfigChange()">
-            <option value="" data-i18n="selectTemplate">-- Pilih Template --</option>
-            <option value="bina-nusantara">BINA NUSANTARA</option>
-            <option value="binus-univ">BINUS University</option>
-            <option value="binus-school">BINUS School</option>
-          </select>
-        </div>
-
-        <div class="input-group">
-          <label data-i18n="sizeLabel">Ukuran</label>
-          <div class="size-selector">
-            <button class="size-btn active" onclick="setSize(600)" id="btn-size-600">
-              Desktop
-              <span>600px</span>
-            </button>
-            <button class="size-btn" onclick="setSize(450)" id="btn-size-450">
-              Tablet
-              <span>450px</span>
-            </button>
-            <button class="size-btn" onclick="setSize(320)" id="btn-size-320">
-              Mobile
-              <span>320px</span>
-            </button>
-          </div>
-        </div>
-
-        <hr class="section-divider" />
-        <div class="section-label" data-i18n="personalInfo">Informasi Pribadi</div>
-
-        <div class="input-group">
-          <label data-i18n="nameLabel">Nama Lengkap</label>
-          <input
-            type="text"
-            id="inputName"
-            data-i18n-ph="phName"
-            placeholder="Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi."
-            oninput="onConfigChange()"
-          />
-        </div>
-        <div class="input-group">
-          <label data-i18n="titleLabel">Jabatan</label>
-          <input
-            type="text"
-            id="inputTitle"
-            data-i18n-ph="phTitle"
-            placeholder="Contoh: Head of Psychology Department"
-            oninput="onConfigChange()"
-          />
-        </div>
-
-        <hr class="section-divider" />
-        <div class="section-label" data-i18n="contactLabel">Kontak</div>
-
-        <div class="input-group">
-          <label data-i18n="phoneLabel">Telepon</label>
-          <input
-            type="text"
-            id="inputPhone"
-            data-i18n-ph="phPhone"
-            placeholder="Contoh: +62 21 5345830"
-            oninput="onConfigChange()"
-          />
-        </div>
-        <div class="input-group">
-          <label data-i18n="mobileLabel">Mobile</label>
-          <input
-            type="text"
-            id="inputMobile"
-            data-i18n-ph="phMobile"
-            placeholder="Contoh: +62 (811) 894575"
-            oninput="onConfigChange()"
-          />
-        </div>
-        <div class="input-group">
-          <label data-i18n="emailLabel">Email <span style="color: #dc2626;">*</span></label>
-          <input
-            type="email"
-            id="inputEmail"
-            data-i18n-ph="phEmail"
-            placeholder="Contoh: esther@binus.edu"
-            oninput="onConfigChange()"
-          />
-        </div>
-
-        <div class="input-group">
-          <label data-i18n="addressLabel">Alamat</label>
-          <select id="inputCampus" onchange="onCampusChange()">
-            <option value="" data-i18n="selectLocation">-- Pilih Lokasi --</option>
-          </select>
-          <div class="address-preview" id="addressPreview"></div>
-        </div>
+      <div class="input-group">
+        <label data-i18n="templateLabel">Template</label>
+        <select id="inputTemplate" onchange="onConfigChange()">
+          <option value="" data-i18n="selectTemplate">-- Pilih Template --</option>
+          <option value="bina-nusantara">BINA NUSANTARA</option>
+          <option value="binus-univ">BINUS University</option>
+          <option value="binus-school">BINUS School</option>
+        </select>
       </div>
 
-      <!-- ======== PREVIEW PANEL ======== -->
-      <div class="preview-panel">
-        <h2 data-i18n="previewTitle">Preview Signature</h2>
-        <div class="preview-subtitle" data-i18n="previewSubtitle">Pratinjau Langsung</div>
-
-        <div id="signature-preview"></div>
-
-        <div class="btn-group">
-          <button class="btn-copy" onclick="copySignature()">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path
-                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-              ></path>
-            </svg>
-            <span data-i18n="copyBtn">Salin Signature</span>
+      <div class="input-group">
+        <label data-i18n="sizeLabel">Ukuran</label>
+        <div class="size-selector">
+          <button class="size-btn active" onclick="setSize(600)" id="btn-size-600">
+            Desktop
+            <span>600px</span>
+          </button>
+          <button class="size-btn" onclick="setSize(450)" id="btn-size-450">
+            Tablet
+            <span>450px</span>
+          </button>
+          <button class="size-btn" onclick="setSize(320)" id="btn-size-320">
+            Mobile
+            <span>320px</span>
           </button>
         </div>
+      </div>
 
-        <div class="instruction" data-i18n="instruction">
-          <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka
-          <strong>Outlook → Settings → Signature</strong>, lalu tekan
-          <strong>Ctrl + V (Paste)</strong>.
-        </div>
+      <hr class="section-divider" />
+      <div class="section-label" data-i18n="personalInfo">Informasi Pribadi</div>
+
+      <div class="input-group">
+        <label data-i18n="nameLabel">Nama Lengkap</label>
+        <input type="text" id="inputName" data-i18n-ph="phName"
+          placeholder="Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi." oninput="onConfigChange()" />
+      </div>
+      <div class="input-group">
+        <label data-i18n="titleLabel">Jabatan</label>
+        <input type="text" id="inputTitle" data-i18n-ph="phTitle" placeholder="Contoh: Head of Psychology Department"
+          oninput="onConfigChange()" />
+      </div>
+
+      <hr class="section-divider" />
+      <div class="section-label" data-i18n="contactLabel">Kontak</div>
+
+      <div class="input-group">
+        <label data-i18n="phoneLabel">Telepon</label>
+        <input type="text" id="inputPhone" data-i18n-ph="phPhone" placeholder="Contoh: +62 21 5345830"
+          oninput="onConfigChange()" />
+      </div>
+      <div class="input-group">
+        <label data-i18n="mobileLabel">Mobile</label>
+        <input type="text" id="inputMobile" data-i18n-ph="phMobile" placeholder="Contoh: +62 (811) 894575"
+          oninput="onConfigChange()" />
+      </div>
+      <div class="input-group">
+        <label data-i18n="emailLabel">Email <span style="color: #dc2626;">*</span></label>
+        <input type="email" id="inputEmail" data-i18n-ph="phEmail" placeholder="Contoh: esther@binus.edu"
+          oninput="onConfigChange()" />
+      </div>
+
+      <div class="input-group">
+        <label data-i18n="addressLabel">Alamat</label>
+        <select id="inputCampus" onchange="onCampusChange()">
+          <option value="" data-i18n="selectLocation">-- Pilih Lokasi --</option>
+        </select>
+        <div class="address-preview" id="addressPreview"></div>
       </div>
     </div>
 
-    <div class="toast" id="toast">
-      ✅ Signature berhasil disalin ke clipboard!
+    <!-- ======== PREVIEW PANEL ======== -->
+    <div class="preview-panel">
+      <h2 data-i18n="previewTitle">Preview Signature</h2>
+      <div class="preview-subtitle" data-i18n="previewSubtitle">Pratinjau Langsung</div>
+
+      <div id="signature-preview"></div>
+
+      <div class="btn-group">
+        <button class="btn-copy" onclick="copySignature()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span data-i18n="copyBtn">Salin Signature</span>
+        </button>
+      </div>
+
+      <div class="instruction" data-i18n="instruction">
+        <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka
+        <strong>Outlook → Settings → Signature</strong>, lalu tekan
+        <strong>Ctrl + V (Paste)</strong>.
+      </div>
     </div>
+  </div>
 
-    <script>
-      // ============================
-      //  BILINGUAL SYSTEM (i18n)
-      // ============================
-      const i18n = {
-        id: {
-          title: "Generator Signature Email",
-          subtitle: "Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.",
-          configTitle: "Konfigurasi",
-          templateLabel: "Template",
-          selectTemplate: "-- Pilih Template --",
-          sizeLabel: "Ukuran",
-          personalInfo: "Informasi Pribadi",
-          nameLabel: 'Nama Lengkap <span style="color: #dc2626;">*</span>',
-          titleLabel: 'Jabatan <span style="color: #dc2626;">*</span>',
-          contactLabel: "Kontak",
-          phoneLabel: 'Telepon <span style="color: #dc2626;">*</span>',
-          mobileLabel: "HP",
-          emailLabel: 'Email <span style="color: #dc2626;">*</span>',
-          addressLabel: 'Alamat <span style="color: #dc2626;">*</span>',
-          selectLocation: "-- Pilih Lokasi --",
-          previewTitle: "Preview Signature",
-          previewSubtitle: "Pratinjau Langsung",
-          copyBtn: "Salin Signature",
-          instruction: "<strong>Cara Penggunaan:</strong> Setelah klik \"Salin Signature\", buka <strong>Outlook → Settings → Signature</strong>, lalu tekan <strong>Ctrl + V (Paste)</strong>.",
-          toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
-          validationError: "❌ Harap lengkapi semua isian yang wajib (*)",
-          noTemplate: "Silakan pilih template terlebih dahulu.",
-          placeholderName: "Nama Lengkap Anda",
-          placeholderTitle: "Jabatan Anda",
-          placeholderLocation: "Nama Lokasi",
-          placeholderAddress: "Detail Alamat<br>Kota, Kode Pos",
-          phName: "Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi.",
-          phTitle: "Contoh: Head of Psychology Department",
-          phPhone: "Contoh: +62 21 5345830",
-          phMobile: "Contoh: +62 (811) 894575",
-          phEmail: "Contoh: esther@binus.edu"
-        },
-        en: {
-          title: "Email Signature Generator",
-          subtitle: "Select a template, size, and fill in your details to create a standard corporate signature.",
-          configTitle: "Configuration",
-          templateLabel: "Template",
-          selectTemplate: "-- Select Template --",
-          sizeLabel: "Size",
-          personalInfo: "Personal Information",
-          nameLabel: 'Full Name <span style="color: #dc2626;">*</span>',
-          titleLabel: 'Job Title <span style="color: #dc2626;">*</span>',
-          contactLabel: "Contact",
-          phoneLabel: 'Phone <span style="color: #dc2626;">*</span>',
-          mobileLabel: "Mobile",
-          emailLabel: 'Email <span style="color: #dc2626;">*</span>',
-          addressLabel: 'Address <span style="color: #dc2626;">*</span>',
-          selectLocation: "-- Select Location --",
-          previewTitle: "Signature Preview",
-          previewSubtitle: "Real-time Preview",
-          copyBtn: "Copy Signature",
-          instruction: "<strong>How to use:</strong> After clicking \"Copy Signature\", open <strong>Outlook → Settings → Signature</strong>, and press <strong>Ctrl + V (Paste)</strong>.",
-          toastSuccess: "✅ Signature successfully copied to clipboard!",
-          validationError: "❌ Please fill in all required fields (*)",
-          noTemplate: "Please select a template first.",
-          placeholderName: "Your Full Name",
-          placeholderTitle: "Your Job Title",
-          placeholderLocation: "Location Name",
-          placeholderAddress: "Address Detail<br>City, Postal Code",
-          phName: "e.g. Dr. Esther Widhi Andangsari, M.Si., Psi.",
-          phTitle: "e.g. Head of Psychology Department",
-          phPhone: "e.g. +62 21 5345830",
-          phMobile: "e.g. +62 (811) 894575",
-          phEmail: "e.g. esther@binus.edu"
+  <div class="toast" id="toast">
+    ✅ Signature berhasil disalin ke clipboard!
+  </div>
+
+  <script>
+    // ============================
+    //  BILINGUAL SYSTEM (i18n)
+    // ============================
+    const i18n = {
+      id: {
+        title: "Generator Signature Email",
+        subtitle: "Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.",
+        configTitle: "Konfigurasi",
+        templateLabel: "Template",
+        selectTemplate: "-- Pilih Template --",
+        sizeLabel: "Ukuran",
+        personalInfo: "Informasi Pribadi",
+        nameLabel: 'Nama Lengkap <span style="color: #dc2626;">*</span>',
+        titleLabel: 'Jabatan <span style="color: #dc2626;">*</span>',
+        contactLabel: "Kontak",
+        phoneLabel: 'Telepon <span style="color: #dc2626;">*</span>',
+        mobileLabel: "HP",
+        emailLabel: 'Email <span style="color: #dc2626;">*</span>',
+        addressLabel: 'Alamat <span style="color: #dc2626;">*</span>',
+        selectLocation: "-- Pilih Lokasi --",
+        previewTitle: "Preview Signature",
+        previewSubtitle: "Pratinjau Langsung",
+        copyBtn: "Salin Signature",
+        instruction: "<strong>Cara Penggunaan:</strong> Setelah klik \"Salin Signature\", buka <strong>Outlook → Settings → Signature</strong>, lalu tekan <strong>Ctrl + V (Paste)</strong>.",
+        toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
+        validationError: "❌ Harap lengkapi semua isian yang wajib (*)",
+        noTemplate: "Silakan pilih template terlebih dahulu.",
+        placeholderName: "Nama Lengkap Anda",
+        placeholderTitle: "Jabatan Anda",
+        placeholderLocation: "Nama Lokasi",
+        placeholderAddress: "Detail Alamat<br>Kota, Kode Pos",
+        phName: "Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi.",
+        phTitle: "Contoh: Head of Psychology Department",
+        phPhone: "Contoh: +62 21 5345830",
+        phMobile: "Contoh: +62 (811) 894575",
+        phEmail: "Contoh: esther@binus.edu"
+      },
+      en: {
+        title: "Email Signature Generator",
+        subtitle: "Select a template, size, and fill in your details to create a standard corporate signature.",
+        configTitle: "Configuration",
+        templateLabel: "Template",
+        selectTemplate: "-- Select Template --",
+        sizeLabel: "Size",
+        personalInfo: "Personal Information",
+        nameLabel: 'Full Name <span style="color: #dc2626;">*</span>',
+        titleLabel: 'Job Title <span style="color: #dc2626;">*</span>',
+        contactLabel: "Contact",
+        phoneLabel: 'Phone <span style="color: #dc2626;">*</span>',
+        mobileLabel: "Mobile",
+        emailLabel: 'Email <span style="color: #dc2626;">*</span>',
+        addressLabel: 'Address <span style="color: #dc2626;">*</span>',
+        selectLocation: "-- Select Location --",
+        previewTitle: "Signature Preview",
+        previewSubtitle: "Real-time Preview",
+        copyBtn: "Copy Signature",
+        instruction: "<strong>How to use:</strong> After clicking \"Copy Signature\", open <strong>Outlook → Settings → Signature</strong>, and press <strong>Ctrl + V (Paste)</strong>.",
+        toastSuccess: "✅ Signature successfully copied to clipboard!",
+        validationError: "❌ Please fill in all required fields (*)",
+        noTemplate: "Please select a template first.",
+        placeholderName: "Your Full Name",
+        placeholderTitle: "Your Job Title",
+        placeholderLocation: "Location Name",
+        placeholderAddress: "Address Detail<br>City, Postal Code",
+        phName: "e.g. Dr. Esther Widhi Andangsari, M.Si., Psi.",
+        phTitle: "e.g. Head of Psychology Department",
+        phPhone: "e.g. +62 21 5345830",
+        phMobile: "e.g. +62 (811) 894575",
+        phEmail: "e.g. esther@binus.edu"
+      }
+    };
+
+    let currentLang = 'id';
+
+    function setLang(lang) {
+      currentLang = lang;
+      // Update toggle buttons
+      document.getElementById('btn-lang-id').classList.toggle('active', lang === 'id');
+      document.getElementById('btn-lang-en').classList.toggle('active', lang === 'en');
+
+      // Update all text nodes with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          el.innerHTML = i18n[lang][key];
         }
-      };
+      });
 
-      let currentLang = 'id';
+      // Update input placeholders
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (i18n[lang][key]) {
+          el.placeholder = i18n[lang][key];
+        }
+      });
 
-      function setLang(lang) {
-        currentLang = lang;
-        // Update toggle buttons
-        document.getElementById('btn-lang-id').classList.toggle('active', lang === 'id');
-        document.getElementById('btn-lang-en').classList.toggle('active', lang === 'en');
-        
-        // Update all text nodes with data-i18n
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (i18n[lang][key]) {
-            el.innerHTML = i18n[lang][key];
+      // Update toast text
+      document.getElementById('toast').textContent = i18n[lang].toastSuccess;
+
+      // Re-populate dropdowns to translate default options
+      populateCampusDropdown();
+      renderSignature();
+    }
+
+    // ============================
+    //  CAMPUS DATA
+    // ============================
+    const CAMPUS_DATA = [
+      {
+        id: "anggrek",
+        name: "BINUS University - Anggrek Campus",
+        address: "Jl. Kebon Jeruk Raya No. 27, Kebon Jeruk,\nJakarta Barat 11530",
+      },
+      {
+        id: "syahdan",
+        name: "BINUS University - Syahdan Campus",
+        address: "Jl. K. H. Syahdan No. 9, Kemanggisan, Palmerah,\nJakarta Barat 11480",
+      },
+      {
+        id: "kijang",
+        name: "BINUS University - Kijang Campus",
+        address: "Jl. Kemanggisan Ilir III No. 45, Kemanggisan, Palmerah,\nJakarta Barat 11480",
+      },
+      {
+        id: "jwc",
+        name: "BINUS University - JWC Campus",
+        address: "Jalan Hang Lekir I No. 6, Senayan, Kebayoran Baru,\nJakarta Selatan 10270",
+      },
+      {
+        id: "fx",
+        name: "BINUS University - FX Campus",
+        address: "FX Sudirman Lantai 6, Jl. Pintu Satu Senayan No.3, RT.1/RW.3, Gelora,\nKota Jakarta Pusat, DKI Jakarta 10270",
+      },
+      {
+        id: "alamsutera",
+        name: "BINUS University - Alam Sutera Campus",
+        address: "Jl. Jalur Sutera Barat Kav. 21, Alam Sutera, Panunggangan,\nKec. Pinang, Kota Tangerang, Banten 15143",
+      },
+      {
+        id: "bekasi",
+        name: "BINUS University - Bekasi Campus",
+        address: "Jl. Lingkar Bulevar Blok WA No. 1 Summarecon Bekasi\nKelurahan Marga Mulya, Kecamatan Medan Satria,\nKota Bekasi, 17142",
+      },
+      {
+        id: "bandung_paskal",
+        name: "BINUS University - Bandung Paskal Campus",
+        address: "Paskal Hyper Square, Jl. Pasirkaliki No.25-27, Ciroyom,\nKec. Andir, Kota Bandung, Jawa Barat 40181",
+      },
+      {
+        id: "bandung_dago",
+        name: "BINUS University - Bandung Dago Campus",
+        address: "Jl. Sentra Dago Pakar Raya Blok F-2, Komplek Dago Pakar, Mekarsaluyu,\nCimenyan, Kab. Bandung Jawa Barat, 40191",
+      },
+      {
+        id: "semarang",
+        name: "BINUS University - Semarang Campus",
+        address: "POJ Avenue No.Kav. 3, Tawangsari, Kec. Semarang Barat,\nKota Semarang, Jawa Tengah 50144",
+      },
+      {
+        id: "malang",
+        name: "BINUS University - Malang Campus",
+        address: "Jl. Mansion Valley No.8 - 22, Genitri, Tirtomoyo, Kec. Pakis,\nKabupaten Malang, Jawa Timur 65154",
+      },
+      {
+        id: "medan",
+        name: "BINUS University - Medan Campus",
+        address: "Delipark Lantai L, Jl. Putri Hijau (Guru Patimpus Blok OPQ, Kesawan,\nKec. Medan Bar., Kota Medan, Sumatera Utara 20111",
+      },
+      {
+        id: "school_simprug",
+        name: "BINUS School Simprug",
+        address: "Jl. Sultan Iskandar Muda No.Kav. G-8, RT.6/RW.2, Grogol Sel.,\nKec. Kebayoran Lama, Kota Jakarta Selatan, DKI Jakarta 12220",
+      },
+      {
+        id: "school_serpong",
+        name: "BINUS School Serpong",
+        address: "Jl. Lengkong Karya No.58, Jelupang, Kec. Serpong Utara,\nKota Tangerang Selatan, Banten 15322",
+      },
+      {
+        id: "school_bekasi",
+        name: "BINUS School Bekasi",
+        address: "Vida Bumiwedari, Jl. Saraswati No.1, RT.001/RW.010, Padurenan,\nKec. Mustika Jaya, Kota Bks, Jawa Barat 17156",
+      },
+      {
+        id: "school_semarang",
+        name: "BINUS School Semarang",
+        address: "BINUS EDU PARK, POJ Avenue, Kav. 3, Tawangsari,\nKec. Semarang Barat, Kota Semarang, Jawa Tengah 50144",
+      },
+      {
+        id: "school_surabaya",
+        name: "BINUS School Surabaya",
+        address: "Jl. Citra Utama Lidah Kulon No.20, Lidah Kulon,\nKec. Lakarsantri, Surabaya, Jawa Timur 60213",
+      },
+      {
+        id: "square",
+        name: "Binus Square Hall Of Residence",
+        address: "Jl. Budi Raya No.21, RT.1/RW.5, Kb. Jeruk, Kec. Kb. Jeruk,\nKota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530",
+      },
+      {
+        id: "center",
+        name: "Binus Center",
+        address: "Jl. Kyai H. Syahdan No.20, RT.6/RW.12, Palmerah,\nKec. Palmerah, Kota Jakarta Barat, DKI Jakarta 11480",
+      },
+      {
+        id: "base",
+        name: "BINUS ASO School of Engineering (BASE)",
+        address: "Jl. Alam Sutera Boulevard No.1, Alam Sutera, Kec. Serpong,\nKota Tangerang Selatan, Banten 15325",
+      },
+      {
+        id: "bsd",
+        name: "BINUS @BSD",
+        address: "Digital Hub Kav. N 11-16, Sampora, Kec. Cisauk,\nKabupaten Tangerang, Banten 15345",
+      },
+      {
+        id: "rise",
+        name: "RISE Bintaro & RISE Digital Central",
+        address: "Bintaro Jaya Xchange, 1st floor, Bintaro Jaya Sektor VII,\nBoulevard Bintaro Jaya Blok O-2, Tangerang Selatan,\nBanten 15224",
+      },
+
+    ];
+
+    // ============================
+    //  TEMPLATE CONFIGURATION
+    // ============================
+    const TEMPLATES = {
+      "binus-univ": {
+        name: "BINUS University",
+        prefix: "BU",
+        dir: "BINUS University",
+        primaryColor: "#00529C",
+        textColor: "#4c4d4e",
+        websiteUrl: "www.binus.ac.id",
+        websiteMb: 5,
+        websiteMr: 90,
+        nameMarginLeft: 31,
+        nameMarginTop: 23,
+        logoWidth: 98,
+        logoHeight: 70,
+        logoMarginTop: 0,
+        logoMarginLeft: 10,
+        col1Width: 108,
+      },
+      "binus-school": {
+        name: "BINUS School",
+        prefix: "BS",
+        dir: "BINUS School",
+        primaryColor: "#67102e",
+        textColor: "#4c4d4e",
+        websiteUrl: "www.binus.sch.id",
+        websiteMb: 7,
+        websiteMr: 85,
+        nameMarginLeft: 31,
+        nameMarginTop: 23,
+        logoWidth: 66,
+        logoHeight: 56,
+        logoMarginTop: 0,
+        logoMarginLeft: 13,
+        col1Width: 79,
+      },
+      "bina-nusantara": {
+        name: "BINA NUSANTARA",
+        prefix: "BN",
+        dir: "BINA NUSANTARA",
+        primaryColor: "#6b2a7f",
+        textColor: "#4c4d4e",
+        websiteUrl: "www.binus.edu",
+        websiteMb: 6,
+        websiteMr: 98,
+        nameMarginLeft: 23,
+        nameMarginTop: 23,
+        logoWidth: 130,
+        logoHeight: "auto",
+        logoMarginTop: 0,
+        logoMarginLeft: 8,
+        col1Width: 138,
+        sizes: {
+          450: {
+            logoMarginLeft: 10,
+            nameMarginLeft: 5,
           }
-        });
-
-        // Update input placeholders
-        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-          const key = el.getAttribute('data-i18n-ph');
-          if (i18n[lang][key]) {
-            el.placeholder = i18n[lang][key];
-          }
-        });
-
-        // Update toast text
-        document.getElementById('toast').textContent = i18n[lang].toastSuccess;
-
-        // Re-populate dropdowns to translate default options
-        populateCampusDropdown();
-        renderSignature();
-      }
-
-      // ============================
-      //  CAMPUS DATA
-      // ============================
-      const CAMPUS_DATA = [
-        {
-          id: "anggrek",
-          name: "BINUS University - Anggrek Campus",
-          address: "Jl. Kebon Jeruk Raya No. 27, Kebon Jeruk,\nJakarta Barat 11530",
-        },
-        {
-          id: "syahdan",
-          name: "BINUS University - Syahdan Campus",
-          address: "Jl. K. H. Syahdan No. 9, Kemanggisan, Palmerah,\nJakarta Barat 11480",
-        },
-        {
-          id: "kijang",
-          name: "BINUS University - Kijang Campus",
-          address: "Jl. Kemanggisan Ilir III No. 45, Kemanggisan, Palmerah,\nJakarta Barat 11480",
-        },
-        {
-          id: "jwc",
-          name: "BINUS University - JWC Campus",
-          address: "Jalan Hang Lekir I No. 6, Senayan, Kebayoran Baru,\nJakarta Selatan 10270",
-        },
-        {
-          id: "fx",
-          name: "BINUS University - FX Campus",
-          address: "FX Sudirman Lantai 6, Jl. Pintu Satu Senayan No.3, RT.1/RW.3, Gelora,\nKota Jakarta Pusat, DKI Jakarta 10270",
-        },
-        {
-          id: "alamsutera",
-          name: "BINUS University - Alam Sutera Campus",
-          address: "Jl. Jalur Sutera Barat Kav. 21, Alam Sutera, Panunggangan,\nKec. Pinang, Kota Tangerang, Banten 15143",
-        },
-        {
-          id: "bekasi",
-          name: "BINUS University - Bekasi Campus",
-          address: "Jl. Lingkar Bulevar Blok WA No. 1 Summarecon Bekasi\nKelurahan Marga Mulya, Kecamatan Medan Satria,\nKota Bekasi, 17142",
-        },
-        {
-          id: "bandung_paskal",
-          name: "BINUS University - Bandung Paskal Campus",
-          address: "Paskal Hyper Square, Jl. Pasirkaliki No.25-27, Ciroyom,\nKec. Andir, Kota Bandung, Jawa Barat 40181",
-        },
-        {
-          id: "bandung_dago",
-          name: "BINUS University - Bandung Dago Campus",
-          address: "Jl. Sentra Dago Pakar Raya Blok F-2, Komplek Dago Pakar, Mekarsaluyu,\nCimenyan, Kab. Bandung Jawa Barat, 40191",
-        },
-        {
-          id: "semarang",
-          name: "BINUS University - Semarang Campus",
-          address: "POJ Avenue No.Kav. 3, Tawangsari, Kec. Semarang Barat,\nKota Semarang, Jawa Tengah 50144",
-        },
-        {
-          id: "malang",
-          name: "BINUS University - Malang Campus",
-          address: "Jl. Mansion Valley No.8 - 22, Genitri, Tirtomoyo, Kec. Pakis,\nKabupaten Malang, Jawa Timur 65154",
-        },
-        {
-          id: "school_simprug",
-          name: "BINUS School Simprug",
-          address: "Jl. Sultan Iskandar Muda No.Kav. G-8, RT.6/RW.2, Grogol Sel.,\nKec. Kebayoran Lama, Kota Jakarta Selatan, DKI Jakarta 12220",
-        },
-        {
-          id: "school_serpong",
-          name: "BINUS School Serpong",
-          address: "Jl. Lengkong Karya No.58, Jelupang, Kec. Serpong Utara,\nKota Tangerang Selatan, Banten 15322",
-        },
-        {
-          id: "school_bekasi",
-          name: "BINUS School Bekasi",
-          address: "Vida Bumiwedari, Jl. Saraswati No.1, RT.001/RW.010, Padurenan,\nKec. Mustika Jaya, Kota Bks, Jawa Barat 17156",
-        },
-        {
-          id: "school_semarang",
-          name: "BINUS School Semarang",
-          address: "BINUS EDU PARK, POJ Avenue, Kav. 3, Tawangsari,\nKec. Semarang Barat, Kota Semarang, Jawa Tengah 50144",
-        },
-        {
-          id: "school_surabaya",
-          name: "BINUS School Surabaya",
-          address: "Jl. Citra Utama Lidah Kulon No.20, Lidah Kulon,\nKec. Lakarsantri, Surabaya, Jawa Timur 60213",
-        },
-        {
-          id: "square",
-          name: "Binus Square Hall Of Residence",
-          address: "Jl. Budi Raya No.21, RT.1/RW.5, Kb. Jeruk, Kec. Kb. Jeruk,\nKota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530",
-        },
-        {
-          id: "center",
-          name: "Binus Center",
-          address: "Jl. Kyai H. Syahdan No.20, RT.6/RW.12, Palmerah,\nKec. Palmerah, Kota Jakarta Barat, DKI Jakarta 11480",
-        },
-        {
-          id: "base",
-          name: "BINUS ASO School of Engineering (BASE)",
-          address: "Jl. Alam Sutera Boulevard No.1, Alam Sutera, Kec. Serpong,\nKota Tangerang Selatan, Banten 15325",
-        },
-        {
-          id: "bsd",
-          name: "BINUS @BSD",
-          address: "Digital Hub Kav. N 11-16, Sampora, Kec. Cisauk,\nKabupaten Tangerang, Banten 15345",
-        },
-        {
-          id: "rise",
-          name: "RISE Bintaro & RISE Digital Central",
-          address: "Bintaro Jaya Xchange, 1st floor, Bintaro Jaya Sektor VII,\nBoulevard Bintaro Jaya Blok O-2, Tangerang Selatan,\nBanten 15224",
-        },
-        {
-          id: "medan",
-          name: "BINUS University - Medan Campus",
-          address: "Delipark Lantai L, Jl. Putri Hijau (Guru Patimpus Blok OPQ, Kesawan,\nKec. Medan Bar., Kota Medan, Sumatera Utara 20111",
-        },
-      ];
-
-      // ============================
-      //  TEMPLATE CONFIGURATION
-      // ============================
-      const TEMPLATES = {
-        "binus-univ": {
-          name: "BINUS University",
-          prefix: "BU",
-          dir: "BINUS University",
-          primaryColor: "#00529C",
-          textColor: "#4c4d4e",
-          websiteUrl: "www.binus.ac.id",
-          websiteMb: 5,
-          websiteMr: 90,
-          nameMarginLeft: 31,
-          nameMarginTop: 23,
-          logoWidth: 98,
-          logoHeight: 70,
-          logoMarginTop: 0,
-          logoMarginLeft: 10,
-          col1Width: 108,
-        },
-        "binus-school": {
-          name: "BINUS School",
-          prefix: "BS",
-          dir: "BINUS School",
-          primaryColor: "#67102e",
-          textColor: "#4c4d4e",
-          websiteUrl: "www.binus.sch.id",
-          websiteMb: 7,
-          websiteMr: 85,
-          nameMarginLeft: 31,
-          nameMarginTop: 23,
-          logoWidth: 66,
-          logoHeight: 56,
-          logoMarginTop: 0,
-          logoMarginLeft: 13,
-          col1Width: 79,
-        },
-        "bina-nusantara": {
-          name: "BINA NUSANTARA",
-          prefix: "BN",
-          dir: "BINA NUSANTARA",
-          primaryColor: "#6b2a7f",
-          textColor: "#4c4d4e",
-          websiteUrl: "www.binus.edu",
-          websiteMb: 6,
-          websiteMr: 98,
-          nameMarginLeft: 23,
-          nameMarginTop: 23,
-          logoWidth: 130,
-          logoHeight: "auto",
-          logoMarginTop: 0,
-          logoMarginLeft: 8,
-          col1Width: 138,
-          sizes: {
-            450: {
-              logoMarginLeft: 10,
-              nameMarginLeft: 5,
-            }
-          }
-        },
-      };
-
-      // ============================
-      //  SIZE DIMENSIONS MAP
-      // ============================
-      const SIZE_CONFIG = {
-        600: {
-          total: 600,
-          scale: 1.0,
-          nameFontSize: "6.5pt",
-          textFontSize: "5.3pt",
-          supergraphicHeight: 26,
-          annivLogoWidth: 50,
-          annivLogoHeight: 45,
-          annivPt: 15,
-          annivPr: 23,
-          iconsWidth: 8,
-          dividerHeight: 32,
-          tableMt: 9,
-          divPl: 11,
-          divPr: 6,
-          col3Width: 73,
-        },
-        450: {
-          total: 450,
-          scale: 0.75,
-          nameFontSize: "6pt",
-          textFontSize: "4.6pt",
-          supergraphicHeight: 19,
-          annivLogoWidth: 37,
-          annivLogoHeight: 34,
-          annivPt: 10,
-          annivPr: 24,
-          iconsWidth: 6,
-          dividerHeight: 24,
-          tableMt: 9,
-          divPl: 4,
-          divPr: 7,
-          col3Width: 65,
-        },
-        320: {
-          total: 320,
-          scale: 0.533,
-          nameFontSize: "4.5pt",
-          textFontSize: "3.5pt",
-          supergraphicHeight: 14,
-          annivLogoWidth: 26,
-          annivLogoHeight: 24,
-          annivPt: 8,
-          annivPr: 12,
-          iconsWidth: 4,
-          dividerHeight: 17,
-          tableMt: 5,
-          divPl: 3,
-          divPr: 3,
-          col3Width: 40,
-        },
-      };
-
-      let currentSize = 600;
-
-      function setSize(size) {
-        currentSize = size;
-        document.querySelectorAll(".size-btn").forEach((btn) => {
-          btn.classList.remove("active");
-        });
-        document.getElementById(`btn-size-${size}`).classList.add("active");
-        renderSignature();
-      }
-
-      // ============================
-      //  POPULATE ALAMAT DROPDOWN
-      // ============================
-      function populateCampusDropdown(preserveValue) {
-        const campusSelect = document.getElementById("inputCampus");
-        const previousValue = preserveValue || "";
-
-        // Rebuild options
-        campusSelect.innerHTML = `<option value="" data-i18n="selectLocation">${i18n[currentLang].selectLocation}</option>`;
-        CAMPUS_DATA.forEach((c) => {
-          const opt = document.createElement("option");
-          opt.value = c.id;
-          opt.textContent = c.name;
-          campusSelect.appendChild(opt);
-        });
-
-        // Restore previous selection if valid
-        if (previousValue && CAMPUS_DATA.find(c => c.id === previousValue)) {
-          campusSelect.value = previousValue;
-          onCampusChange();
-        } else {
-          // Reset preview
-          document.getElementById("addressPreview").classList.remove("show");
-          document.getElementById("addressPreview").textContent = "";
         }
+      },
+    };
+
+    // ============================
+    //  SIZE DIMENSIONS MAP
+    // ============================
+    const SIZE_CONFIG = {
+      600: {
+        total: 600,
+        scale: 1.0,
+        nameFontSize: "6.5pt",
+        textFontSize: "5.3pt",
+        supergraphicHeight: 26,
+        annivLogoWidth: 50,
+        annivLogoHeight: 45,
+        annivPt: 15,
+        annivPr: 23,
+        iconsWidth: 8,
+        dividerHeight: 32,
+        tableMt: 9,
+        divPl: 11,
+        divPr: 6,
+        col3Width: 73,
+      },
+      450: {
+        total: 450,
+        scale: 0.75,
+        nameFontSize: "6pt",
+        textFontSize: "4.6pt",
+        supergraphicHeight: 19,
+        annivLogoWidth: 37,
+        annivLogoHeight: 34,
+        annivPt: 10,
+        annivPr: 24,
+        iconsWidth: 6,
+        dividerHeight: 24,
+        tableMt: 9,
+        divPl: 4,
+        divPr: 7,
+        col3Width: 65,
+      },
+      320: {
+        total: 320,
+        scale: 0.533,
+        nameFontSize: "4.5pt",
+        textFontSize: "3.5pt",
+        supergraphicHeight: 14,
+        annivLogoWidth: 26,
+        annivLogoHeight: 24,
+        annivPt: 8,
+        annivPr: 12,
+        iconsWidth: 4,
+        dividerHeight: 17,
+        tableMt: 5,
+        divPl: 3,
+        divPr: 3,
+        col3Width: 40,
+      },
+    };
+
+    let currentSize = 600;
+
+    function setSize(size) {
+      currentSize = size;
+      document.querySelectorAll(".size-btn").forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      document.getElementById(`btn-size-${size}`).classList.add("active");
+      renderSignature();
+    }
+
+    // ============================
+    //  POPULATE ALAMAT DROPDOWN
+    // ============================
+    function populateCampusDropdown(preserveValue) {
+      const campusSelect = document.getElementById("inputCampus");
+      const previousValue = preserveValue || "";
+
+      // Rebuild options
+      campusSelect.innerHTML = `<option value="" data-i18n="selectLocation">${i18n[currentLang].selectLocation}</option>`;
+      CAMPUS_DATA.forEach((c) => {
+        const opt = document.createElement("option");
+        opt.value = c.id;
+        opt.textContent = c.name;
+        campusSelect.appendChild(opt);
+      });
+
+      // Restore previous selection if valid
+      if (previousValue && CAMPUS_DATA.find(c => c.id === previousValue)) {
+        campusSelect.value = previousValue;
+        onCampusChange();
+      } else {
+        // Reset preview
+        document.getElementById("addressPreview").classList.remove("show");
+        document.getElementById("addressPreview").textContent = "";
+      }
+    }
+
+    function getSelectedCampus() {
+      const campusId = document.getElementById("inputCampus").value;
+      return CAMPUS_DATA.find((c) => c.id === campusId) || null;
+    }
+
+    function onCampusChange() {
+      const campus = getSelectedCampus();
+      const preview = document.getElementById("addressPreview");
+      if (campus) {
+        preview.innerHTML =
+          "<strong>" +
+          campus.name +
+          "</strong><br>" +
+          campus.address.replace(/\n/g, "<br>");
+        preview.classList.add("show");
+      } else {
+        preview.classList.remove("show");
+        preview.textContent = "";
+      }
+      renderSignature();
+    }
+
+    // ============================
+    //  UNIFIED CONFIG CHANGE
+    // ============================
+    function onConfigChange() {
+      const currentCampus = document.getElementById("inputCampus").value;
+      populateCampusDropdown(currentCampus);
+      renderSignature();
+    }
+
+    // ============================
+    //  RENDER SIGNATURE
+    // ============================
+    function renderSignature() {
+      const templateId = document.getElementById("inputTemplate").value;
+      if (!templateId) {
+        document.getElementById("signature-preview").innerHTML =
+          `<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;" data-i18n="noTemplate">${i18n[currentLang].noTemplate}</div>`;
+        return;
       }
 
-      function getSelectedCampus() {
-        const campusId = document.getElementById("inputCampus").value;
-        return CAMPUS_DATA.find((c) => c.id === campusId) || null;
+      const tpl = TEMPLATES[templateId];
+      const sz = SIZE_CONFIG[currentSize];
+
+      const name =
+        document.getElementById("inputName").value || i18n[currentLang].placeholderName;
+      const title =
+        document.getElementById("inputTitle").value || i18n[currentLang].placeholderTitle;
+      const phone = document.getElementById("inputPhone").value.trim();
+      const mobile = document.getElementById("inputMobile").value.trim();
+      const email = document.getElementById("inputEmail").value.trim();
+
+      const campus = getSelectedCampus();
+      const campusName = campus ? campus.name : i18n[currentLang].placeholderLocation;
+      const campusAddr = campus
+        ? campus.address.replace(/\n/g, "<br>")
+        : i18n[currentLang].placeholderAddress;
+
+      // Build Image Paths with Absolute Public URLs for Outlook compatibility
+      // Uses the GitHub Raw URL so images load on mobile phones and for recipients
+      const baseUrl = "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
+
+      const baseDir = `Asset/Image/${tpl.dir}`;
+      const logoLeftUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
+      const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
+      const supergraphicUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} supergraphic_with_text.png`);
+      const iconPhoneUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
+      const iconMobileUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
+      const iconEmailUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+
+      // Icon builder — uses images provided
+      const iconSz = currentSize >= 600 ? 12 : 9;
+      function renderIcon(url) {
+        return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
       }
 
-      function onCampusChange() {
-        const campus = getSelectedCampus();
-        const preview = document.getElementById("addressPreview");
-        if (campus) {
-          preview.innerHTML =
-            "<strong>" +
-            campus.name +
-            "</strong><br>" +
-            campus.address.replace(/\n/g, "<br>");
-          preview.classList.add("show");
-        } else {
-          preview.classList.remove("show");
-          preview.textContent = "";
-        }
-        renderSignature();
+      const iconPhone = renderIcon(iconPhoneUrl);
+      const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+
+      // Precompute Scaled Layout Variables
+      const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
+      const getVal = (prop) => tplOverride[prop] !== undefined ? tplOverride[prop] : Math.round(tpl[prop] * sz.scale);
+
+      const s_col1Width = getVal("col1Width");
+      const s_logoWidth = getVal("logoWidth");
+
+      let s_logoHeight = "auto";
+      if (tplOverride.logoHeight !== undefined) {
+        s_logoHeight = typeof tplOverride.logoHeight === "number" ? tplOverride.logoHeight + "px" : tplOverride.logoHeight;
+      } else if (typeof tpl.logoHeight === "number") {
+        s_logoHeight = Math.round(tpl.logoHeight * sz.scale) + "px";
+      } else {
+        s_logoHeight = tpl.logoHeight;
       }
 
-      // ============================
-      //  UNIFIED CONFIG CHANGE
-      // ============================
-      function onConfigChange() {
-        const currentCampus = document.getElementById("inputCampus").value;
-        populateCampusDropdown(currentCampus);
-        renderSignature();
-      }
+      const s_logoMt = getVal("logoMarginTop");
+      const s_logoMl = getVal("logoMarginLeft");
 
-      // ============================
-      //  RENDER SIGNATURE
-      // ============================
-      function renderSignature() {
-        const templateId = document.getElementById("inputTemplate").value;
-        if (!templateId) {
-          document.getElementById("signature-preview").innerHTML =
-            `<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;" data-i18n="noTemplate">${i18n[currentLang].noTemplate}</div>`;
-          return;
-        }
+      const s_nameMt = getVal("nameMarginTop");
+      const s_nameMl = getVal("nameMarginLeft");
 
-        const tpl = TEMPLATES[templateId];
-        const sz = SIZE_CONFIG[currentSize];
+      const s_col3Width = sz.col3Width;
+      const s_col2Width = sz.total - s_col1Width - s_col3Width;
 
-        const name =
-          document.getElementById("inputName").value || i18n[currentLang].placeholderName;
-        const title =
-          document.getElementById("inputTitle").value || i18n[currentLang].placeholderTitle;
-        const phone = document.getElementById("inputPhone").value.trim();
-        const mobile = document.getElementById("inputMobile").value.trim();
-        const email = document.getElementById("inputEmail").value.trim();
+      const s_supergraphicWidth = Math.round(200 * sz.scale);
 
-        const campus = getSelectedCampus();
-        const campusName = campus ? campus.name : i18n[currentLang].placeholderLocation;
-        const campusAddr = campus
-          ? campus.address.replace(/\n/g, "<br>")
-          : i18n[currentLang].placeholderAddress;
+      const s_tableMt = sz.tableMt;
+      const s_divPl = sz.divPl;
+      const s_divPr = sz.divPr;
 
-        // Build Image Paths with Absolute Public URLs for Outlook compatibility
-        // Uses the GitHub Raw URL so images load on mobile phones and for recipients
-        const baseUrl = "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
-
-        const baseDir = `Asset/Image/${tpl.dir}`;
-        const logoLeftUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
-        const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
-        const supergraphicUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} supergraphic_with_text.png`);
-        const iconPhoneUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
-        const iconMobileUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
-        const iconEmailUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
-
-        // Icon builder — uses images provided
-        const iconSz = currentSize >= 600 ? 12 : 9;
-        function renderIcon(url) {
-          return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
-        }
-
-        const iconPhone = renderIcon(iconPhoneUrl);
-        const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
-
-        // Precompute Scaled Layout Variables
-        const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
-        const getVal = (prop) => tplOverride[prop] !== undefined ? tplOverride[prop] : Math.round(tpl[prop] * sz.scale);
-
-        const s_col1Width = getVal("col1Width");
-        const s_logoWidth = getVal("logoWidth");
-        
-        let s_logoHeight = "auto";
-        if (tplOverride.logoHeight !== undefined) {
-            s_logoHeight = typeof tplOverride.logoHeight === "number" ? tplOverride.logoHeight + "px" : tplOverride.logoHeight;
-        } else if (typeof tpl.logoHeight === "number") {
-            s_logoHeight = Math.round(tpl.logoHeight * sz.scale) + "px";
-        } else {
-            s_logoHeight = tpl.logoHeight;
-        }
-
-        const s_logoMt = getVal("logoMarginTop");
-        const s_logoMl = getVal("logoMarginLeft");
-        
-        const s_nameMt = getVal("nameMarginTop");
-        const s_nameMl = getVal("nameMarginLeft");
-        
-        const s_col3Width = sz.col3Width;
-        const s_col2Width = sz.total - s_col1Width - s_col3Width;
-        
-        const s_supergraphicWidth = Math.round(200 * sz.scale);
-        
-        const s_tableMt = sz.tableMt;
-        const s_divPl = sz.divPl;
-        const s_divPr = sz.divPr;
-
-        const html = `
+      const html = `
 <table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" style="width:${sz.total}px; max-width:${sz.total}px; background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt;">
     <tr>
         <!-- Col 1: Left Logo -->
@@ -1070,73 +1061,74 @@
     </tr>
 </table>`;
 
-        document.getElementById("signature-preview").innerHTML = html;
-      }
+      document.getElementById("signature-preview").innerHTML = html;
+    }
 
-      // ============================
-      //  COPY TO CLIPBOARD
-      // ============================
-      async function copySignature() {
-        const templateId = document.getElementById("inputTemplate").value;
-        const name = document.getElementById("inputName").value.trim();
-        const title = document.getElementById("inputTitle").value.trim();
-        const phone = document.getElementById("inputPhone").value.trim();
-        const email = document.getElementById("inputEmail").value.trim();
-        const campus = document.getElementById("inputCampus").value;
+    // ============================
+    //  COPY TO CLIPBOARD
+    // ============================
+    async function copySignature() {
+      const templateId = document.getElementById("inputTemplate").value;
+      const name = document.getElementById("inputName").value.trim();
+      const title = document.getElementById("inputTitle").value.trim();
+      const phone = document.getElementById("inputPhone").value.trim();
+      const email = document.getElementById("inputEmail").value.trim();
+      const campus = document.getElementById("inputCampus").value;
 
-        // Validation
-        if (!templateId || !name || !title || !phone || !email || !campus) {
-          const toast = document.getElementById("toast");
-          toast.textContent = i18n[currentLang].validationError;
-          toast.style.background = "#dc2626";
-          toast.classList.add("show");
+      // Validation
+      if (!templateId || !name || !title || !phone || !email || !campus) {
+        const toast = document.getElementById("toast");
+        toast.textContent = i18n[currentLang].validationError;
+        toast.style.background = "#dc2626";
+        toast.classList.add("show");
+        setTimeout(() => {
+          toast.classList.remove("show");
+          // Reset back to success style for future use
           setTimeout(() => {
-            toast.classList.remove("show");
-            // Reset back to success style for future use
-            setTimeout(() => {
-              toast.style.background = "#10b981";
-              toast.textContent = i18n[currentLang].toastSuccess;
-            }, 300);
-          }, 3000);
-          return;
-        }
+            toast.style.background = "#10b981";
+            toast.textContent = i18n[currentLang].toastSuccess;
+          }, 300);
+        }, 3000);
+        return;
+      }
 
-        const signatureTable = document.querySelector("#signature-preview table");
-        
+      const signatureTable = document.querySelector("#signature-preview table");
+
+      try {
+        // Use modern Clipboard API to preserve HTML comments (VML for Outlook)
+        const htmlContent = signatureTable.outerHTML;
+        const blobHtml = new Blob([htmlContent], { type: "text/html" });
+        const clipboardItem = new ClipboardItem({ "text/html": blobHtml });
+        await navigator.clipboard.write([clipboardItem]);
+        showToast();
+      } catch (err) {
+        console.warn("ClipboardItem API failed, falling back to execCommand", err);
+        // Fallback for older browsers
+        const range = document.createRange();
+        range.selectNode(signatureTable);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
         try {
-          // Use modern Clipboard API to preserve HTML comments (VML for Outlook)
-          const htmlContent = signatureTable.outerHTML;
-          const blobHtml = new Blob([htmlContent], { type: "text/html" });
-          const clipboardItem = new ClipboardItem({ "text/html": blobHtml });
-          await navigator.clipboard.write([clipboardItem]);
+          document.execCommand("copy");
           showToast();
-        } catch (err) {
-          console.warn("ClipboardItem API failed, falling back to execCommand", err);
-          // Fallback for older browsers
-          const range = document.createRange();
-          range.selectNode(signatureTable);
-          window.getSelection().removeAllRanges();
-          window.getSelection().addRange(range);
-          try {
-            document.execCommand("copy");
-            showToast();
-          } catch (e) {
-            alert("Gagal menyalin. Silakan seleksi manual dan copy.");
-          }
-          window.getSelection().removeAllRanges();
+        } catch (e) {
+          alert("Gagal menyalin. Silakan seleksi manual dan copy.");
         }
+        window.getSelection().removeAllRanges();
       }
+    }
 
-      function showToast() {
-        const t = document.getElementById("toast");
-        t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 2500);
-      }
+    function showToast() {
+      const t = document.getElementById("toast");
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2500);
+    }
 
-      // ============================
-      //  INIT
-      // ============================
-      setLang(currentLang);
-    </script>
-  </body>
+    // ============================
+    //  INIT
+    // ============================
+    setLang(currentLang);
+  </script>
+</body>
+
 </html>
