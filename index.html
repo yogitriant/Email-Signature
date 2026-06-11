@@ -868,6 +868,7 @@
       },
       320: {
         total: 320,
+        totalHeight: 104,
         scale: 0.533,
         nameFontSize: "5.5pt",
         deptFontSize: "4.2pt",
@@ -1035,8 +1036,11 @@
       const s_divPl = sz.divPl;
       const s_divPr = sz.divPr;
 
+      const s_tableHeight = sz.totalHeight ? `height="${sz.totalHeight}"` : ``;
+      const s_tableHeightStyle = sz.totalHeight ? `height:${sz.totalHeight}px; max-height:${sz.totalHeight}px;` : ``;
+
       const html = `
-<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" style="width:${sz.total}px; max-width:${sz.total}px; background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" ${s_tableHeight} style="width:${sz.total}px; max-width:${sz.total}px; ${s_tableHeightStyle} background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt; -webkit-text-size-adjust:none; text-size-adjust:none;">
     <tr>
         <!-- Col 1: Left Logo -->
         <td width="${s_col1Width}" rowspan="2" valign="top" align="left" style="width:${s_col1Width}px; padding-top:${s_logoMt}px; padding-left:${s_logoMl}px;">
