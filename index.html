@@ -733,6 +733,24 @@
         logoMarginTop: 0,
         logoMarginLeft: 10,
         col1Width: 108,
+        sizes: {
+          320: {
+            logoMarginLeft: 2,
+            logoMarginTop: 0,
+            col1Width: 86,
+            nameMarginLeft: 0,
+            nameMarginTop: 19,
+            tableMt: 8,
+            textPl: 3,
+            divPl: 5,
+            divPr: 5,
+            addrPt: 5,
+            supergraphicWidth: 176,
+            supergraphicHeight: 16,
+            annivPr: 23,
+            annivPt: 9
+          }
+        }
       },
       "binus-school": {
         name: "BINUS School",
@@ -750,6 +768,24 @@
         logoMarginTop: 0,
         logoMarginLeft: 13,
         col1Width: 79,
+        sizes: {
+          320: {
+            logoMarginLeft: 7,
+            logoMarginTop: 0,
+            col1Width: 72,
+            nameMarginLeft: 0,
+            nameMarginTop: 23,
+            tableMt: 12,
+            textPl: 3,
+            divPl: 5,
+            divPr: 5,
+            addrPt: 4,
+            supergraphicWidth: 190,
+            supergraphicHeight: 18,
+            annivPr: 23,
+            annivPt: 9
+          }
+        }
       },
       "bina-nusantara": {
         name: "BINA NUSANTARA",
@@ -771,6 +807,22 @@
           450: {
             logoMarginLeft: 10,
             nameMarginLeft: 5,
+          },
+          320: {
+            logoMarginLeft: 10,
+            logoMarginTop: 0,
+            col1Width: 94,
+            nameMarginLeft: 0,
+            nameMarginTop: 14,
+            tableMt: 12,
+            textPl: 3,
+            divPl: 5,
+            divPr: 5,
+            addrPt: 5,
+            supergraphicWidth: 183,
+            supergraphicHeight: 16,
+            annivPr: 23,
+            annivPt: 9
           }
         }
       },
@@ -817,26 +869,15 @@
       320: {
         total: 320,
         scale: 0.533,
-        nameFontSize: "4.5pt",
-        textFontSize: "3.5pt",
-        supergraphicHeight: 16,
-        supergraphicWidth: 184,
+        nameFontSize: "5.5pt",
+        deptFontSize: "4.2pt",
+        contactFontSize: "3.9pt",
+        addrFontSize: "3.5pt",
         annivLogoWidth: 26,
         annivLogoHeight: 24,
-        annivPt: 9,
-        annivPr: 23,
         iconsWidth: 4,
-        textPl: 3,
         dividerHeight: 17,
-        tableMt: 12,
-        divPl: 5,
-        divPr: 6,
         col3Width: 49,
-        logoMarginTop: 0,
-        logoMarginLeft: 10,
-        nameMarginTop: 14,
-        nameMarginLeft: 0,
-        col1Width: 94,
       },
     };
 
@@ -1008,7 +1049,7 @@
             <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.nameFontSize}; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
             
             <!-- Department: margin left 1 (139-138), margin top 2 from nama -->
-            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:2px; padding:0; margin-left:1px; mso-line-height-rule:exactly;">${title}</div>
+            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:2px; padding:0; margin-left:1px; mso-line-height-rule:exactly;">${title}</div>
             
             <!-- Kontak & Alamat Nested Table -->
             <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:1px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
@@ -1018,15 +1059,15 @@
                         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                             ${phone ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
                             </tr>` : ''}
                             ${mobile ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
                             </tr>` : ''}
                             ${email ? `<tr>
                                 <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
+                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
                             </tr>` : ''}
                         </table>
                     </td>
@@ -1041,7 +1082,7 @@
                     </td>
                     
                     <!-- Alamat -->
-                    <td valign="top" style="padding-top:0px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
+                    <td valign="top" style="padding-top:${getVal('addrPt') || 0}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.addrFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
                         <div style="font-weight:bold; color:${tpl.textColor}; margin-bottom:1px;">${campusName}</div>
                         <div>${campusAddr}</div>
                     </td>
@@ -1050,7 +1091,7 @@
         </td>
 
         <!-- Col 3: 45 Years Logo -->
-        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; padding-top:${sz.annivPt}px; padding-right:${sz.annivPr}px;">
+        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; padding-top:${getVal('annivPt') || sz.annivPt}px; padding-right:${getVal('annivPr') || sz.annivPr}px;">
             <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; width:${sz.annivLogoWidth}px; height:${sz.annivLogoHeight}px; max-width:${sz.annivLogoWidth}px;">
         </td>
     </tr>
