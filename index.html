@@ -1030,11 +1030,12 @@
       const s_col3Width = sz.col3Width;
       const s_col2Width = sz.total - s_col1Width - s_col3Width;
 
-      const s_supergraphicWidth = sz.supergraphicWidth !== undefined ? sz.supergraphicWidth : Math.round(200 * sz.scale);
+      const s_supergraphicWidth = getVal("supergraphicWidth") || Math.round(200 * sz.scale);
+      const s_supergraphicHeight = getVal("supergraphicHeight") || sz.supergraphicHeight;
 
-      const s_tableMt = sz.tableMt;
-      const s_divPl = sz.divPl;
-      const s_divPr = sz.divPr;
+      const s_tableMt = getVal("tableMt");
+      const s_divPl = getVal("divPl");
+      const s_divPr = getVal("divPr");
 
       const s_tableHeight = sz.totalHeight ? `height="${sz.totalHeight}"` : ``;
       const s_tableHeightStyle = sz.totalHeight ? `height:${sz.totalHeight}px; max-height:${sz.totalHeight}px;` : ``;
@@ -1101,11 +1102,11 @@
     </tr>
     <tr>
         <!-- Row 2: Supergraphic spanning Col 2 & 3 -->
-        <td colspan="2" valign="bottom" align="right" height="${sz.supergraphicHeight}" style="padding:0; margin:0; font-size:0; line-height:0; height:${sz.supergraphicHeight}px;">
-            <table cellpadding="0" cellspacing="0" border="0" width="${s_supergraphicWidth}" height="${sz.supergraphicHeight}" style="width:${s_supergraphicWidth}px; height:${sz.supergraphicHeight}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin-left:auto; margin-right:0; margin-bottom:0;">
+        <td colspan="2" valign="bottom" align="right" height="${s_supergraphicHeight}" style="padding:0; margin:0; font-size:0; line-height:0; height:${s_supergraphicHeight}px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="${s_supergraphicWidth}" height="${s_supergraphicHeight}" style="width:${s_supergraphicWidth}px; height:${s_supergraphicHeight}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin-left:auto; margin-right:0; margin-bottom:0;">
                 <tr>
-                    <td width="${s_supergraphicWidth}" height="${sz.supergraphicHeight}" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0; width:${s_supergraphicWidth}px; height:${sz.supergraphicHeight}px;">
-                        <img src="${supergraphicUrl}" alt="www.binus.edu" width="${s_supergraphicWidth}" height="${sz.supergraphicHeight}" style="display:block; width:${s_supergraphicWidth}px; height:${sz.supergraphicHeight}px; border:none; outline:none;">
+                    <td width="${s_supergraphicWidth}" height="${s_supergraphicHeight}" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0; width:${s_supergraphicWidth}px; height:${s_supergraphicHeight}px;">
+                        <img src="${supergraphicUrl}" alt="www.binus.edu" width="${s_supergraphicWidth}" height="${s_supergraphicHeight}" style="display:block; width:${s_supergraphicWidth}px; height:${s_supergraphicHeight}px; border:none; outline:none;">
                     </td>
                 </tr>
             </table>
