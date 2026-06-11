@@ -819,17 +819,24 @@
         scale: 0.533,
         nameFontSize: "4.5pt",
         textFontSize: "3.5pt",
-        supergraphicHeight: 14,
+        supergraphicHeight: 16,
+        supergraphicWidth: 184,
         annivLogoWidth: 26,
         annivLogoHeight: 24,
-        annivPt: 8,
-        annivPr: 12,
+        annivPt: 9,
+        annivPr: 23,
         iconsWidth: 4,
+        textPl: 3,
         dividerHeight: 17,
-        tableMt: 5,
-        divPl: 3,
-        divPr: 3,
-        col3Width: 40,
+        tableMt: 12,
+        divPl: 5,
+        divPr: 6,
+        col3Width: 49,
+        logoMarginTop: 0,
+        logoMarginLeft: 10,
+        nameMarginTop: 14,
+        nameMarginLeft: 0,
+        col1Width: 94,
       },
     };
 
@@ -958,7 +965,7 @@
 
       // Precompute Scaled Layout Variables
       const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
-      const getVal = (prop) => tplOverride[prop] !== undefined ? tplOverride[prop] : Math.round(tpl[prop] * sz.scale);
+      const getVal = (prop) => tplOverride[prop] !== undefined ? tplOverride[prop] : (sz[prop] !== undefined ? sz[prop] : Math.round(tpl[prop] * sz.scale));
 
       const s_col1Width = getVal("col1Width");
       const s_logoWidth = getVal("logoWidth");
@@ -981,7 +988,7 @@
       const s_col3Width = sz.col3Width;
       const s_col2Width = sz.total - s_col1Width - s_col3Width;
 
-      const s_supergraphicWidth = Math.round(200 * sz.scale);
+      const s_supergraphicWidth = sz.supergraphicWidth !== undefined ? sz.supergraphicWidth : Math.round(200 * sz.scale);
 
       const s_tableMt = sz.tableMt;
       const s_divPl = sz.divPl;
@@ -1011,15 +1018,15 @@
                         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                             ${phone ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
                             </tr>` : ''}
                             ${mobile ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
                             </tr>` : ''}
                             ${email ? `<tr>
                                 <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-left:4px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
+                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
                             </tr>` : ''}
                         </table>
                     </td>
