@@ -1114,15 +1114,15 @@
                         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                             ${phone ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${phone}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${phone}</td>
                             </tr>` : ''}
                             ${mobile ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${mobile}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${mobile}</td>
                             </tr>` : ''}
                             ${email ? `<tr>
                                 <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly;">${email}</td>
+                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${email}</td>
                             </tr>` : ''}
                         </table>
                     </td>
