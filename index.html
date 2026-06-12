@@ -734,6 +734,25 @@
         logoMarginLeft: 10,
         col1Width: 108,
         sizes: {
+          450: {
+            logoMarginLeft: 10,
+            logoMarginTop: 0,
+            col1Width: 104,
+            nameMarginLeft: 0,
+            nameMarginTop: 19,
+            deptMl: 2,
+            deptMt: 1,
+            tableMl: 2,
+            tableMt: 9,
+            textPl: 3,
+            divPl: 4,
+            divPr: 7,
+            addrPt: 4,
+            supergraphicWidth: 182,
+            supergraphicHeight: 20,
+            annivPr: 24,
+            annivPt: 10
+          },
           320: {
             logoMarginLeft: 2,
             logoMarginTop: 0,
@@ -769,6 +788,25 @@
         logoMarginLeft: 13,
         col1Width: 79,
         sizes: {
+          450: {
+            logoMarginLeft: 8,
+            logoMarginTop: 0,
+            col1Width: 83,
+            nameMarginLeft: 0,
+            nameMarginTop: 21,
+            deptMl: 0,
+            deptMt: 1,
+            tableMl: 3,
+            tableMt: 10,
+            textPl: 2,
+            divPl: 3,
+            divPr: 6,
+            addrPt: 5,
+            supergraphicWidth: 187,
+            supergraphicHeight: 20,
+            annivPr: 24,
+            annivPt: 10
+          },
           320: {
             logoMarginLeft: 7,
             logoMarginTop: 0,
@@ -806,7 +844,22 @@
         sizes: {
           450: {
             logoMarginLeft: 10,
-            nameMarginLeft: 5,
+            logoMarginTop: 0,
+            col1Width: 104,
+            nameMarginLeft: 0,
+            nameMarginTop: 19,
+            deptMl: 2,
+            deptMt: 1,
+            tableMl: 2,
+            tableMt: 9,
+            textPl: 3,
+            divPl: 4,
+            divPr: 7,
+            addrPt: 4,
+            supergraphicWidth: 188,
+            supergraphicHeight: 20,
+            annivPr: 24,
+            annivPt: 10
           },
           320: {
             logoMarginLeft: 10,
@@ -851,20 +904,17 @@
       },
       450: {
         total: 450,
+        totalHeight: 104,
         scale: 0.75,
         nameFontSize: "6pt",
-        textFontSize: "4.6pt",
-        supergraphicHeight: 19,
+        deptFontSize: "4.6pt",
+        contactFontSize: "4.6pt",
+        addrFontSize: "4.6pt",
         annivLogoWidth: 37,
         annivLogoHeight: 34,
-        annivPt: 10,
-        annivPr: 24,
         iconsWidth: 6,
-        dividerHeight: 24,
-        tableMt: 9,
-        divPl: 4,
-        divPr: 7,
-        col3Width: 65,
+        dividerHeight: 27,
+        col3Width: 61,
       },
       320: {
         total: 320,
@@ -1054,10 +1104,10 @@
             <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.nameFontSize}; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
             
             <!-- Department: margin left 1 (139-138), margin top 2 from nama -->
-            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:2px; padding:0; margin-left:1px; mso-line-height-rule:exactly;">${title}</div>
+            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:${getVal('deptMt') !== undefined ? getVal('deptMt') : 2}px; padding:0; margin-left:${getVal('deptMl') !== undefined ? getVal('deptMl') : 1}px; mso-line-height-rule:exactly;">${title}</div>
             
             <!-- Kontak & Alamat Nested Table -->
-            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:1px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:${getVal('tableMl') !== undefined ? getVal('tableMl') : 1}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                 <tr>
                     <!-- Phone numbers -->
                     <td valign="top" style="padding-top:2px; padding-right:0px;">
