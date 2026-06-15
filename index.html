@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Generator Signature Email Lembaga</title>
+  <link rel="icon" type="image/png" href="Asset/Image/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     @font-face {
@@ -268,7 +269,7 @@
     }
 
     .preview-panel h2::before {
-      content: "👁️";
+      display: none;
     }
 
     .preview-subtitle {
@@ -408,11 +409,11 @@
             Desktop
             <span>600px</span>
           </button>
-          <button class="size-btn" onclick="setSize(450)" id="btn-size-450">
+          <button class="size-btn" onclick="setSize(450)" id="btn-size-450" style="display:none;">
             Tablet
             <span>450px</span>
           </button>
-          <button class="size-btn" onclick="setSize(320)" id="btn-size-320">
+          <button class="size-btn" onclick="setSize(320)" id="btn-size-320" style="display:none;">
             Mobile
             <span>320px</span>
           </button>
