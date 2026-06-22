@@ -363,7 +363,7 @@
       font-weight: 600;
       color: #334155;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
     .btn-guide:hover {
@@ -371,7 +371,7 @@
       color: #7A2182;
       background: #faf5fb;
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(122,33,130,0.12);
+      box-shadow: 0 4px 14px rgba(122, 33, 130, 0.12);
     }
 
     .btn-guide svg {
@@ -400,13 +400,25 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .modal-content {
@@ -416,7 +428,7 @@
       max-width: 640px;
       max-height: 85vh;
       overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
       animation: slideUp 0.3s ease;
     }
 
@@ -442,7 +454,7 @@
     }
 
     .modal-close {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       border: none;
       color: white;
       width: 32px;
@@ -457,7 +469,7 @@
     }
 
     .modal-close:hover {
-      background: rgba(255,255,255,0.35);
+      background: rgba(255, 255, 255, 0.35);
     }
 
     .modal-body {
@@ -695,17 +707,23 @@
 
       <div class="instruction" data-i18n="instruction">
         <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka
-        <strong>Outlook → Settings → Signature</strong>, lalu tekan
-        <strong>Ctrl + V (Paste)</strong>.
+        <strong>Outlook → Settings → Signature</strong>, lalu <strong>Paste (Tempel)</strong>.
+
       </div>
 
       <div class="guide-buttons">
         <button class="btn-guide" onclick="openGuide('windows')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z" />
+          </svg>
           <span data-i18n="guideWindows">Panduan Windows</span>
         </button>
         <button class="btn-guide" onclick="openGuide('mac')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+          </svg>
           <span data-i18n="guideMac">Panduan Mac</span>
         </button>
       </div>
@@ -721,34 +739,63 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path
+              d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z" />
+          </svg>
           <span data-i18n="guideWindowsTitle">Panduan Outlook (Windows)</span>
         </h3>
         <button class="modal-close" onclick="closeGuide('windows')">&times;</button>
       </div>
       <div class="modal-body">
         <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin Signature</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ws1">Buka browser Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong></span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ws2">Pada panel <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ws3">Anda dapat melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ws4">Jika sudah sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin ke clipboard perangkat Anda).</span></div>
+          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin
+              Signature</span></div>
+          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ws1">Buka browser
+              Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong></span></div>
+          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ws2">Pada panel
+              <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi
+              <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.</span></div>
+          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ws3">Anda dapat
+              melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ws4">Jika sudah
+              sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin
+              ke clipboard perangkat Anda).</span></div>
         </div>
 
         <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage2Title">Tambah Signature di Outlook (Windows)</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ww1">Buka aplikasi <strong>Microsoft Outlook</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ww2">Masuk ke <strong>Settings</strong> dengan mengklik ikon ⚙️ (gear), biasanya terletak di pojok kanan atas layar.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ww3">Navigasi ke menu <strong>Accounts</strong> atau <strong>Mail</strong>, lalu cari dan pilih opsi <strong>Signatures</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ww4">Pada halaman Signatures, klik tombol biru <strong>+ Add signature</strong> untuk membuat signature baru.</span></div>
-          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="ww5">Akan muncul kotak editor. Pertama, ketik <strong>Nama Signature</strong> di kolom judul (contoh: "Main Signature").</span></div>
-          <div class="guide-step"><span class="step-number">6</span><span class="step-text" data-i18n="ww6">Klik pada kotak teks kosong di bawahnya, lalu tekan <span class="step-highlight">Ctrl + V</span> (atau klik kanan dan pilih Paste) untuk menempelkan signature dari website.</span></div>
-          <div class="step-tip" data-i18n="ww6tip">💡 <strong>Penting:</strong> Jika muncul ikon opsi tempel kecil setelah paste, pastikan pilih <strong>Keep Source Formatting</strong> agar layout dan logo tetap utuh.</div>
-          <div class="guide-step"><span class="step-number">7</span><span class="step-text" data-i18n="ww7">Setelah signature muncul di editor, klik tombol <strong>Save</strong> di dalam editor.</span></div>
-          <div class="guide-step"><span class="step-number">8</span><span class="step-text" data-i18n="ww8">Kembali ke halaman utama Signatures dan atur dua dropdown berikut:</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text" data-i18n="ww8a"><strong>Default for new messages:</strong> Klik dropdown dan pilih nama signature baru Anda. Ini memastikan signature otomatis muncul setiap kali Anda menulis email baru.</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text" data-i18n="ww8b"><strong>Default for replies and forwards:</strong> Klik dropdown dan pilih signature yang sama jika Anda ingin signature muncul saat membalas atau meneruskan email.</span></div>
-          <div class="guide-step"><span class="step-number">9</span><span class="step-text" data-i18n="ww9">Pastikan klik tombol <strong>Save</strong> di jendela settings untuk menerapkan semua perubahan.</span></div>
+          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage2Title">Tambah Signature di
+              Outlook (Windows)</span></div>
+          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ww1">Buka
+              aplikasi <strong>Microsoft Outlook</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ww2">Masuk ke
+              <strong>Settings</strong> dengan mengklik ikon ⚙️ (gear), biasanya terletak di pojok kanan atas
+              layar.</span></div>
+          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ww3">Navigasi ke
+              menu <strong>Accounts</strong> atau <strong>Mail</strong>, lalu cari dan pilih opsi
+              <strong>Signatures</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ww4">Pada halaman
+              Signatures, klik tombol biru <strong>+ Add signature</strong> untuk membuat signature baru.</span></div>
+          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="ww5">Akan muncul
+              kotak editor. Pertama, ketik <strong>Nama Signature</strong> di kolom judul (contoh: "Main
+              Signature").</span></div>
+          <div class="guide-step"><span class="step-number">6</span><span class="step-text" data-i18n="ww6">Klik pada
+              kotak teks kosong di bawahnya, lalu tekan <span class="step-highlight">Ctrl + V</span> (atau klik kanan
+              dan pilih Paste) untuk menempelkan signature dari website.</span></div>
+          <div class="step-tip" data-i18n="ww6tip">💡 <strong>Penting:</strong> Jika muncul ikon opsi tempel kecil
+            setelah paste, pastikan pilih <strong>Keep Source Formatting</strong> agar layout dan logo tetap utuh.</div>
+          <div class="guide-step"><span class="step-number">7</span><span class="step-text" data-i18n="ww7">Setelah
+              signature muncul di editor, klik tombol <strong>Save</strong> di dalam editor.</span></div>
+          <div class="guide-step"><span class="step-number">8</span><span class="step-text" data-i18n="ww8">Kembali ke
+              halaman utama Signatures dan atur dua dropdown berikut:</span></div>
+          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
+              data-i18n="ww8a"><strong>Default for new messages:</strong> Klik dropdown dan pilih nama signature baru
+              Anda. Ini memastikan signature otomatis muncul setiap kali Anda menulis email baru.</span></div>
+          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
+              data-i18n="ww8b"><strong>Default for replies and forwards:</strong> Klik dropdown dan pilih signature yang
+              sama jika Anda ingin signature muncul saat membalas atau meneruskan email.</span></div>
+          <div class="guide-step"><span class="step-number">9</span><span class="step-text" data-i18n="ww9">Pastikan
+              klik tombol <strong>Save</strong> di jendela settings untuk menerapkan semua perubahan.</span></div>
         </div>
       </div>
     </div>
@@ -759,34 +806,60 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path
+              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+          </svg>
           <span data-i18n="guideMacTitle">Panduan Outlook (Mac)</span>
         </h3>
         <button class="modal-close" onclick="closeGuide('mac')">&times;</button>
       </div>
       <div class="modal-body">
         <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin Signature</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ws1">Buka browser Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong></span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ws2">Pada panel <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ws3">Anda dapat melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ws4">Jika sudah sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin ke clipboard perangkat Anda).</span></div>
+          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin
+              Signature</span></div>
+          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ws1">Buka browser
+              Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong></span></div>
+          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ws2">Pada panel
+              <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi
+              <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.</span></div>
+          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ws3">Anda dapat
+              melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ws4">Jika sudah
+              sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin
+              ke clipboard perangkat Anda).</span></div>
         </div>
 
         <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage3Title">Tambah Signature di Outlook (Mac)</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="wm1">Buka aplikasi <strong>Microsoft Outlook</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="wm2">Di menu bar atas layar (di samping logo Apple), klik <strong>Outlook</strong>, lalu pilih <strong>Settings...</strong> (atau Preferences pada versi lama).</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="wm3">Pilih menu <strong>Signatures</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="wm4">Klik ikon <strong>+ (plus)</strong> atau tombol <strong>+ Add signature</strong> untuk membuat signature baru.</span></div>
-          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="wm5">Beri nama signature Anda (contoh: "Main Signature").</span></div>
-          <div class="guide-step"><span class="step-number">6</span><span class="step-text" data-i18n="wm6">Klik di dalam area teks, lalu tekan <span class="step-highlight">Cmd + V</span> untuk menempelkan signature dari website. Pastikan format sumber dipertahankan (<strong>Keep Source Formatting</strong>).</span></div>
-          <div class="guide-step"><span class="step-number">7</span><span class="step-text" data-i18n="wm7">Simpan signature tersebut.</span></div>
-          <div class="guide-step"><span class="step-number">8</span><span class="step-text" data-i18n="wm8">Sama seperti di Windows, pastikan Anda mengatur bagian <strong>Default signatures</strong>:</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text" data-i18n="wm8a">Pilih akun email Anda (jika diminta).</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text" data-i18n="wm8b">Untuk <strong>New messages</strong>, pilih signature yang baru dibuat.</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text" data-i18n="wm8c">Untuk <strong>Replies/forwards</strong>, pilih signature yang sama.</span></div>
-          <div class="guide-step"><span class="step-number">9</span><span class="step-text" data-i18n="wm9">Tutup jendela pengaturan.</span></div>
+          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage3Title">Tambah Signature di
+              Outlook (Mac)</span></div>
+          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="wm1">Buka
+              aplikasi <strong>Microsoft Outlook</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="wm2">Di menu bar
+              atas layar (di samping logo Apple), klik <strong>Outlook</strong>, lalu pilih <strong>Settings...</strong>
+              (atau Preferences pada versi lama).</span></div>
+          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="wm3">Pilih menu
+              <strong>Signatures</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="wm4">Klik ikon
+              <strong>+ (plus)</strong> atau tombol <strong>+ Add signature</strong> untuk membuat signature
+              baru.</span></div>
+          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="wm5">Beri nama
+              signature Anda (contoh: "Main Signature").</span></div>
+          <div class="guide-step"><span class="step-number">6</span><span class="step-text" data-i18n="wm6">Klik di
+              dalam area teks, lalu tekan <span class="step-highlight">Cmd + V</span> untuk menempelkan signature dari
+              website. Pastikan format sumber dipertahankan (<strong>Keep Source Formatting</strong>).</span></div>
+          <div class="guide-step"><span class="step-number">7</span><span class="step-text" data-i18n="wm7">Simpan
+              signature tersebut.</span></div>
+          <div class="guide-step"><span class="step-number">8</span><span class="step-text" data-i18n="wm8">Sama seperti
+              di Windows, pastikan Anda mengatur bagian <strong>Default signatures</strong>:</span></div>
+          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
+              data-i18n="wm8a">Pilih akun email Anda (jika diminta).</span></div>
+          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
+              data-i18n="wm8b">Untuk <strong>New messages</strong>, pilih signature yang baru dibuat.</span></div>
+          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
+              data-i18n="wm8c">Untuk <strong>Replies/forwards</strong>, pilih signature yang sama.</span></div>
+          <div class="guide-step"><span class="step-number">9</span><span class="step-text" data-i18n="wm9">Tutup
+              jendela pengaturan.</span></div>
         </div>
       </div>
     </div>
@@ -998,7 +1071,7 @@
       }
     }
 
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeGuide('windows');
         closeGuide('mac');
