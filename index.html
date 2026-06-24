@@ -874,7 +874,7 @@
         title: "Generator Signature Email",
         subtitle: "Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.",
         configTitle: "Konfigurasi",
-        templateLabel: "Template",
+        templateLabel: 'Template <span style="color: #dc2626;">*</span>',
         selectTemplate: "-- Pilih Template --",
         sizeLabel: "Ukuran",
         personalInfo: "Informasi Pribadi",
@@ -892,6 +892,9 @@
         instruction: "<strong>Cara Penggunaan:</strong> Setelah klik \"Salin Signature\", buka <strong>Outlook → Settings → Signature</strong>, lalu <strong>Paste (Tempel)</strong>.",
         toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
         validationError: "❌ Harap lengkapi semua isian yang wajib (*)",
+        invalidPhone: "❌ Nomor Telepon harus diawali dengan 62",
+        invalidMobile: "❌ Nomor HP harus diawali dengan 62",
+        invalidEmail: "❌ Format Email tidak valid",
         noTemplate: "Silakan pilih template terlebih dahulu.",
         placeholderName: "Nama Lengkap Anda",
         placeholderTitle: "Jabatan Anda",
@@ -942,7 +945,7 @@
         title: "Email Signature Generator",
         subtitle: "Select a template, size, and fill in your details to create a standard corporate signature.",
         configTitle: "Configuration",
-        templateLabel: "Template",
+        templateLabel: 'Template <span style="color: #dc2626;">*</span>',
         selectTemplate: "-- Select Template --",
         sizeLabel: "Size",
         personalInfo: "Personal Information",
@@ -960,6 +963,9 @@
         instruction: "<strong>How to use:</strong> After clicking \"Copy Signature\", open <strong>Outlook → Settings → Signature</strong>, then <strong>Paste</strong>.",
         toastSuccess: "✅ Signature successfully copied to clipboard!",
         validationError: "❌ Please fill in all required fields (*)",
+        invalidPhone: "❌ Phone number must start with 62",
+        invalidMobile: "❌ Mobile number must start with 62",
+        invalidEmail: "❌ Invalid Email format",
         noTemplate: "Please select a template first.",
         placeholderName: "Your Full Name",
         placeholderTitle: "Your Job Title",
@@ -1661,20 +1667,44 @@
       const campus = document.getElementById("inputCampus").value;
 
       // Validation
-      if (!templateId || !name || !title || !phone || !email || !campus) {
-        const toast = document.getElementById("toast");
-        toast.textContent = i18n[currentLang].validationError;
+      const toast = document.getElementById("toast");
+      
+      const showToastError = (messageKey) => {
+        toast.textContent = i18n[currentLang][messageKey];
         toast.style.background = "#dc2626";
         toast.classList.add("show");
         setTimeout(() => {
           toast.classList.remove("show");
-          // Reset back to success style for future use
           setTimeout(() => {
             toast.style.background = "#10b981";
             toast.textContent = i18n[currentLang].toastSuccess;
           }, 300);
         }, 3000);
-        return;
+      };
+
+      if (!templateId || !name || !title || !phone || !email || !campus) {
+        return showToastError("validationError");
+      }
+
+      // Email format validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return showToastError("invalidEmail");
+      }
+
+      // Phone format validation (must start with 62 or +62 after stripping non-digits)
+      const cleanPhone = phone.replace(/\D/g, '');
+      if (!cleanPhone.startsWith('62')) {
+        return showToastError("invalidPhone");
+      }
+
+      // Mobile format validation (optional, but if filled must start with 62)
+      const mobile = document.getElementById("inputMobile").value.trim();
+      if (mobile) {
+        const cleanMobile = mobile.replace(/\D/g, '');
+        if (!cleanMobile.startsWith('62')) {
+          return showToastError("invalidMobile");
+        }
       }
 
       const signatureTable = document.querySelector("#signature-preview table");
