@@ -1,1662 +1,2048 @@
 <!doctype html>
 <html lang="id">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>BINUS Email Signature Generator</title>
-  <link rel="icon" type="image/png" href="/binus-favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    @font-face {
-      font-family: 'Interstate';
-      src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Regular.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: 'Interstate';
-      src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Bold.otf') format('opentype');
-      font-weight: bold;
-      font-style: normal;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Interstate", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      padding: 30px 20px;
-      color: #1e293b;
-      line-height: 1.6;
-      background: linear-gradient(135deg,
-          #f5f0f8 0%,
-          #eef6fb 50%,
-          #fdf8f0 100%);
-      min-height: 100vh;
-    }
-
-    .page-header {
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-    }
-
-    .page-header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #7A2182, #008ED3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 6px;
-    }
-
-    .page-header p {
-      font-size: 14px;
-      color: #64748b;
-    }
-
-    /* Language Toggle */
-    .lang-toggle {
-      position: absolute;
-      top: 0;
-      right: 0;
-      display: flex;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1.5px solid #e2e8f0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .lang-btn {
-      padding: 6px 14px;
-      border: none;
-      background: #f8fafc;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      color: #64748b;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-
-    .lang-btn:first-child {
-      border-right: 1px solid #e2e8f0;
-    }
-
-    .lang-btn:hover {
-      background: #f0e8f4;
-      color: #7A2182;
-    }
-
-    .lang-btn.active {
-      background: linear-gradient(135deg, #7A2182, #008ED3);
-      color: white;
-    }
-
-    .main-layout {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      gap: 30px;
-      align-items: flex-start;
-    }
-
-    /* ---- Form Panel ---- */
-    .form-panel {
-      width: 360px;
-      min-width: 360px;
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 4px 24px rgba(122, 33, 130, 0.06);
-      border: 1px solid #e8dced;
-      position: sticky;
-      top: 20px;
-    }
-
-    .form-panel h2 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    }
-
-    .input-group {
-      margin-bottom: 12px;
-    }
-
-    .input-group label {
-      display: block;
-      font-weight: 600;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #475569;
-      margin-bottom: 4px;
-    }
-
-    .input-group input,
-    .input-group select {
-      width: 100%;
-      padding: 9px 11px;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 13px;
-      font-family: inherit;
-      color: #1e293b;
-      transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
-      background: #f8fafc;
-    }
-
-    .input-group input:focus,
-    .input-group select:focus {
-      outline: none;
-      border-color: #7A2182;
-      box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
-      background: white;
-    }
-
-    .section-divider {
-      border: none;
-      border-top: 1px dashed #e2e8f0;
-      margin: 14px 0;
-    }
-
-    .section-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #94a3b8;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    /* Size selector */
-    .size-selector {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 0;
-    }
-
-    .size-btn {
-      flex: 1;
-      padding: 8px 4px;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 8px;
-      background: #f8fafc;
-      cursor: pointer;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: #64748b;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-
-    .size-btn:hover {
-      border-color: #c9a0d0;
-      color: #7A2182;
-    }
-
-    .size-btn.active {
-      border-color: #7A2182;
-      background: #f5edf7;
-      color: #5a1862;
-      box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
-    }
-
-    .size-btn span {
-      display: block;
-      font-size: 10px;
-      font-weight: 400;
-      color: #94a3b8;
-      margin-top: 2px;
-    }
-
-    .size-btn.active span {
-      color: #b07cb8;
-    }
-
-    /* Address preview */
-    .address-preview {
-      margin-top: 6px;
-      padding: 8px 10px;
-      background: #faf5fb;
-      border-radius: 6px;
-      font-size: 11px;
-      color: #64748b;
-      line-height: 1.5;
-      border-left: 3px solid #7A2182;
-      display: none;
-    }
-
-    .address-preview.show {
-      display: block;
-    }
-
-    /* ---- Preview Panel ---- */
-    .preview-panel {
-      flex: 1;
-      background: white;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 4px 24px rgba(0, 142, 211, 0.06);
-      border: 1px solid #dde9f0;
-    }
-
-    .preview-panel h2 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .preview-panel h2::before {
-      display: none;
-    }
-
-    .preview-subtitle {
-      font-size: 12px;
-      color: #94a3b8;
-      margin-bottom: 18px;
-    }
-
-    .preview-subtitle .size-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      background: #f5edf7;
-      color: #7A2182;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 11px;
-    }
-
-    #signature-preview {
-      margin-top: 10px;
-      overflow-x: auto;
-      min-height: 100px;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .btn-copy {
-      background: linear-gradient(135deg, #7A2182, #008ED3);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      font-family: inherit;
-      transition:
-        transform 0.15s,
-        box-shadow 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-copy:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(122, 33, 130, 0.3);
-    }
-
-    .btn-copy:active {
-      transform: translateY(0);
-    }
-
-    .instruction {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 14px;
-      padding: 12px;
-      background: #faf8fc;
-      border-radius: 8px;
-      border-left: 3px solid #F08700;
-      line-height: 1.5;
-    }
-
-    /* Guide Buttons */
-    .guide-buttons {
-      display: flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-guide {
-      flex: 1;
-      min-width: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 10px;
-      background: #ffffff;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      color: #334155;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-
-    .btn-guide:hover {
-      border-color: #7A2182;
-      color: #7A2182;
-      background: #faf5fb;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(122, 33, 130, 0.12);
-    }
-
-    .btn-guide svg {
-      flex-shrink: 0;
-    }
-
-    /* Modal Overlay */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
+  <head>
+    <meta charset="UTF-8" />
+    <title>BINUS Email Signature Generator</title>
+    <link rel="icon" type="image/png" href="/binus-favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: 'Interstate';
+        src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Regular.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
       }
 
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+      @font-face {
+        font-family: 'Interstate';
+        src: url('https://raw.githubusercontent.com/yogitriant/Email-Signature/master/Asset/Font/Interstate%20Bold.otf') format('opentype');
+        font-weight: bold;
+        font-style: normal;
       }
 
-      to {
-        opacity: 1;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Interstate", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 30px 20px;
+        color: #1e293b;
+        line-height: 1.6;
+        background: linear-gradient(135deg,
+            #f5f0f8 0%,
+            #eef6fb 50%,
+            #fdf8f0 100%);
+        min-height: 100vh;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .page-header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #7A2182, #008ED3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 6px;
+      }
+
+      .page-header p {
+        font-size: 14px;
+        color: #64748b;
+      }
+
+      /* Language Toggle */
+      .lang-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1.5px solid #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .lang-btn {
+        padding: 6px 14px;
+        border: none;
+        background: #f8fafc;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+
+      .lang-btn:first-child {
+        border-right: 1px solid #e2e8f0;
+      }
+
+      .lang-btn:hover {
+        background: #f0e8f4;
+        color: #7A2182;
+      }
+
+      .lang-btn.active {
+        background: linear-gradient(135deg, #7A2182, #008ED3);
+        color: white;
+      }
+
+      .main-layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+      }
+
+      /* ---- Form Panel ---- */
+      .form-panel {
+        width: 360px;
+        min-width: 360px;
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 24px rgba(122, 33, 130, 0.06);
+        border: 1px solid #e8dced;
+        position: sticky;
+        top: 20px;
+      }
+
+      .form-panel h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      }
+
+      .input-group {
+        margin-bottom: 12px;
+      }
+
+      .input-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #475569;
+        margin-bottom: 4px;
+      }
+
+      .input-group input,
+      .input-group select {
+        width: 100%;
+        padding: 9px 11px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 13px;
+        font-family: inherit;
+        color: #1e293b;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        background: #f8fafc;
+      }
+
+      .input-group input:focus,
+      .input-group select:focus {
+        outline: none;
+        border-color: #7A2182;
+        box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
+        background: white;
+      }
+
+      .section-divider {
+        border: none;
+        border-top: 1px dashed #e2e8f0;
+        margin: 14px 0;
+      }
+
+      .section-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #94a3b8;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      /* Size selector */
+      .size-selector {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 0;
+      }
+
+      .size-btn {
+        flex: 1;
+        padding: 8px 4px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px;
+        background: #f8fafc;
+        cursor: pointer;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+
+      .size-btn:hover {
+        border-color: #c9a0d0;
+        color: #7A2182;
+      }
+
+      .size-btn.active {
+        border-color: #7A2182;
+        background: #f5edf7;
+        color: #5a1862;
+        box-shadow: 0 0 0 3px rgba(122, 33, 130, 0.1);
+      }
+
+      .size-btn span {
+        display: block;
+        font-size: 10px;
+        font-weight: 400;
+        color: #94a3b8;
+        margin-top: 2px;
+      }
+
+      .size-btn.active span {
+        color: #b07cb8;
+      }
+
+      /* Address preview */
+      .address-preview {
+        margin-top: 6px;
+        padding: 8px 10px;
+        background: #faf5fb;
+        border-radius: 6px;
+        font-size: 11px;
+        color: #64748b;
+        line-height: 1.5;
+        border-left: 3px solid #7A2182;
+        display: none;
+      }
+
+      .address-preview.show {
+        display: block;
+      }
+
+      /* ---- Preview Panel ---- */
+      .preview-panel {
+        flex: 1;
+        background: white;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 4px 24px rgba(0, 142, 211, 0.06);
+        border: 1px solid #dde9f0;
+      }
+
+      .preview-panel h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .preview-panel h2::before {
+        display: none;
+      }
+
+      .preview-subtitle {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-bottom: 18px;
+      }
+
+      .preview-subtitle .size-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        background: #f5edf7;
+        color: #7A2182;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 11px;
+      }
+
+      #signature-preview {
+        margin-top: 10px;
+        overflow-x: auto;
+        min-height: 100px;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .btn-copy {
+        background: linear-gradient(135deg, #7A2182, #008ED3);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        font-family: inherit;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-copy:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(122, 33, 130, 0.3);
+      }
+
+      .btn-copy:active {
         transform: translateY(0);
       }
-    }
 
-    .modal-content {
-      background: #ffffff;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 640px;
-      max-height: 85vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-      animation: slideUp 0.3s ease;
-    }
-
-    .modal-header {
-      position: sticky;
-      top: 0;
-      background: linear-gradient(135deg, #7A2182, #008ED3);
-      color: white;
-      padding: 20px 24px;
-      border-radius: 16px 16px 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1;
-    }
-
-    .modal-header h3 {
-      font-size: 18px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .modal-close {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .modal-close:hover {
-      background: rgba(255, 255, 255, 0.35);
-    }
-
-    .modal-body {
-      padding: 24px;
-    }
-
-    .guide-stage {
-      margin-bottom: 24px;
-    }
-
-    .guide-stage:last-child {
-      margin-bottom: 0;
-    }
-
-    .stage-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: #7A2182;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #f3e8f9;
-    }
-
-    .stage-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      background: linear-gradient(135deg, #7A2182, #008ED3);
-      color: white;
-      border-radius: 50%;
-      font-size: 13px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .guide-step {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 10px;
-      align-items: flex-start;
-    }
-
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 22px;
-      height: 22px;
-      background: #f0e6f3;
-      color: #7A2182;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .step-text {
-      font-size: 13px;
-      color: #475569;
-      line-height: 1.6;
-    }
-
-    .step-text strong {
-      color: #1e293b;
-    }
-
-    .step-highlight {
-      display: inline;
-      background: #fef3c7;
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-weight: 600;
-      color: #92400e;
-      font-size: 12px;
-    }
-
-    .step-tip {
-      background: #f0fdf4;
-      border-left: 3px solid #76b743;
-      padding: 10px 14px;
-      border-radius: 0 8px 8px 0;
-      margin: 8px 0 8px 34px;
-      font-size: 12px;
-      color: #166534;
-      line-height: 1.5;
-    }
-
-    /* Footer */
-    .footer-copyright {
-      text-align: center;
-      color: #64748b;
-      font-size: 13px;
-      margin-top: 40px;
-      padding-bottom: 20px;
-      width: 100%;
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, #76b743, #008ED3);
-      color: white;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      box-shadow: 0 8px 30px rgba(118, 183, 67, 0.3);
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1000;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    @media (max-width: 900px) {
-      .main-layout {
-        flex-direction: column;
+      .instruction {
+        font-size: 12px;
+        color: #64748b;
+        margin-top: 14px;
+        padding: 12px;
+        background: #faf8fc;
+        border-radius: 8px;
+        border-left: 3px solid #F08700;
+        line-height: 1.5;
       }
 
-      .form-panel {
+      /* Guide Buttons */
+      .guide-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn-guide {
+        flex: 1;
+        min-width: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        background: #ffffff;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        color: #334155;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .btn-guide:hover {
+        border-color: #7A2182;
+        color: #7A2182;
+        background: #faf5fb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(122, 33, 130, 0.12);
+      }
+
+      .btn-guide svg {
+        flex-shrink: 0;
+      }
+
+      /* Modal Overlay */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        min-width: unset;
-        position: static;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        animation: fadeIn 0.25s ease;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <div class="page-header">
-    <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-lang-id" onclick="setLang('id')">ID</button>
-      <button class="lang-btn" id="btn-lang-en" onclick="setLang('en')">EN</button>
-    </div>
-    <h1 data-i18n="title">BINUS Email Signature Generator</h1>
-    <p data-i18n="subtitle">
-      Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.
-    </p>
-  </div>
-
-  <div class="main-layout">
-    <!-- ======== FORM PANEL ======== -->
-    <div class="form-panel">
-      <h2 data-i18n="configTitle">Konfigurasi</h2>
-
-      <div class="input-group">
-        <label data-i18n="templateLabel">Template</label>
-        <select id="inputTemplate" onchange="onConfigChange()">
-          <option value="" data-i18n="selectTemplate">-- Pilih Template --</option>
-          <option value="bina-nusantara">BINA NUSANTARA</option>
-          <option value="binus-univ">BINUS University</option>
-          <option value="binus-school">BINUS School</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label data-i18n="sizeLabel">Ukuran</label>
-        <div class="size-selector">
-          <button class="size-btn active" onclick="setSize(600)" id="btn-size-600">
-            Desktop
-            <span>600px</span>
-          </button>
-          <button class="size-btn" onclick="setSize(450)" id="btn-size-450">
-            Tablet
-            <span>450px</span>
-          </button>
-          <button class="size-btn" onclick="setSize(320)" id="btn-size-320">
-            Mobile
-            <span>320px</span>
-          </button>
-        </div>
-      </div>
-
-      <hr class="section-divider" />
-      <div class="section-label" data-i18n="personalInfo">Informasi Pribadi</div>
-
-      <div class="input-group">
-        <label data-i18n="nameLabel">Nama Lengkap</label>
-        <input type="text" id="inputName" data-i18n-ph="phName"
-          placeholder="Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi." oninput="onConfigChange()" />
-      </div>
-      <div class="input-group">
-        <label data-i18n="titleLabel">Jabatan</label>
-        <input type="text" id="inputTitle" data-i18n-ph="phTitle" placeholder="Contoh: Head of Psychology Department"
-          oninput="onConfigChange()" />
-      </div>
-
-      <hr class="section-divider" />
-      <div class="section-label" data-i18n="contactLabel">Kontak</div>
-
-      <div class="input-group">
-        <label data-i18n="phoneLabel">Telepon</label>
-        <input type="text" id="inputPhone" data-i18n-ph="phPhone" placeholder="Contoh: +62 21 5345830"
-          oninput="onConfigChange()" />
-      </div>
-      <div class="input-group">
-        <label data-i18n="mobileLabel">Mobile</label>
-        <input type="text" id="inputMobile" data-i18n-ph="phMobile" placeholder="Contoh: +62 (811) 894575"
-          oninput="onConfigChange()" />
-      </div>
-      <div class="input-group">
-        <label data-i18n="emailLabel">Email <span style="color: #dc2626;">*</span></label>
-        <input type="email" id="inputEmail" data-i18n-ph="phEmail" placeholder="Contoh: esther@binus.edu"
-          oninput="onConfigChange()" />
-      </div>
-
-      <div class="input-group">
-        <label data-i18n="addressLabel">Alamat</label>
-        <select id="inputCampus" onchange="onCampusChange()">
-          <option value="" data-i18n="selectLocation">-- Pilih Lokasi --</option>
-        </select>
-        <div class="address-preview" id="addressPreview"></div>
-      </div>
-    </div>
-
-    <!-- ======== PREVIEW PANEL ======== -->
-    <div class="preview-panel">
-      <h2 data-i18n="previewTitle">Preview Signature</h2>
-      <div class="preview-subtitle" data-i18n="previewSubtitle">Pratinjau Langsung</div>
-
-      <div id="signature-preview"></div>
-
-      <div class="btn-group">
-        <button class="btn-copy" onclick="copySignature()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-          </svg>
-          <span data-i18n="copyBtn">Salin Signature</span>
-        </button>
-      </div>
-
-      <div class="instruction" data-i18n="instruction">
-        <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka
-        <strong>Outlook → Settings → Signature</strong>, lalu <strong>Paste (Tempel)</strong>.
-
-      </div>
-
-      <div class="guide-buttons">
-        <button class="btn-guide" onclick="openGuide('windows')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z" />
-          </svg>
-          <span data-i18n="guideWindows">Panduan Windows</span>
-        </button>
-        <button class="btn-guide" onclick="openGuide('mac')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-          </svg>
-          <span data-i18n="guideMac">Panduan Mac</span>
-        </button>
-        <button class="btn-guide" onclick="openGuide('mobile')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17,1.01L7,1C5.9,1,5,1.9,5,3v18c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V3C19,1.9,18.1,1.01,17,1.01z M17,21H7v-1h10V21z M17,18H7V6h10V18z M17,4H7V3h10V4z"/>
-          </svg>
-          <span data-i18n="guideMobile">Panduan Mobile</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="toast" id="toast">
-    ✅ Signature berhasil disalin ke clipboard!
-  </div>
-
-  <!-- Guide Modal Windows -->
-  <div class="modal-overlay" id="modal-windows" onclick="closeGuideOutside(event, 'windows')">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-            <path
-              d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z" />
-          </svg>
-          <span data-i18n="guideWindowsTitle">Panduan Outlook (Windows)</span>
-        </h3>
-        <button class="modal-close" onclick="closeGuide('windows')">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin
-              Signature</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ws1">Buka browser
-              Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong></span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ws2">Pada panel
-              <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi
-              <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ws3">Anda dapat
-              melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ws4">Jika sudah
-              sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin
-              ke clipboard perangkat Anda).</span></div>
-        </div>
-
-        <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage2Title">Tambah Signature di
-              Outlook (Windows)</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ww1">Buka
-              aplikasi <strong>Microsoft Outlook</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ww2">Masuk ke
-              <strong>Settings</strong> dengan mengklik ikon ⚙️ (gear), biasanya terletak di pojok kanan atas
-              layar.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ww3">Navigasi ke
-              menu <strong>Accounts</strong> atau <strong>Mail</strong>, lalu cari dan pilih opsi
-              <strong>Signatures</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ww4">Pada halaman
-              Signatures, klik tombol biru <strong>+ Add signature</strong> untuk membuat signature baru.</span></div>
-          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="ww5">Akan muncul
-              kotak editor. Pertama, ketik <strong>Nama Signature</strong> di kolom judul (contoh: "Main
-              Signature").</span></div>
-          <div class="guide-step"><span class="step-number">6</span><span class="step-text" data-i18n="ww6">Klik pada
-              kotak teks kosong di bawahnya, lalu tekan <span class="step-highlight">Ctrl + V</span> (atau klik kanan
-              dan pilih Paste) untuk menempelkan signature dari website.</span></div>
-          <div class="step-tip" data-i18n="ww6tip">💡 <strong>Penting:</strong> Jika muncul ikon opsi tempel kecil
-            setelah paste, pastikan pilih <strong>Keep Source Formatting</strong> agar layout dan logo tetap utuh.</div>
-          <div class="guide-step"><span class="step-number">7</span><span class="step-text" data-i18n="ww7">Setelah
-              signature muncul di editor, klik tombol <strong>Save</strong> di dalam editor.</span></div>
-          <div class="guide-step"><span class="step-number">8</span><span class="step-text" data-i18n="ww8">Kembali ke
-              halaman utama Signatures dan atur dua dropdown berikut:</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
-              data-i18n="ww8a"><strong>Default for new messages:</strong> Klik dropdown dan pilih nama signature baru
-              Anda. Ini memastikan signature otomatis muncul setiap kali Anda menulis email baru.</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
-              data-i18n="ww8b"><strong>Default for replies and forwards:</strong> Klik dropdown dan pilih signature yang
-              sama jika Anda ingin signature muncul saat membalas atau meneruskan email.</span></div>
-          <div class="guide-step"><span class="step-number">9</span><span class="step-text" data-i18n="ww9">Pastikan
-              klik tombol <strong>Save</strong> di jendela settings untuk menerapkan semua perubahan.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Guide Modal Mac -->
-  <div class="modal-overlay" id="modal-mac" onclick="closeGuideOutside(event, 'mac')">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-            <path
-              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-          </svg>
-          <span data-i18n="guideMacTitle">Panduan Outlook (Mac)</span>
-        </h3>
-        <button class="modal-close" onclick="closeGuide('mac')">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin
-              Signature</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="ws1">Buka browser
-              Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong></span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="ws2">Pada panel
-              <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi
-              <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="ws3">Anda dapat
-              melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="ws4">Jika sudah
-              sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin
-              ke clipboard perangkat Anda).</span></div>
-        </div>
-
-        <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage3Title">Tambah Signature di
-              Outlook (Mac)</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="wm1">Buka
-              aplikasi <strong>Microsoft Outlook</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="wm2">Di menu bar
-              atas layar (di samping logo Apple), klik <strong>Outlook</strong>, lalu pilih <strong>Settings...</strong>
-              (atau Preferences pada versi lama).</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="wm3">Pilih menu
-              <strong>Signatures</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="wm4">Klik ikon
-              <strong>+ (plus)</strong> atau tombol <strong>+ Add signature</strong> untuk membuat signature
-              baru.</span></div>
-          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="wm5">Beri nama
-              signature Anda (contoh: "Main Signature").</span></div>
-          <div class="guide-step"><span class="step-number">6</span><span class="step-text" data-i18n="wm6">Klik di
-              dalam area teks, lalu tekan <span class="step-highlight">Cmd + V</span> untuk menempelkan signature dari
-              website. Pastikan format sumber dipertahankan (<strong>Keep Source Formatting</strong>).</span></div>
-          <div class="guide-step"><span class="step-number">7</span><span class="step-text" data-i18n="wm7">Simpan
-              signature tersebut.</span></div>
-          <div class="guide-step"><span class="step-number">8</span><span class="step-text" data-i18n="wm8">Sama seperti
-              di Windows, pastikan Anda mengatur bagian <strong>Default signatures</strong>:</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
-              data-i18n="wm8a">Pilih akun email Anda (jika diminta).</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
-              data-i18n="wm8b">Untuk <strong>New messages</strong>, pilih signature yang baru dibuat.</span></div>
-          <div class="guide-step" style="margin-left: 34px;"><span class="step-number">•</span><span class="step-text"
-              data-i18n="wm8c">Untuk <strong>Replies/forwards</strong>, pilih signature yang sama.</span></div>
-          <div class="guide-step"><span class="step-number">9</span><span class="step-text" data-i18n="wm9">Tutup
-              jendela pengaturan.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Guide Modal Mobile -->
-  <div class="modal-overlay" id="modal-mobile" onclick="closeGuideOutside(event, 'mobile')">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-            <path d="M17,1.01L7,1C5.9,1,5,1.9,5,3v18c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V3C19,1.9,18.1,1.01,17,1.01z M17,21H7v-1h10V21z M17,18H7V6h10V18z M17,4H7V3h10V4z"/>
-          </svg>
-          <span data-i18n="guideMobileTitle">Panduan Outlook (Mobile)</span>
-        </h3>
-        <button class="modal-close" onclick="closeGuide('mobile')">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin Signature</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="wmo1">Buka generator di Desktop/Laptop Anda, pilih template dan <strong>ukuran Mobile (320px) / Tablet (450px)</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="wmo2">Klik tombol biru <strong>"Salin Signature"</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="wmo3">Buka email Anda di Desktop (Outlook/Web), buat email baru (New Email).</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="wmo4"><strong>Paste</strong> signature ke isi email kosong, lalu kirim email tersebut <strong>ke alamat Anda sendiri</strong>.</span></div>
-        </div>
-
-        <div class="guide-stage">
-          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage4Title">Tambah Signature di Outlook (Mobile)</span></div>
-          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="wmo5">Buka aplikasi <strong>Outlook Mobile</strong> di HP (Android/iOS) dan buka email yang baru dikirim ke diri sendiri.</span></div>
-          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="wmo6">Tekan dan tahan pada bagian signature, pilih <strong>Select All</strong>, lalu <strong>Copy</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="wmo7">Ketuk ikon profil/menu di pojok kiri atas aplikasi, lalu ketuk ikon <strong>Settings</strong> (⚙️) di pojok kiri bawah.</span></div>
-          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="wmo8">Cari dan pilih opsi <strong>Signature</strong>.</span></div>
-          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="wmo9">Hapus teks bawaan (misal "Get Outlook for iOS"), lalu <strong>Paste</strong> signature Anda.</span></div>
-          <div class="step-tip" data-i18n="wmo10tip">💡 <strong>Catatan:</strong> Outlook Mobile tidak mendukung paste langsung format kompleks dari web, oleh karena itu signature harus dikirim via email terlebih dahulu agar format tetap rapi.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer class="footer-copyright">
-    Copyright &copy; 2026 IT Asset & Services Delivery
-  </footer>
-
-  <script>
-    // ============================
-    //  BILINGUAL SYSTEM (i18n)
-    // ============================
-    const i18n = {
-      id: {
-        title: "BINUS Email Signature Generator",
-        subtitle: "Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.",
-        configTitle: "Konfigurasi",
-        templateLabel: 'Template <span style="color: #dc2626;">*</span>',
-        selectTemplate: "-- Pilih Template --",
-        sizeLabel: "Ukuran",
-        personalInfo: "Informasi Pribadi",
-        nameLabel: 'Nama Lengkap <span style="color: #dc2626;">*</span>',
-        titleLabel: 'Jabatan <span style="color: #dc2626;">*</span>',
-        contactLabel: "Kontak",
-        phoneLabel: 'Telepon <span style="color: #dc2626;">*</span>',
-        mobileLabel: "HP",
-        emailLabel: 'Email <span style="color: #dc2626;">*</span>',
-        addressLabel: 'Alamat <span style="color: #dc2626;">*</span>',
-        selectLocation: "-- Pilih Lokasi --",
-        previewTitle: "Preview Signature",
-        previewSubtitle: "Pratinjau Langsung",
-        copyBtn: "Salin Signature",
-        instruction: "<strong>Cara Penggunaan:</strong> Setelah klik \"Salin Signature\", buka <strong>Outlook → Settings → Signature</strong>, lalu <strong>Paste (Tempel)</strong>.",
-        toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
-        validationError: "❌ Harap lengkapi semua isian yang wajib (*)",
-        invalidPhone: "❌ Nomor Telepon harus diawali dengan 62",
-        invalidMobile: "❌ Nomor HP harus diawali dengan 62",
-        invalidEmail: "❌ Format Email tidak valid",
-        noTemplate: "Silakan pilih template terlebih dahulu.",
-        placeholderName: "Nama Lengkap Anda",
-        placeholderTitle: "Jabatan Anda",
-        placeholderLocation: "Nama Lokasi",
-        placeholderAddress: "Detail Alamat<br>Kota, Kode Pos",
-        phName: "Contoh: John Doe, S.Kom., M.TI.",
-        phTitle: "Contoh: Head of Department",
-        phPhone: "Contoh: 62 21 1234567",
-        phMobile: "Contoh: 62 811 1234567",
-        phEmail: "Contoh: johndoe@binus.edu",
-        guideWindows: "Panduan Windows",
-        guideMac: "Panduan Mac",
-        guideWindowsTitle: "Panduan Outlook (Windows)",
-        guideMacTitle: "Panduan Outlook (Mac)",
-        stage1Title: "Generate & Salin Signature",
-        stage2Title: "Tambah Signature di Outlook (Windows)",
-        stage3Title: "Tambah Signature di Outlook (Mac)",
-        ws1: 'Buka browser Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong>',
-        ws2: 'Pada panel <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.',
-        ws3: 'Anda dapat melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.',
-        ws4: 'Jika sudah sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin ke clipboard perangkat Anda).',
-        ww1: 'Buka aplikasi <strong>Microsoft Outlook</strong>.',
-        ww2: 'Masuk ke <strong>Settings</strong> dengan mengklik ikon ⚙️ (gear), biasanya terletak di pojok kanan atas layar.',
-        ww3: 'Navigasi ke menu <strong>Accounts</strong> atau <strong>Mail</strong>, lalu cari dan pilih opsi <strong>Signatures</strong>.',
-        ww4: 'Pada halaman Signatures, klik tombol biru <strong>+ Add signature</strong> untuk membuat signature baru.',
-        ww5: 'Akan muncul kotak editor. Pertama, ketik <strong>Nama Signature</strong> di kolom judul (contoh: "Main Signature").',
-        ww6: 'Klik pada kotak teks kosong di bawahnya, lalu tekan <span class="step-highlight">Ctrl + V</span> (atau klik kanan dan pilih Paste) untuk menempelkan signature dari website.',
-        ww6tip: '💡 <strong>Penting:</strong> Jika muncul ikon opsi tempel kecil setelah paste, pastikan pilih <strong>Keep Source Formatting</strong> agar layout dan logo tetap utuh.',
-        ww7: 'Setelah signature muncul di editor, klik tombol <strong>Save</strong> di dalam editor.',
-        ww8: 'Kembali ke halaman utama Signatures dan atur dua dropdown berikut:',
-        ww8a: '<strong>Default for new messages:</strong> Klik dropdown dan pilih nama signature baru Anda. Ini memastikan signature otomatis muncul setiap kali Anda menulis email baru.',
-        ww8b: '<strong>Default for replies and forwards:</strong> Klik dropdown dan pilih signature yang sama jika Anda ingin signature muncul saat membalas atau meneruskan email.',
-        ww9: 'Pastikan klik tombol <strong>Save</strong> di jendela settings untuk menerapkan semua perubahan.',
-        wm1: 'Buka aplikasi <strong>Microsoft Outlook</strong>.',
-        wm2: 'Di menu bar atas layar (di samping logo Apple), klik <strong>Outlook</strong>, lalu pilih <strong>Settings...</strong> (atau Preferences pada versi lama).',
-        wm3: 'Pilih menu <strong>Signatures</strong>.',
-        wm4: 'Klik ikon <strong>+ (plus)</strong> atau tombol <strong>+ Add signature</strong> untuk membuat signature baru.',
-        wm5: 'Beri nama signature Anda (contoh: "Main Signature").',
-        wm6: 'Klik di dalam area teks, lalu tekan <span class="step-highlight">Cmd + V</span> untuk menempelkan signature dari website. Pastikan format sumber dipertahankan (<strong>Keep Source Formatting</strong>).',
-        wm7: 'Simpan signature tersebut.',
-        wm8: 'Sama seperti di Windows, pastikan Anda mengatur bagian <strong>Default signatures</strong>:',
-        wm8a: 'Pilih akun email Anda (jika diminta).',
-        wm8b: 'Untuk <strong>New messages</strong>, pilih signature yang baru dibuat.',
-        wm8c: 'Untuk <strong>Replies/forwards</strong>, pilih signature yang sama.',
-        wm9: 'Tutup jendela pengaturan.',
-        guideMobile: "Panduan Mobile",
-        guideMobileTitle: "Panduan Outlook (Mobile)",
-        stage4Title: "Tambah Signature di Outlook (Mobile)",
-        wmo1: 'Buka generator di Desktop/Laptop Anda, pilih template dan <strong>ukuran Mobile (320px) / Tablet (450px)</strong>.',
-        wmo2: 'Klik tombol biru <strong>"Salin Signature"</strong>.',
-        wmo3: 'Buka email Anda di Desktop (Outlook/Web), buat pesan email baru (New Email).',
-        wmo4: '<strong>Paste</strong> signature ke isi pesan email kosong, lalu kirim email tersebut <strong>ke alamat Anda sendiri</strong>.',
-        wmo5: 'Buka aplikasi <strong>Outlook Mobile</strong> di HP (Android/iOS) dan buka email yang baru dikirim ke diri sendiri.',
-        wmo6: 'Tekan dan tahan pada bagian signature, pilih <strong>Select All</strong>, lalu <strong>Copy</strong>.',
-        wmo7: 'Ketuk ikon profil/menu di pojok kiri atas aplikasi, lalu ketuk ikon <strong>Settings</strong> (⚙️) di pojok kiri bawah.',
-        wmo8: 'Cari dan pilih opsi <strong>Signature</strong>.',
-        wmo9: 'Hapus teks bawaan (misal "Get Outlook for iOS"), lalu <strong>Paste</strong> signature Anda.',
-        wmo10tip: '💡 <strong>Catatan:</strong> Outlook Mobile tidak mendukung paste langsung format kompleks dari web, oleh karena itu signature harus dikirim via email terlebih dahulu agar format tetap rapi.'
-      },
-      en: {
-        title: "BINUS Email Signature Generator",
-        subtitle: "Select a template, size, and fill in your details to create a standard corporate signature.",
-        configTitle: "Configuration",
-        templateLabel: 'Template <span style="color: #dc2626;">*</span>',
-        selectTemplate: "-- Select Template --",
-        sizeLabel: "Size",
-        personalInfo: "Personal Information",
-        nameLabel: 'Full Name <span style="color: #dc2626;">*</span>',
-        titleLabel: 'Job Title <span style="color: #dc2626;">*</span>',
-        contactLabel: "Contact",
-        phoneLabel: 'Phone <span style="color: #dc2626;">*</span>',
-        mobileLabel: "Mobile",
-        emailLabel: 'Email <span style="color: #dc2626;">*</span>',
-        addressLabel: 'Address <span style="color: #dc2626;">*</span>',
-        selectLocation: "-- Select Location --",
-        previewTitle: "Signature Preview",
-        previewSubtitle: "Real-time Preview",
-        copyBtn: "Copy Signature",
-        instruction: "<strong>How to use:</strong> After clicking \"Copy Signature\", open <strong>Outlook → Settings → Signature</strong>, then <strong>Paste</strong>.",
-        toastSuccess: "✅ Signature successfully copied to clipboard!",
-        validationError: "❌ Please fill in all required fields (*)",
-        invalidPhone: "❌ Phone number must start with 62",
-        invalidMobile: "❌ Mobile number must start with 62",
-        invalidEmail: "❌ Invalid Email format",
-        noTemplate: "Please select a template first.",
-        placeholderName: "Your Full Name",
-        placeholderTitle: "Your Job Title",
-        placeholderLocation: "Location Name",
-        placeholderAddress: "Address Detail<br>City, Postal Code",
-        phName: "e.g. John Doe, S.Kom., M.TI.",
-        phTitle: "e.g. Head of Department",
-        phPhone: "e.g. 62 21 1234567",
-        phMobile: "e.g. 62 811 1234567",
-        phEmail: "e.g. johndoe@binus.edu",
-        guideWindows: "Windows Guide",
-        guideMac: "Mac Guide",
-        guideWindowsTitle: "Outlook Guide (Windows)",
-        guideMacTitle: "Outlook Guide (Mac)",
-        stage1Title: "Generate & Copy Signature",
-        stage2Title: "Add Signature in Outlook (Windows)",
-        stage3Title: "Add Signature in Outlook (Mac)",
-        ws1: 'Open your web browser and go to the generator link: <strong>https://email-signature-sand.vercel.app/</strong>',
-        ws2: 'On the <strong>Configuration</strong> panel on the left, select your template (e.g., BINA NUSANTARA), and fill in your <strong>Personal Information</strong> such as Full Name, Job Title, etc.',
-        ws3: 'You can see the <em>real-time</em> result on the <strong>Preview Signature</strong> panel.',
-        ws4: 'Once it looks good, click the blue <strong>"Copy Signature"</strong> button. (The text and HTML format will automatically be copied to your device\'s clipboard).',
-        ww1: 'Open the <strong>Microsoft Outlook</strong> application.',
-        ww2: 'Go to <strong>Settings</strong> by clicking the ⚙️ (gear) icon, usually located in the top right corner of the screen.',
-        ww3: 'Navigate to the <strong>Accounts</strong> or <strong>Mail</strong> menu, then find and select the <strong>Signatures</strong> option.',
-        ww4: 'On the Signatures page, click the blue <strong>+ Add signature</strong> button to create a new signature.',
-        ww5: 'An editor box will appear. First, type a <strong>Signature Name</strong> in the title field (e.g., "Main Signature").',
-        ww6: 'Click on the empty text box below it, then press <span class="step-highlight">Ctrl + V</span> (or right-click and select Paste) to paste the signature you copied from the website.',
-        ww6tip: '💡 <strong>Important:</strong> If a small paste options icon appears after pasting, make sure to select <strong>Keep Source Formatting</strong> so the layout and logos remain intact.',
-        ww7: 'Once the signature appears in the editor, click the <strong>Save</strong> button within the editor.',
-        ww8: 'Go back to the main Signatures page and locate the following two dropdown settings:',
-        ww8a: '<strong>Default for new messages:</strong> Click the dropdown and select the name of your newly created signature. This ensures it automatically appears every time you compose a new email.',
-        ww8b: '<strong>Default for replies and forwards:</strong> Click this dropdown and select the same signature if you want it to appear when replying to or forwarding emails.',
-        ww9: 'Make sure to click the <strong>Save</strong> button in the settings window to apply all changes.',
-        wm1: 'Open the <strong>Microsoft Outlook</strong> application.',
-        wm2: 'On the menu bar at the top of the screen (next to the Apple logo), click <strong>Outlook</strong>, then select <strong>Settings...</strong> (or Preferences in older versions).',
-        wm3: 'Select the <strong>Signatures</strong> menu.',
-        wm4: 'Click the <strong>+ (plus)</strong> icon or the <strong>+ Add signature</strong> button to create a new signature.',
-        wm5: 'Give your signature a name (e.g., "Main Signature").',
-        wm6: 'Click inside the text area, then press <span class="step-highlight">Cmd + V</span> to paste the signature from the website. Ensure the source formatting is maintained (<strong>Keep Source Formatting</strong>).',
-        wm7: 'Save the signature.',
-        wm8: 'Just like on Windows, make sure you configure the <strong>Default signatures</strong> section:',
-        wm8a: 'Select your email account (if prompted).',
-        wm8b: 'For <strong>New messages</strong>, select the newly created signature.',
-        wm8c: 'For <strong>Replies/forwards</strong>, select the same signature.',
-        wm9: 'Close the settings window.',
-        guideMobile: "Mobile Guide",
-        guideMobileTitle: "Outlook Guide (Mobile)",
-        stage4Title: "Add Signature in Outlook (Mobile)",
-        wmo1: 'Open the generator on your Desktop/Laptop, select your template, and choose the <strong>Mobile (320px) or Tablet (450px) size</strong>.',
-        wmo2: 'Click the blue <strong>"Copy Signature"</strong> button.',
-        wmo3: 'Open your email client on Desktop (Outlook or Web) and create a New Email.',
-        wmo4: '<strong>Paste</strong> the signature into the empty email body, then send that email <strong>to your own address</strong>.',
-        wmo5: 'Open the <strong>Outlook Mobile</strong> app on your phone (Android/iOS) and open the email you just sent to yourself.',
-        wmo6: 'Tap and hold on the signature area, tap <strong>Select All</strong>, then tap <strong>Copy</strong>.',
-        wmo7: 'Tap your profile icon/menu in the top left corner of the app, then tap the <strong>Settings</strong> icon (⚙️) in the bottom left corner.',
-        wmo8: 'Find and tap the <strong>Signature</strong> option.',
-        wmo9: 'Delete the default text (e.g., "Get Outlook for iOS"), then <strong>Paste</strong> your signature.',
-        wmo10tip: '💡 <strong>Note:</strong> Outlook Mobile does not support pasting complex layouts directly from the web, which is why the signature must be sent via email first to preserve the layout.'
+      .modal-overlay.active {
+        display: flex;
       }
-    };
 
-    let currentLang = 'id';
-
-    function setLang(lang) {
-      currentLang = lang;
-      // Update toggle buttons
-      document.getElementById('btn-lang-id').classList.toggle('active', lang === 'id');
-      document.getElementById('btn-lang-en').classList.toggle('active', lang === 'en');
-
-      // Update all text nodes with data-i18n
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (i18n[lang][key]) {
-          el.innerHTML = i18n[lang][key];
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
-      });
 
-      // Update input placeholders
-      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-        const key = el.getAttribute('data-i18n-ph');
-        if (i18n[lang][key]) {
-          el.placeholder = i18n[lang][key];
+        to {
+          opacity: 1;
         }
-      });
+      }
 
-      // Update toast text
-      document.getElementById('toast').textContent = i18n[lang].toastSuccess;
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
 
-      // Re-populate dropdowns to translate default options
-      populateCampusDropdown();
-      renderSignature();
-    }
-    // ============================
-    //  GUIDE MODAL FUNCTIONS
-    // ============================
-    function openGuide(type) {
-      const modal = document.getElementById('modal-' + type);
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        // Apply current language to modal content
-        modal.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (i18n[currentLang][key]) {
-            el.innerHTML = i18n[currentLang][key];
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-content {
+        background: #ffffff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 640px;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.3s ease;
+      }
+
+      .modal-header {
+        position: sticky;
+        top: 0;
+        background: linear-gradient(135deg, #7A2182, #008ED3);
+        color: white;
+        padding: 20px 24px;
+        border-radius: 16px 16px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1;
+      }
+
+      .modal-header h3 {
+        font-size: 18px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .modal-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      .modal-body {
+        padding: 24px;
+      }
+
+      .guide-stage {
+        margin-bottom: 24px;
+      }
+
+      .guide-stage:last-child {
+        margin-bottom: 0;
+      }
+
+      .stage-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #7A2182;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #f3e8f9;
+      }
+
+      .stage-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        background: linear-gradient(135deg, #7A2182, #008ED3);
+        color: white;
+        border-radius: 50%;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .guide-step {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 10px;
+        align-items: flex-start;
+      }
+
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 22px;
+        height: 22px;
+        background: #f0e6f3;
+        color: #7A2182;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .step-text {
+        font-size: 13px;
+        color: #475569;
+        line-height: 1.6;
+      }
+
+      .step-text strong {
+        color: #1e293b;
+      }
+
+      .step-highlight {
+        display: inline;
+        background: #fef3c7;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+        color: #92400e;
+        font-size: 12px;
+      }
+
+      .step-tip {
+        background: #f0fdf4;
+        border-left: 3px solid #76b743;
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin: 8px 0 8px 34px;
+        font-size: 12px;
+        color: #166534;
+        line-height: 1.5;
+      }
+
+      /* Footer */
+      .footer-copyright {
+        text-align: center;
+        color: #64748b;
+        font-size: 13px;
+        margin-top: 40px;
+        padding-bottom: 20px;
+        width: 100%;
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #76b743, #008ED3);
+        color: white;
+        padding: 14px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 8px 30px rgba(118, 183, 67, 0.3);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1000;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      @media (max-width: 900px) {
+        .main-layout {
+          flex-direction: column;
+        }
+
+        .form-panel {
+          width: 100%;
+          min-width: unset;
+          position: static;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-header">
+      <div class="lang-toggle">
+        <button
+          class="lang-btn active"
+          id="btn-lang-id"
+          onclick="setLang('id')"
+        >
+          ID
+        </button>
+        <button class="lang-btn" id="btn-lang-en" onclick="setLang('en')">
+          EN
+        </button>
+      </div>
+      <h1 data-i18n="title">BINUS Email Signature Generator</h1>
+      <p data-i18n="subtitle">
+        Pilih template, ukuran, dan isi data Anda untuk membuat signature
+        standar lembaga.
+      </p>
+    </div>
+
+    <div class="main-layout">
+      <!-- ======== FORM PANEL ======== -->
+      <div class="form-panel">
+        <h2 data-i18n="configTitle">Konfigurasi</h2>
+
+        <div class="input-group">
+          <label data-i18n="templateLabel">Template</label>
+          <select id="inputTemplate" onchange="onConfigChange()">
+            <option value="" data-i18n="selectTemplate">
+              -- Pilih Template --
+            </option>
+            <option value="bina-nusantara">BINA NUSANTARA</option>
+            <option value="binus-univ">BINUS University</option>
+            <option value="binus-school">BINUS School</option>
+          </select>
+        </div>
+
+        <div class="input-group" style="display: none">
+          <label data-i18n="sizeLabel">Ukuran</label>
+          <div class="size-selector">
+            <button
+              class="size-btn active"
+              onclick="setSize(600)"
+              id="btn-size-600"
+            >
+              Desktop
+              <span>600px</span>
+            </button>
+            <button
+              class="size-btn"
+              onclick="setSize(450)"
+              id="btn-size-450"
+              style="display: none"
+            >
+              Tablet
+              <span>450px</span>
+            </button>
+            <button
+              class="size-btn"
+              onclick="setSize(320)"
+              id="btn-size-320"
+              style="display: none"
+            >
+              Mobile
+              <span>320px</span>
+            </button>
+          </div>
+        </div>
+
+        <hr class="section-divider" />
+        <div class="section-label" data-i18n="personalInfo">
+          Informasi Pribadi
+        </div>
+
+        <div class="input-group">
+          <label data-i18n="nameLabel">Nama Lengkap</label>
+          <input
+            type="text"
+            id="inputName"
+            data-i18n-ph="phName"
+            placeholder="Contoh: Dr. Esther Widhi Andangsari, M.Si., Psi."
+            oninput="onConfigChange()"
+          />
+        </div>
+        <div class="input-group">
+          <label data-i18n="titleLabel">Jabatan</label>
+          <input
+            type="text"
+            id="inputTitle"
+            data-i18n-ph="phTitle"
+            placeholder="Contoh: Head of Psychology Department"
+            oninput="onConfigChange()"
+          />
+        </div>
+
+        <hr class="section-divider" />
+        <div class="section-label" data-i18n="contactLabel">Kontak</div>
+
+        <div class="input-group">
+          <label data-i18n="phoneLabel">Telepon</label>
+          <input
+            type="text"
+            id="inputPhone"
+            data-i18n-ph="phPhone"
+            placeholder="Contoh: +62 21 5345830"
+            oninput="onConfigChange()"
+          />
+        </div>
+        <div class="input-group">
+          <label data-i18n="mobileLabel">Mobile</label>
+          <input
+            type="text"
+            id="inputMobile"
+            data-i18n-ph="phMobile"
+            placeholder="Contoh: +62 (811) 894575"
+            oninput="onConfigChange()"
+          />
+        </div>
+        <div class="input-group">
+          <label data-i18n="emailLabel"
+            >Email <span style="color: #dc2626">*</span></label
+          >
+          <input
+            type="email"
+            id="inputEmail"
+            data-i18n-ph="phEmail"
+            placeholder="Contoh: esther@binus.edu"
+            oninput="onConfigChange()"
+          />
+        </div>
+
+        <div class="input-group">
+          <label data-i18n="addressLabel">Alamat</label>
+          <select id="inputCampus" onchange="onCampusChange()">
+            <option value="" data-i18n="selectLocation">
+              -- Pilih Lokasi --
+            </option>
+          </select>
+          <div class="address-preview" id="addressPreview"></div>
+        </div>
+      </div>
+
+      <!-- ======== PREVIEW PANEL ======== -->
+      <div class="preview-panel">
+        <h2 data-i18n="previewTitle">Preview Signature</h2>
+        <div class="preview-subtitle" data-i18n="previewSubtitle">
+          Pratinjau Langsung
+        </div>
+
+        <div id="signature-preview"></div>
+
+        <div class="btn-group">
+          <button class="btn-copy" onclick="copySignature()">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path
+                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+              ></path>
+            </svg>
+            <span data-i18n="copyBtn">Salin Signature</span>
+          </button>
+        </div>
+
+        <div class="instruction" data-i18n="instruction">
+          <strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka
+          <strong>Outlook → Settings → Signature</strong>, lalu
+          <strong>Paste (Tempel)</strong>.
+        </div>
+
+        <div class="guide-buttons">
+          <button class="btn-guide" onclick="openGuide('windows')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z"
+              />
+            </svg>
+            <span data-i18n="guideWindows">Panduan Windows</span>
+          </button>
+          <button class="btn-guide" onclick="openGuide('mac')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+              />
+            </svg>
+            <span data-i18n="guideMac">Panduan Mac</span>
+          </button>
+          <button class="btn-guide" onclick="openGuide('mobile')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17,1.01L7,1C5.9,1,5,1.9,5,3v18c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V3C19,1.9,18.1,1.01,17,1.01z M17,21H7v-1h10V21z M17,18H7V6h10V18z M17,4H7V3h10V4z"
+              />
+            </svg>
+            <span data-i18n="guideMobile">Panduan Mobile</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">
+      ✅ Signature berhasil disalin ke clipboard!
+    </div>
+
+    <!-- Guide Modal Windows -->
+    <div
+      class="modal-overlay"
+      id="modal-windows"
+      onclick="closeGuideOutside(event, 'windows')"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M3 5.548l7.066-.966v6.822H3V5.548zm0 12.904l7.066.966v-6.822H3v5.856zm7.85 1.072L21 21V12.596H10.85v6.928zM10.85 4.476v6.928H21V3L10.85 4.476z"
+              />
+            </svg>
+            <span data-i18n="guideWindowsTitle">Panduan Outlook (Windows)</span>
+          </h3>
+          <button class="modal-close" onclick="closeGuide('windows')">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="guide-stage">
+            <div class="stage-title">
+              <span class="stage-badge">1</span>
+              <span data-i18n="stage1Title">Generate & Salin Signature</span>
+            </div>
+            <div class="guide-step">
+              <span class="step-number">1</span
+              ><span class="step-text" data-i18n="ws1"
+                >Buka browser Anda dan akses link generator:
+                <strong>https://email-signature-sand.vercel.app/</strong></span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">2</span
+              ><span class="step-text" data-i18n="ws2"
+                >Pada panel <strong>Konfigurasi</strong> di sebelah kiri, pilih
+                template (contoh: BINA NUSANTARA), lalu isi
+                <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan,
+                dll.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">3</span
+              ><span class="step-text" data-i18n="ws3"
+                >Anda dapat melihat hasil secara <em>real-time</em> pada panel
+                <strong>Preview Signature</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">4</span
+              ><span class="step-text" data-i18n="ws4"
+                >Jika sudah sesuai, klik tombol biru
+                <strong>"Salin Signature"</strong>. (Format teks dan HTML akan
+                otomatis tersalin ke clipboard perangkat Anda).</span
+              >
+            </div>
+          </div>
+
+          <div class="guide-stage">
+            <div class="stage-title">
+              <span class="stage-badge">2</span>
+              <span data-i18n="stage2Title"
+                >Tambah Signature di Outlook (Windows)</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">1</span
+              ><span class="step-text" data-i18n="ww1"
+                >Buka aplikasi <strong>Microsoft Outlook</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">2</span
+              ><span class="step-text" data-i18n="ww2"
+                >Masuk ke <strong>Settings</strong> dengan mengklik ikon ⚙️
+                (gear), biasanya terletak di pojok kanan atas layar.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">3</span
+              ><span class="step-text" data-i18n="ww3"
+                >Navigasi ke menu <strong>Accounts</strong> atau
+                <strong>Mail</strong>, lalu cari dan pilih opsi
+                <strong>Signatures</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">4</span
+              ><span class="step-text" data-i18n="ww4"
+                >Pada halaman Signatures, klik tombol biru
+                <strong>+ Add signature</strong> untuk membuat signature
+                baru.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">5</span
+              ><span class="step-text" data-i18n="ww5"
+                >Akan muncul kotak editor. Pertama, ketik
+                <strong>Nama Signature</strong> di kolom judul (contoh: "Main
+                Signature").</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">6</span
+              ><span class="step-text" data-i18n="ww6"
+                >Klik pada kotak teks kosong di bawahnya, lalu tekan
+                <span class="step-highlight">Ctrl + V</span> (atau klik kanan
+                dan pilih Paste) untuk menempelkan signature dari website.</span
+              >
+            </div>
+            <div class="step-tip" data-i18n="ww6tip">
+              💡 <strong>Penting:</strong> Jika muncul ikon opsi tempel kecil
+              setelah paste, pastikan pilih
+              <strong>Keep Source Formatting</strong> agar layout dan logo tetap
+              utuh.
+            </div>
+            <div class="guide-step">
+              <span class="step-number">7</span
+              ><span class="step-text" data-i18n="ww7"
+                >Setelah signature muncul di editor, klik tombol
+                <strong>Save</strong> di dalam editor.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">8</span
+              ><span class="step-text" data-i18n="ww8"
+                >Kembali ke halaman utama Signatures dan atur dua dropdown
+                berikut:</span
+              >
+            </div>
+            <div class="guide-step" style="margin-left: 34px">
+              <span class="step-number">•</span
+              ><span class="step-text" data-i18n="ww8a"
+                ><strong>Default for new messages:</strong> Klik dropdown dan
+                pilih nama signature baru Anda. Ini memastikan signature
+                otomatis muncul setiap kali Anda menulis email baru.</span
+              >
+            </div>
+            <div class="guide-step" style="margin-left: 34px">
+              <span class="step-number">•</span
+              ><span class="step-text" data-i18n="ww8b"
+                ><strong>Default for replies and forwards:</strong> Klik
+                dropdown dan pilih signature yang sama jika Anda ingin signature
+                muncul saat membalas atau meneruskan email.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">9</span
+              ><span class="step-text" data-i18n="ww9"
+                >Pastikan klik tombol <strong>Save</strong> di jendela settings
+                untuk menerapkan semua perubahan.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guide Modal Mac -->
+    <div
+      class="modal-overlay"
+      id="modal-mac"
+      onclick="closeGuideOutside(event, 'mac')"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+              />
+            </svg>
+            <span data-i18n="guideMacTitle">Panduan Outlook (Mac)</span>
+          </h3>
+          <button class="modal-close" onclick="closeGuide('mac')">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="guide-stage">
+            <div class="stage-title">
+              <span class="stage-badge">1</span>
+              <span data-i18n="stage1Title">Generate & Salin Signature</span>
+            </div>
+            <div class="guide-step">
+              <span class="step-number">1</span
+              ><span class="step-text" data-i18n="ws1"
+                >Buka browser Anda dan akses link generator:
+                <strong>https://email-signature-sand.vercel.app/</strong></span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">2</span
+              ><span class="step-text" data-i18n="ws2"
+                >Pada panel <strong>Konfigurasi</strong> di sebelah kiri, pilih
+                template (contoh: BINA NUSANTARA), lalu isi
+                <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan,
+                dll.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">3</span
+              ><span class="step-text" data-i18n="ws3"
+                >Anda dapat melihat hasil secara <em>real-time</em> pada panel
+                <strong>Preview Signature</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">4</span
+              ><span class="step-text" data-i18n="ws4"
+                >Jika sudah sesuai, klik tombol biru
+                <strong>"Salin Signature"</strong>. (Format teks dan HTML akan
+                otomatis tersalin ke clipboard perangkat Anda).</span
+              >
+            </div>
+          </div>
+
+          <div class="guide-stage">
+            <div class="stage-title">
+              <span class="stage-badge">2</span>
+              <span data-i18n="stage3Title"
+                >Tambah Signature di Outlook (Mac)</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">1</span
+              ><span class="step-text" data-i18n="wm1"
+                >Buka aplikasi <strong>Microsoft Outlook</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">2</span
+              ><span class="step-text" data-i18n="wm2"
+                >Di menu bar atas layar (di samping logo Apple), klik
+                <strong>Outlook</strong>, lalu pilih
+                <strong>Settings...</strong> (atau Preferences pada versi
+                lama).</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">3</span
+              ><span class="step-text" data-i18n="wm3"
+                >Pilih menu <strong>Signatures</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">4</span
+              ><span class="step-text" data-i18n="wm4"
+                >Klik ikon <strong>+ (plus)</strong> atau tombol
+                <strong>+ Add signature</strong> untuk membuat signature
+                baru.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">5</span
+              ><span class="step-text" data-i18n="wm5"
+                >Beri nama signature Anda (contoh: "Main Signature").</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">6</span
+              ><span class="step-text" data-i18n="wm6"
+                >Klik di dalam area teks, lalu tekan
+                <span class="step-highlight">Cmd + V</span> untuk menempelkan
+                signature dari website. Pastikan format sumber dipertahankan
+                (<strong>Keep Source Formatting</strong>).</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">7</span
+              ><span class="step-text" data-i18n="wm7"
+                >Simpan signature tersebut.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">8</span
+              ><span class="step-text" data-i18n="wm8"
+                >Sama seperti di Windows, pastikan Anda mengatur bagian
+                <strong>Default signatures</strong>:</span
+              >
+            </div>
+            <div class="guide-step" style="margin-left: 34px">
+              <span class="step-number">•</span
+              ><span class="step-text" data-i18n="wm8a"
+                >Pilih akun email Anda (jika diminta).</span
+              >
+            </div>
+            <div class="guide-step" style="margin-left: 34px">
+              <span class="step-number">•</span
+              ><span class="step-text" data-i18n="wm8b"
+                >Untuk <strong>New messages</strong>, pilih signature yang baru
+                dibuat.</span
+              >
+            </div>
+            <div class="guide-step" style="margin-left: 34px">
+              <span class="step-number">•</span
+              ><span class="step-text" data-i18n="wm8c"
+                >Untuk <strong>Replies/forwards</strong>, pilih signature yang
+                sama.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">9</span
+              ><span class="step-text" data-i18n="wm9"
+                >Tutup jendela pengaturan.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guide Modal Mobile -->
+    <div
+      class="modal-overlay"
+      id="modal-mobile"
+      onclick="closeGuideOutside(event, 'mobile')"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M17,1.01L7,1C5.9,1,5,1.9,5,3v18c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V3C19,1.9,18.1,1.01,17,1.01z M17,21H7v-1h10V21z M17,18H7V6h10V18z M17,4H7V3h10V4z"
+              />
+            </svg>
+            <span data-i18n="guideMobileTitle">Panduan Outlook (Mobile)</span>
+          </h3>
+          <button class="modal-close" onclick="closeGuide('mobile')">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="guide-stage">
+            <div class="stage-title">
+              <span class="stage-badge">1</span>
+              <span data-i18n="stage1Title">Generate & Salin Signature</span>
+            </div>
+            <div class="guide-step">
+              <span class="step-number">1</span
+              ><span class="step-text" data-i18n="wmo1"
+                >Buka generator di Desktop/Laptop Anda, pilih template dan
+                <strong>ukuran Mobile (320px) / Tablet (450px)</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">2</span
+              ><span class="step-text" data-i18n="wmo2"
+                >Klik tombol biru <strong>"Salin Signature"</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">3</span
+              ><span class="step-text" data-i18n="wmo3"
+                >Buka email Anda di Desktop (Outlook/Web), buat email baru (New
+                Email).</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">4</span
+              ><span class="step-text" data-i18n="wmo4"
+                ><strong>Paste</strong> signature ke isi email kosong, lalu
+                kirim email tersebut
+                <strong>ke alamat Anda sendiri</strong>.</span
+              >
+            </div>
+          </div>
+
+          <div class="guide-stage">
+            <div class="stage-title">
+              <span class="stage-badge">2</span>
+              <span data-i18n="stage4Title"
+                >Tambah Signature di Outlook (Mobile)</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">1</span
+              ><span class="step-text" data-i18n="wmo5"
+                >Buka aplikasi <strong>Outlook Mobile</strong> di HP
+                (Android/iOS) dan buka email yang baru dikirim ke diri
+                sendiri.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">2</span
+              ><span class="step-text" data-i18n="wmo6"
+                >Tekan dan tahan pada bagian signature, pilih
+                <strong>Select All</strong>, lalu <strong>Copy</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">3</span
+              ><span class="step-text" data-i18n="wmo7"
+                >Ketuk ikon profil/menu di pojok kiri atas aplikasi, lalu ketuk
+                ikon <strong>Settings</strong> (⚙️) di pojok kiri bawah.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">4</span
+              ><span class="step-text" data-i18n="wmo8"
+                >Cari dan pilih opsi <strong>Signature</strong>.</span
+              >
+            </div>
+            <div class="guide-step">
+              <span class="step-number">5</span
+              ><span class="step-text" data-i18n="wmo9"
+                >Hapus teks bawaan (misal "Get Outlook for iOS"), lalu
+                <strong>Paste</strong> signature Anda.</span
+              >
+            </div>
+            <div class="step-tip" data-i18n="wmo10tip">
+              💡 <strong>Catatan:</strong> Outlook Mobile tidak mendukung paste
+              langsung format kompleks dari web, oleh karena itu signature harus
+              dikirim via email terlebih dahulu agar format tetap rapi.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-copyright">
+      Copyright &copy; 2026 IT Asset & Services Delivery
+    </footer>
+
+    <script>
+      // ============================
+      //  BILINGUAL SYSTEM (i18n)
+      // ============================
+      const i18n = {
+        id: {
+          title: "BINUS Email Signature Generator",
+          subtitle:
+            "Pilih template, ukuran, dan isi data Anda untuk membuat signature standar lembaga.",
+          configTitle: "Konfigurasi",
+          templateLabel: 'Template <span style="color: #dc2626;">*</span>',
+          selectTemplate: "-- Pilih Template --",
+          sizeLabel: "Ukuran",
+          personalInfo: "Informasi Pribadi",
+          nameLabel: 'Nama Lengkap <span style="color: #dc2626;">*</span>',
+          titleLabel: 'Jabatan <span style="color: #dc2626;">*</span>',
+          contactLabel: "Kontak",
+          phoneLabel: 'Telepon <span style="color: #dc2626;">*</span>',
+          mobileLabel: "HP",
+          emailLabel: 'Email <span style="color: #dc2626;">*</span>',
+          addressLabel: 'Alamat <span style="color: #dc2626;">*</span>',
+          selectLocation: "-- Pilih Lokasi --",
+          previewTitle: "Preview Signature",
+          previewSubtitle: "Pratinjau Langsung",
+          copyBtn: "Salin Signature",
+          instruction:
+            '<strong>Cara Penggunaan:</strong> Setelah klik "Salin Signature", buka <strong>Outlook → Settings → Signature</strong>, lalu <strong>Paste (Tempel)</strong>.',
+          toastSuccess: "✅ Signature berhasil disalin ke clipboard!",
+          validationError: "❌ Harap lengkapi semua isian yang wajib (*)",
+          invalidPhone: "❌ Nomor Telepon harus diawali dengan 62",
+          invalidMobile: "❌ Nomor HP harus diawali dengan 62",
+          invalidEmail: "❌ Format Email tidak valid",
+          noTemplate: "Silakan pilih template terlebih dahulu.",
+          placeholderName: "Nama Lengkap Anda",
+          placeholderTitle: "Jabatan Anda",
+          placeholderLocation: "Nama Lokasi",
+          placeholderAddress: "Detail Alamat<br>Kota, Kode Pos",
+          phName: "Contoh: John Doe, S.Kom., M.TI.",
+          phTitle: "Contoh: Head of Department",
+          phPhone: "Contoh: 62 21 1234567",
+          phMobile: "Contoh: 62 811 1234567",
+          phEmail: "Contoh: johndoe@binus.edu",
+          guideWindows: "Panduan Windows",
+          guideMac: "Panduan Mac",
+          guideWindowsTitle: "Panduan Outlook (Windows)",
+          guideMacTitle: "Panduan Outlook (Mac)",
+          stage1Title: "Generate & Salin Signature",
+          stage2Title: "Tambah Signature di Outlook (Windows)",
+          stage3Title: "Tambah Signature di Outlook (Mac)",
+          ws1: "Buka browser Anda dan akses link generator: <strong>https://email-signature-sand.vercel.app/</strong>",
+          ws2: "Pada panel <strong>Konfigurasi</strong> di sebelah kiri, pilih template (contoh: BINA NUSANTARA), lalu isi <strong>Informasi Pribadi</strong> Anda seperti Nama, Jabatan, dll.",
+          ws3: "Anda dapat melihat hasil secara <em>real-time</em> pada panel <strong>Preview Signature</strong>.",
+          ws4: 'Jika sudah sesuai, klik tombol biru <strong>"Salin Signature"</strong>. (Format teks dan HTML akan otomatis tersalin ke clipboard perangkat Anda).',
+          ww1: "Buka aplikasi <strong>Microsoft Outlook</strong>.",
+          ww2: "Masuk ke <strong>Settings</strong> dengan mengklik ikon ⚙️ (gear), biasanya terletak di pojok kanan atas layar.",
+          ww3: "Navigasi ke menu <strong>Accounts</strong> atau <strong>Mail</strong>, lalu cari dan pilih opsi <strong>Signatures</strong>.",
+          ww4: "Pada halaman Signatures, klik tombol biru <strong>+ Add signature</strong> untuk membuat signature baru.",
+          ww5: 'Akan muncul kotak editor. Pertama, ketik <strong>Nama Signature</strong> di kolom judul (contoh: "Main Signature").',
+          ww6: 'Klik pada kotak teks kosong di bawahnya, lalu tekan <span class="step-highlight">Ctrl + V</span> (atau klik kanan dan pilih Paste) untuk menempelkan signature dari website.',
+          ww6tip:
+            "💡 <strong>Penting:</strong> Jika muncul ikon opsi tempel kecil setelah paste, pastikan pilih <strong>Keep Source Formatting</strong> agar layout dan logo tetap utuh.",
+          ww7: "Setelah signature muncul di editor, klik tombol <strong>Save</strong> di dalam editor.",
+          ww8: "Kembali ke halaman utama Signatures dan atur dua dropdown berikut:",
+          ww8a: "<strong>Default for new messages:</strong> Klik dropdown dan pilih nama signature baru Anda. Ini memastikan signature otomatis muncul setiap kali Anda menulis email baru.",
+          ww8b: "<strong>Default for replies and forwards:</strong> Klik dropdown dan pilih signature yang sama jika Anda ingin signature muncul saat membalas atau meneruskan email.",
+          ww9: "Pastikan klik tombol <strong>Save</strong> di jendela settings untuk menerapkan semua perubahan.",
+          wm1: "Buka aplikasi <strong>Microsoft Outlook</strong>.",
+          wm2: "Di menu bar atas layar (di samping logo Apple), klik <strong>Outlook</strong>, lalu pilih <strong>Settings...</strong> (atau Preferences pada versi lama).",
+          wm3: "Pilih menu <strong>Signatures</strong>.",
+          wm4: "Klik ikon <strong>+ (plus)</strong> atau tombol <strong>+ Add signature</strong> untuk membuat signature baru.",
+          wm5: 'Beri nama signature Anda (contoh: "Main Signature").',
+          wm6: 'Klik di dalam area teks, lalu tekan <span class="step-highlight">Cmd + V</span> untuk menempelkan signature dari website. Pastikan format sumber dipertahankan (<strong>Keep Source Formatting</strong>).',
+          wm7: "Simpan signature tersebut.",
+          wm8: "Sama seperti di Windows, pastikan Anda mengatur bagian <strong>Default signatures</strong>:",
+          wm8a: "Pilih akun email Anda (jika diminta).",
+          wm8b: "Untuk <strong>New messages</strong>, pilih signature yang baru dibuat.",
+          wm8c: "Untuk <strong>Replies/forwards</strong>, pilih signature yang sama.",
+          wm9: "Tutup jendela pengaturan.",
+          guideMobile: "Panduan Mobile",
+          guideMobileTitle: "Panduan Outlook (Mobile)",
+          stage4Title: "Tambah Signature di Outlook (Mobile)",
+          wmo1: "Buka generator di Desktop/Laptop Anda, pilih template dan <strong>ukuran Mobile (320px) / Tablet (450px)</strong>.",
+          wmo2: 'Klik tombol biru <strong>"Salin Signature"</strong>.',
+          wmo3: "Buka email Anda di Desktop (Outlook/Web), buat pesan email baru (New Email).",
+          wmo4: "<strong>Paste</strong> signature ke isi pesan email kosong, lalu kirim email tersebut <strong>ke alamat Anda sendiri</strong>.",
+          wmo5: "Buka aplikasi <strong>Outlook Mobile</strong> di HP (Android/iOS) dan buka email yang baru dikirim ke diri sendiri.",
+          wmo6: "Tekan dan tahan pada bagian signature, pilih <strong>Select All</strong>, lalu <strong>Copy</strong>.",
+          wmo7: "Ketuk ikon profil/menu di pojok kiri atas aplikasi, lalu ketuk ikon <strong>Settings</strong> (⚙️) di pojok kiri bawah.",
+          wmo8: "Cari dan pilih opsi <strong>Signature</strong>.",
+          wmo9: 'Hapus teks bawaan (misal "Get Outlook for iOS"), lalu <strong>Paste</strong> signature Anda.',
+          wmo10tip:
+            "💡 <strong>Catatan:</strong> Outlook Mobile tidak mendukung paste langsung format kompleks dari web, oleh karena itu signature harus dikirim via email terlebih dahulu agar format tetap rapi.",
+        },
+        en: {
+          title: "BINUS Email Signature Generator",
+          subtitle:
+            "Select a template, size, and fill in your details to create a standard corporate signature.",
+          configTitle: "Configuration",
+          templateLabel: 'Template <span style="color: #dc2626;">*</span>',
+          selectTemplate: "-- Select Template --",
+          sizeLabel: "Size",
+          personalInfo: "Personal Information",
+          nameLabel: 'Full Name <span style="color: #dc2626;">*</span>',
+          titleLabel: 'Job Title <span style="color: #dc2626;">*</span>',
+          contactLabel: "Contact",
+          phoneLabel: 'Phone <span style="color: #dc2626;">*</span>',
+          mobileLabel: "Mobile",
+          emailLabel: 'Email <span style="color: #dc2626;">*</span>',
+          addressLabel: 'Address <span style="color: #dc2626;">*</span>',
+          selectLocation: "-- Select Location --",
+          previewTitle: "Signature Preview",
+          previewSubtitle: "Real-time Preview",
+          copyBtn: "Copy Signature",
+          instruction:
+            '<strong>How to use:</strong> After clicking "Copy Signature", open <strong>Outlook → Settings → Signature</strong>, then <strong>Paste</strong>.',
+          toastSuccess: "✅ Signature successfully copied to clipboard!",
+          validationError: "❌ Please fill in all required fields (*)",
+          invalidPhone: "❌ Phone number must start with 62",
+          invalidMobile: "❌ Mobile number must start with 62",
+          invalidEmail: "❌ Invalid Email format",
+          noTemplate: "Please select a template first.",
+          placeholderName: "Your Full Name",
+          placeholderTitle: "Your Job Title",
+          placeholderLocation: "Location Name",
+          placeholderAddress: "Address Detail<br>City, Postal Code",
+          phName: "e.g. John Doe, S.Kom., M.TI.",
+          phTitle: "e.g. Head of Department",
+          phPhone: "e.g. 62 21 1234567",
+          phMobile: "e.g. 62 811 1234567",
+          phEmail: "e.g. johndoe@binus.edu",
+          guideWindows: "Windows Guide",
+          guideMac: "Mac Guide",
+          guideWindowsTitle: "Outlook Guide (Windows)",
+          guideMacTitle: "Outlook Guide (Mac)",
+          stage1Title: "Generate & Copy Signature",
+          stage2Title: "Add Signature in Outlook (Windows)",
+          stage3Title: "Add Signature in Outlook (Mac)",
+          ws1: "Open your web browser and go to the generator link: <strong>https://email-signature-sand.vercel.app/</strong>",
+          ws2: "On the <strong>Configuration</strong> panel on the left, select your template (e.g., BINA NUSANTARA), and fill in your <strong>Personal Information</strong> such as Full Name, Job Title, etc.",
+          ws3: "You can see the <em>real-time</em> result on the <strong>Preview Signature</strong> panel.",
+          ws4: 'Once it looks good, click the blue <strong>"Copy Signature"</strong> button. (The text and HTML format will automatically be copied to your device\'s clipboard).',
+          ww1: "Open the <strong>Microsoft Outlook</strong> application.",
+          ww2: "Go to <strong>Settings</strong> by clicking the ⚙️ (gear) icon, usually located in the top right corner of the screen.",
+          ww3: "Navigate to the <strong>Accounts</strong> or <strong>Mail</strong> menu, then find and select the <strong>Signatures</strong> option.",
+          ww4: "On the Signatures page, click the blue <strong>+ Add signature</strong> button to create a new signature.",
+          ww5: 'An editor box will appear. First, type a <strong>Signature Name</strong> in the title field (e.g., "Main Signature").',
+          ww6: 'Click on the empty text box below it, then press <span class="step-highlight">Ctrl + V</span> (or right-click and select Paste) to paste the signature you copied from the website.',
+          ww6tip:
+            "💡 <strong>Important:</strong> If a small paste options icon appears after pasting, make sure to select <strong>Keep Source Formatting</strong> so the layout and logos remain intact.",
+          ww7: "Once the signature appears in the editor, click the <strong>Save</strong> button within the editor.",
+          ww8: "Go back to the main Signatures page and locate the following two dropdown settings:",
+          ww8a: "<strong>Default for new messages:</strong> Click the dropdown and select the name of your newly created signature. This ensures it automatically appears every time you compose a new email.",
+          ww8b: "<strong>Default for replies and forwards:</strong> Click this dropdown and select the same signature if you want it to appear when replying to or forwarding emails.",
+          ww9: "Make sure to click the <strong>Save</strong> button in the settings window to apply all changes.",
+          wm1: "Open the <strong>Microsoft Outlook</strong> application.",
+          wm2: "On the menu bar at the top of the screen (next to the Apple logo), click <strong>Outlook</strong>, then select <strong>Settings...</strong> (or Preferences in older versions).",
+          wm3: "Select the <strong>Signatures</strong> menu.",
+          wm4: "Click the <strong>+ (plus)</strong> icon or the <strong>+ Add signature</strong> button to create a new signature.",
+          wm5: 'Give your signature a name (e.g., "Main Signature").',
+          wm6: 'Click inside the text area, then press <span class="step-highlight">Cmd + V</span> to paste the signature from the website. Ensure the source formatting is maintained (<strong>Keep Source Formatting</strong>).',
+          wm7: "Save the signature.",
+          wm8: "Just like on Windows, make sure you configure the <strong>Default signatures</strong> section:",
+          wm8a: "Select your email account (if prompted).",
+          wm8b: "For <strong>New messages</strong>, select the newly created signature.",
+          wm8c: "For <strong>Replies/forwards</strong>, select the same signature.",
+          wm9: "Close the settings window.",
+          guideMobile: "Mobile Guide",
+          guideMobileTitle: "Outlook Guide (Mobile)",
+          stage4Title: "Add Signature in Outlook (Mobile)",
+          wmo1: "Open the generator on your Desktop/Laptop, select your template, and choose the <strong>Mobile (320px) or Tablet (450px) size</strong>.",
+          wmo2: 'Click the blue <strong>"Copy Signature"</strong> button.',
+          wmo3: "Open your email client on Desktop (Outlook or Web) and create a New Email.",
+          wmo4: "<strong>Paste</strong> the signature into the empty email body, then send that email <strong>to your own address</strong>.",
+          wmo5: "Open the <strong>Outlook Mobile</strong> app on your phone (Android/iOS) and open the email you just sent to yourself.",
+          wmo6: "Tap and hold on the signature area, tap <strong>Select All</strong>, then tap <strong>Copy</strong>.",
+          wmo7: "Tap your profile icon/menu in the top left corner of the app, then tap the <strong>Settings</strong> icon (⚙️) in the bottom left corner.",
+          wmo8: "Find and tap the <strong>Signature</strong> option.",
+          wmo9: 'Delete the default text (e.g., "Get Outlook for iOS"), then <strong>Paste</strong> your signature.',
+          wmo10tip:
+            "💡 <strong>Note:</strong> Outlook Mobile does not support pasting complex layouts directly from the web, which is why the signature must be sent via email first to preserve the layout.",
+        },
+      };
+
+      let currentLang = "id";
+
+      function setLang(lang) {
+        currentLang = lang;
+        // Update toggle buttons
+        document
+          .getElementById("btn-lang-id")
+          .classList.toggle("active", lang === "id");
+        document
+          .getElementById("btn-lang-en")
+          .classList.toggle("active", lang === "en");
+
+        // Update all text nodes with data-i18n
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (i18n[lang][key]) {
+            el.innerHTML = i18n[lang][key];
           }
         });
-      }
-    }
 
-    function closeGuide(type) {
-      const modal = document.getElementById('modal-' + type);
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    function closeGuideOutside(event, type) {
-      if (event.target === event.currentTarget) {
-        closeGuide(type);
-      }
-    }
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        closeGuide('windows');
-        closeGuide('mac');
-      }
-    });
-
-    // ============================
-    //  CAMPUS DATA
-    // ============================
-    const CAMPUS_DATA = [
-      {
-        id: "anggrek",
-        name: "BINUS University - Anggrek Campus",
-        address: "Jl. Kebon Jeruk Raya No. 27, Kebon Jeruk,\nJakarta Barat 11530",
-      },
-      {
-        id: "syahdan",
-        name: "BINUS University - Syahdan Campus",
-        address: "Jl. K. H. Syahdan No. 9, Kemanggisan, Palmerah,\nJakarta Barat 11480",
-      },
-      {
-        id: "kijang",
-        name: "BINUS University - Kijang Campus",
-        address: "Jl. Kemanggisan Ilir III No. 45, Kemanggisan, Palmerah,\nJakarta Barat 11480",
-      },
-      {
-        id: "jwc",
-        name: "BINUS University - JWC Campus",
-        address: "Jalan Hang Lekir I No. 6, Senayan, Kebayoran Baru,\nJakarta Selatan 10270",
-      },
-      {
-        id: "fx",
-        name: "BINUS University - FX Campus",
-        address: "FX Sudirman Lantai 6, Jl. Pintu Satu Senayan No.3, RT.1/RW.3, Gelora,\nKota Jakarta Pusat, DKI Jakarta 10270",
-      },
-      {
-        id: "alamsutera",
-        name: "BINUS University - Alam Sutera Campus",
-        address: "Jl. Jalur Sutera Barat Kav. 21, Alam Sutera, Panunggangan,\nKec. Pinang, Kota Tangerang, Banten 15143",
-      },
-      {
-        id: "bekasi",
-        name: "BINUS University - Bekasi Campus",
-        address: "Jl. Lingkar Bulevar Blok WA No. 1 Summarecon Bekasi\nKelurahan Marga Mulya, Kecamatan Medan Satria,\nKota Bekasi, 17142",
-      },
-      {
-        id: "bandung_paskal",
-        name: "BINUS University - Bandung Paskal Campus",
-        address: "Paskal Hyper Square, Jl. Pasirkaliki No.25-27, Ciroyom,\nKec. Andir, Kota Bandung, Jawa Barat 40181",
-      },
-      {
-        id: "bandung_dago",
-        name: "BINUS University - Bandung Dago Campus",
-        address: "Jl. Sentra Dago Pakar Raya Blok F-2, Komplek Dago Pakar, Mekarsaluyu,\nCimenyan, Kab. Bandung Jawa Barat, 40191",
-      },
-      {
-        id: "semarang",
-        name: "BINUS University - Semarang Campus",
-        address: "POJ Avenue No.Kav. 3, Tawangsari, Kec. Semarang Barat,\nKota Semarang, Jawa Tengah 50144",
-      },
-      {
-        id: "malang",
-        name: "BINUS University - Malang Campus",
-        address: "Jl. Mansion Valley No.8 - 22, Genitri, Tirtomoyo, Kec. Pakis,\nKabupaten Malang, Jawa Timur 65154",
-      },
-      {
-        id: "medan",
-        name: "BINUS University - Medan Campus",
-        address: "Delipark Lantai L, Jl. Putri Hijau (Guru Patimpus Blok OPQ, Kesawan,\nKec. Medan Bar., Kota Medan, Sumatera Utara 20111",
-      },
-      {
-        id: "school_simprug",
-        name: "BINUS School Simprug",
-        address: "Jl. Sultan Iskandar Muda No.Kav. G-8, RT.6/RW.2, Grogol Sel.,\nKec. Kebayoran Lama, Kota Jakarta Selatan, DKI Jakarta 12220",
-      },
-      {
-        id: "school_serpong",
-        name: "BINUS School Serpong",
-        address: "Jl. Lengkong Karya No.58, Jelupang, Kec. Serpong Utara,\nKota Tangerang Selatan, Banten 15322",
-      },
-      {
-        id: "school_bekasi",
-        name: "BINUS School Bekasi",
-        address: "Vida Bumiwedari, Jl. Saraswati No.1, RT.001/RW.010, Padurenan,\nKec. Mustika Jaya, Kota Bks, Jawa Barat 17156",
-      },
-      {
-        id: "school_semarang",
-        name: "BINUS School Semarang",
-        address: "BINUS EDU PARK, POJ Avenue, Kav. 3, Tawangsari,\nKec. Semarang Barat, Kota Semarang, Jawa Tengah 50144",
-      },
-      {
-        id: "school_surabaya",
-        name: "BINUS School Surabaya",
-        address: "Jl. Citra Utama Lidah Kulon No.20, Lidah Kulon,\nKec. Lakarsantri, Surabaya, Jawa Timur 60213",
-      },
-      {
-        id: "square",
-        name: "Binus Square Hall Of Residence",
-        address: "Jl. Budi Raya No.21, RT.1/RW.5, Kb. Jeruk, Kec. Kb. Jeruk,\nKota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530",
-      },
-      {
-        id: "center",
-        name: "Binus Center",
-        address: "Jl. Kyai H. Syahdan No.20, RT.6/RW.12, Palmerah,\nKec. Palmerah, Kota Jakarta Barat, DKI Jakarta 11480",
-      },
-      {
-        id: "base",
-        name: "BINUS ASO School of Engineering (BASE)",
-        address: "Jl. Alam Sutera Boulevard No.1, Alam Sutera, Kec. Serpong,\nKota Tangerang Selatan, Banten 15325",
-      },
-      {
-        id: "bsd",
-        name: "BINUS @BSD",
-        address: "Digital Hub Kav. N 11-16, Sampora, Kec. Cisauk,\nKabupaten Tangerang, Banten 15345",
-      },
-      {
-        id: "rise",
-        name: "RISE Bintaro & RISE Digital Central",
-        address: "Bintaro Jaya Xchange, 1st floor, Bintaro Jaya Sektor VII,\nBoulevard Bintaro Jaya Blok O-2, Tangerang Selatan,\nBanten 15224",
-      },
-
-    ];
-
-    // ============================
-    //  TEMPLATE CONFIGURATION
-    // ============================
-    const TEMPLATES = {
-      "binus-univ": {
-        name: "BINUS University",
-        prefix: "BU",
-        dir: "BINUS University",
-        primaryColor: "#00529C",
-        textColor: "#4c4d4e",
-        websiteUrl: "www.binus.ac.id",
-        websiteMb: 5,
-        websiteMr: 90,
-        nameMarginLeft: 31,
-        nameMarginTop: 23,
-        logoWidth: 98,
-        logoHeight: 70,
-        logoMarginTop: 0,
-        logoMarginLeft: 10,
-        col1Width: 108,
-        sizes: {
-          450: {
-            logoMarginLeft: 10,
-            logoMarginTop: 0,
-            col1Width: 104,
-            nameMarginLeft: 0,
-            nameMarginTop: 19,
-            deptMl: 2,
-            deptMt: 1,
-            tableMl: 2,
-            tableMt: 9,
-            textPl: 3,
-            divPl: 4,
-            divPr: 7,
-            addrPt: 4,
-            supergraphicWidth: 182,
-            supergraphicHeight: 20,
-            annivPr: 24,
-            annivPt: 10
-          },
-          320: {
-            logoMarginLeft: 2,
-            logoMarginTop: 0,
-            col1Width: 86,
-            nameMarginLeft: 0,
-            nameMarginTop: 19,
-            tableMt: 8,
-            textPl: 3,
-            divPl: 5,
-            divPr: 5,
-            addrPt: 5,
-            supergraphicWidth: 176,
-            supergraphicHeight: 16,
-            annivPr: 23,
-            annivPt: 9
+        // Update input placeholders
+        document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-ph");
+          if (i18n[lang][key]) {
+            el.placeholder = i18n[lang][key];
           }
+        });
+
+        // Update toast text
+        document.getElementById("toast").textContent = i18n[lang].toastSuccess;
+
+        // Re-populate dropdowns to translate default options
+        populateCampusDropdown();
+        renderSignature();
+      }
+      // ============================
+      //  GUIDE MODAL FUNCTIONS
+      // ============================
+      function openGuide(type) {
+        const modal = document.getElementById("modal-" + type);
+        if (modal) {
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+          // Apply current language to modal content
+          modal.querySelectorAll("[data-i18n]").forEach((el) => {
+            const key = el.getAttribute("data-i18n");
+            if (i18n[currentLang][key]) {
+              el.innerHTML = i18n[currentLang][key];
+            }
+          });
         }
-      },
-      "binus-school": {
-        name: "BINUS School",
-        prefix: "BS",
-        dir: "BINUS School",
-        primaryColor: "#67102e",
-        textColor: "#4c4d4e",
-        websiteUrl: "www.binus.sch.id",
-        websiteMb: 7,
-        websiteMr: 85,
-        nameMarginLeft: 31,
-        nameMarginTop: 23,
-        logoWidth: 66,
-        logoHeight: 56,
-        logoMarginTop: 0,
-        logoMarginLeft: 13,
-        col1Width: 79,
-        sizes: {
-          450: {
-            logoMarginLeft: 8,
-            logoMarginTop: 0,
-            col1Width: 83,
-            nameMarginLeft: 0,
-            nameMarginTop: 21,
-            deptMl: 0,
-            deptMt: 1,
-            tableMl: 3,
-            tableMt: 10,
-            textPl: 2,
-            divPl: 3,
-            divPr: 6,
-            addrPt: 5,
-            supergraphicWidth: 187,
-            supergraphicHeight: 20,
-            annivPr: 24,
-            annivPt: 10
-          },
-          320: {
-            logoMarginLeft: 7,
-            logoMarginTop: 0,
-            col1Width: 72,
-            nameMarginLeft: 0,
-            nameMarginTop: 23,
-            tableMt: 12,
-            textPl: 3,
-            divPl: 5,
-            divPr: 5,
-            addrPt: 2,
-            supergraphicWidth: 190,
-            supergraphicHeight: 18,
-            annivPr: 23,
-            annivPt: 9
-          }
+      }
+
+      function closeGuide(type) {
+        const modal = document.getElementById("modal-" + type);
+        if (modal) {
+          modal.classList.remove("active");
+          document.body.style.overflow = "";
         }
-      },
-      "bina-nusantara": {
-        name: "BINA NUSANTARA",
-        prefix: "BN",
-        dir: "BINA NUSANTARA",
-        primaryColor: "#6b2a7f",
-        textColor: "#4c4d4e",
-        websiteUrl: "www.binus.edu",
-        websiteMb: 6,
-        websiteMr: 98,
-        nameMarginLeft: 23,
-        nameMarginTop: 23,
-        logoWidth: 130,
-        logoHeight: "auto",
-        logoMarginTop: 0,
-        logoMarginLeft: 8,
-        col1Width: 138,
-        sizes: {
-          450: {
-            logoMarginLeft: 10,
-            logoMarginTop: 0,
-            col1Width: 104,
-            nameMarginLeft: 0,
-            nameMarginTop: 19,
-            deptMl: 2,
-            deptMt: 1,
-            tableMl: 2,
-            tableMt: 9,
-            textPl: 3,
-            divPl: 4,
-            divPr: 7,
-            addrPt: 4,
-            supergraphicWidth: 188,
-            supergraphicHeight: 20,
-            annivPr: 24,
-            annivPt: 10
-          },
-          320: {
-            logoMarginLeft: 10,
-            logoMarginTop: 0,
-            col1Width: 94,
-            nameMarginLeft: 0,
-            nameMarginTop: 14,
-            tableMt: 12,
-            textPl: 3,
-            divPl: 5,
-            divPr: 5,
-            addrPt: 5,
-            supergraphicWidth: 183,
-            supergraphicHeight: 16,
-            annivPr: 23,
-            annivPt: 9
-          }
+      }
+
+      function closeGuideOutside(event, type) {
+        if (event.target === event.currentTarget) {
+          closeGuide(type);
         }
-      },
-    };
+      }
 
-    // ============================
-    //  SIZE DIMENSIONS MAP
-    // ============================
-    const SIZE_CONFIG = {
-      600: {
-        total: 600,
-        scale: 1.0,
-        nameFontSize: "6.5pt",
-        textFontSize: "5.3pt",
-        supergraphicHeight: 26,
-        annivLogoWidth: 50,
-        annivLogoHeight: 45,
-        annivPt: 15,
-        annivPr: 23,
-        iconsWidth: 8,
-        dividerHeight: 32,
-        tableMt: 9,
-        divPl: 11,
-        divPr: 6,
-        col3Width: 73,
-      },
-      450: {
-        total: 450,
-        totalHeight: 104,
-        scale: 0.75,
-        nameFontSize: "6pt",
-        deptFontSize: "4.6pt",
-        contactFontSize: "4.6pt",
-        addrFontSize: "4.6pt",
-        annivLogoWidth: 37,
-        annivLogoHeight: 34,
-        iconsWidth: 6,
-        dividerHeight: 27,
-        col3Width: 61,
-      },
-      320: {
-        total: 320,
-        totalHeight: 104,
-        scale: 0.533,
-        nameFontSize: "5.5pt",
-        deptFontSize: "4.2pt",
-        contactFontSize: "3.9pt",
-        addrFontSize: "3.5pt",
-        annivLogoWidth: 26,
-        annivLogoHeight: 24,
-        iconsWidth: 4,
-        dividerHeight: 26,
-        col3Width: 49,
-      },
-    };
-
-    let currentSize = 600;
-
-    function setSize(size) {
-      currentSize = size;
-      document.querySelectorAll(".size-btn").forEach((btn) => {
-        btn.classList.remove("active");
-      });
-      document.getElementById(`btn-size-${size}`).classList.add("active");
-      renderSignature();
-    }
-
-    // ============================
-    //  POPULATE ALAMAT DROPDOWN
-    // ============================
-    function populateCampusDropdown(preserveValue) {
-      const campusSelect = document.getElementById("inputCampus");
-      const previousValue = preserveValue || "";
-
-      // Rebuild options
-      campusSelect.innerHTML = `<option value="" data-i18n="selectLocation">${i18n[currentLang].selectLocation}</option>`;
-      CAMPUS_DATA.forEach((c) => {
-        const opt = document.createElement("option");
-        opt.value = c.id;
-        opt.textContent = c.name;
-        campusSelect.appendChild(opt);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeGuide("windows");
+          closeGuide("mac");
+        }
       });
 
-      // Restore previous selection if valid
-      if (previousValue && CAMPUS_DATA.find(c => c.id === previousValue)) {
-        campusSelect.value = previousValue;
-        onCampusChange();
-      } else {
-        // Reset preview
-        document.getElementById("addressPreview").classList.remove("show");
-        document.getElementById("addressPreview").textContent = "";
+      // ============================
+      //  CAMPUS DATA
+      // ============================
+      const CAMPUS_DATA = [
+        {
+          id: "anggrek",
+          name: "BINUS University - Anggrek Campus",
+          address:
+            "Jl. Kebon Jeruk Raya No. 27, Kebon Jeruk,\nJakarta Barat 11530",
+        },
+        {
+          id: "syahdan",
+          name: "BINUS University - Syahdan Campus",
+          address:
+            "Jl. K. H. Syahdan No. 9, Kemanggisan, Palmerah,\nJakarta Barat 11480",
+        },
+        {
+          id: "kijang",
+          name: "BINUS University - Kijang Campus",
+          address:
+            "Jl. Kemanggisan Ilir III No. 45, Kemanggisan, Palmerah,\nJakarta Barat 11480",
+        },
+        {
+          id: "jwc",
+          name: "BINUS University - JWC Campus",
+          address:
+            "Jalan Hang Lekir I No. 6, Senayan, Kebayoran Baru,\nJakarta Selatan 10270",
+        },
+        {
+          id: "fx",
+          name: "BINUS University - FX Campus",
+          address:
+            "FX Sudirman Lantai 6, Jl. Pintu Satu Senayan No.3, RT.1/RW.3, Gelora,\nKota Jakarta Pusat, DKI Jakarta 10270",
+        },
+        {
+          id: "alamsutera",
+          name: "BINUS University - Alam Sutera Campus",
+          address:
+            "Jl. Jalur Sutera Barat Kav. 21, Alam Sutera, Panunggangan,\nKec. Pinang, Kota Tangerang, Banten 15143",
+        },
+        {
+          id: "bekasi",
+          name: "BINUS University - Bekasi Campus",
+          address:
+            "Jl. Lingkar Bulevar Blok WA No. 1 Summarecon Bekasi\nKelurahan Marga Mulya, Kecamatan Medan Satria,\nKota Bekasi, 17142",
+        },
+        {
+          id: "bandung_paskal",
+          name: "BINUS University - Bandung Paskal Campus",
+          address:
+            "Paskal Hyper Square, Jl. Pasirkaliki No.25-27, Ciroyom,\nKec. Andir, Kota Bandung, Jawa Barat 40181",
+        },
+        {
+          id: "bandung_dago",
+          name: "BINUS University - Bandung Dago Campus",
+          address:
+            "Jl. Sentra Dago Pakar Raya Blok F-2, Komplek Dago Pakar, Mekarsaluyu,\nCimenyan, Kab. Bandung Jawa Barat, 40191",
+        },
+        {
+          id: "semarang",
+          name: "BINUS University - Semarang Campus",
+          address:
+            "POJ Avenue No.Kav. 3, Tawangsari, Kec. Semarang Barat,\nKota Semarang, Jawa Tengah 50144",
+        },
+        {
+          id: "malang",
+          name: "BINUS University - Malang Campus",
+          address:
+            "Jl. Mansion Valley No.8 - 22, Genitri, Tirtomoyo, Kec. Pakis,\nKabupaten Malang, Jawa Timur 65154",
+        },
+        {
+          id: "medan",
+          name: "BINUS University - Medan Campus",
+          address:
+            "Delipark Lantai L, Jl. Putri Hijau (Guru Patimpus Blok OPQ, Kesawan,\nKec. Medan Bar., Kota Medan, Sumatera Utara 20111",
+        },
+        {
+          id: "school_simprug",
+          name: "BINUS School Simprug",
+          address:
+            "Jl. Sultan Iskandar Muda No.Kav. G-8, RT.6/RW.2, Grogol Sel.,\nKec. Kebayoran Lama, Kota Jakarta Selatan, DKI Jakarta 12220",
+        },
+        {
+          id: "school_serpong",
+          name: "BINUS School Serpong",
+          address:
+            "Jl. Lengkong Karya No.58, Jelupang, Kec. Serpong Utara,\nKota Tangerang Selatan, Banten 15322",
+        },
+        {
+          id: "school_bekasi",
+          name: "BINUS School Bekasi",
+          address:
+            "Vida Bumiwedari, Jl. Saraswati No.1, RT.001/RW.010, Padurenan,\nKec. Mustika Jaya, Kota Bks, Jawa Barat 17156",
+        },
+        {
+          id: "school_semarang",
+          name: "BINUS School Semarang",
+          address:
+            "BINUS EDU PARK, POJ Avenue, Kav. 3, Tawangsari,\nKec. Semarang Barat, Kota Semarang, Jawa Tengah 50144",
+        },
+        {
+          id: "school_surabaya",
+          name: "BINUS School Surabaya",
+          address:
+            "Jl. Citra Utama Lidah Kulon No.20, Lidah Kulon,\nKec. Lakarsantri, Surabaya, Jawa Timur 60213",
+        },
+        {
+          id: "square",
+          name: "Binus Square Hall Of Residence",
+          address:
+            "Jl. Budi Raya No.21, RT.1/RW.5, Kb. Jeruk, Kec. Kb. Jeruk,\nKota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530",
+        },
+        {
+          id: "center",
+          name: "Binus Center",
+          address:
+            "Jl. Kyai H. Syahdan No.20, RT.6/RW.12, Palmerah,\nKec. Palmerah, Kota Jakarta Barat, DKI Jakarta 11480",
+        },
+        {
+          id: "base",
+          name: "BINUS ASO School of Engineering (BASE)",
+          address:
+            "Jl. Alam Sutera Boulevard No.1, Alam Sutera, Kec. Serpong,\nKota Tangerang Selatan, Banten 15325",
+        },
+        {
+          id: "bsd",
+          name: "BINUS @BSD",
+          address:
+            "Digital Hub Kav. N 11-16, Sampora, Kec. Cisauk,\nKabupaten Tangerang, Banten 15345",
+        },
+        {
+          id: "rise",
+          name: "RISE Bintaro & RISE Digital Central",
+          address:
+            "Bintaro Jaya Xchange, 1st floor, Bintaro Jaya Sektor VII,\nBoulevard Bintaro Jaya Blok O-2, Tangerang Selatan,\nBanten 15224",
+        },
+      ];
+
+      // ============================
+      //  TEMPLATE CONFIGURATION
+      // ============================
+      const TEMPLATES = {
+        "binus-univ": {
+          name: "BINUS University",
+          prefix: "BU",
+          dir: "BINUS University",
+          primaryColor: "#00529C",
+          textColor: "#4c4d4e",
+          websiteUrl: "www.binus.ac.id",
+          websiteMb: 5,
+          websiteMr: 90,
+          nameMarginLeft: 31,
+          nameMarginTop: 23,
+          logoWidth: 98,
+          logoHeight: 70,
+          logoMarginTop: 0,
+          logoMarginLeft: 10,
+          col1Width: 108,
+          sizes: {
+            450: {
+              logoMarginLeft: 10,
+              logoMarginTop: 0,
+              col1Width: 104,
+              nameMarginLeft: 0,
+              nameMarginTop: 19,
+              deptMl: 2,
+              deptMt: 1,
+              tableMl: 2,
+              tableMt: 9,
+              textPl: 3,
+              divPl: 4,
+              divPr: 7,
+              addrPt: 4,
+              supergraphicWidth: 182,
+              supergraphicHeight: 20,
+              annivPr: 24,
+              annivPt: 10,
+            },
+            320: {
+              logoMarginLeft: 2,
+              logoMarginTop: 0,
+              col1Width: 86,
+              nameMarginLeft: 0,
+              nameMarginTop: 19,
+              tableMt: 8,
+              textPl: 3,
+              divPl: 5,
+              divPr: 5,
+              addrPt: 5,
+              supergraphicWidth: 176,
+              supergraphicHeight: 16,
+              annivPr: 23,
+              annivPt: 9,
+            },
+          },
+        },
+        "binus-school": {
+          name: "BINUS School",
+          prefix: "BS",
+          dir: "BINUS School",
+          primaryColor: "#67102e",
+          textColor: "#4c4d4e",
+          websiteUrl: "www.binus.sch.id",
+          websiteMb: 7,
+          websiteMr: 85,
+          nameMarginLeft: 31,
+          nameMarginTop: 23,
+          logoWidth: 66,
+          logoHeight: 56,
+          logoMarginTop: 0,
+          logoMarginLeft: 13,
+          col1Width: 79,
+          sizes: {
+            450: {
+              logoMarginLeft: 8,
+              logoMarginTop: 0,
+              col1Width: 83,
+              nameMarginLeft: 0,
+              nameMarginTop: 21,
+              deptMl: 0,
+              deptMt: 1,
+              tableMl: 3,
+              tableMt: 10,
+              textPl: 2,
+              divPl: 3,
+              divPr: 6,
+              addrPt: 5,
+              supergraphicWidth: 187,
+              supergraphicHeight: 20,
+              annivPr: 24,
+              annivPt: 10,
+            },
+            320: {
+              logoMarginLeft: 7,
+              logoMarginTop: 0,
+              col1Width: 72,
+              nameMarginLeft: 0,
+              nameMarginTop: 23,
+              tableMt: 12,
+              textPl: 3,
+              divPl: 5,
+              divPr: 5,
+              addrPt: 2,
+              supergraphicWidth: 190,
+              supergraphicHeight: 18,
+              annivPr: 23,
+              annivPt: 9,
+            },
+          },
+        },
+        "bina-nusantara": {
+          name: "BINA NUSANTARA",
+          prefix: "BN",
+          dir: "BINA NUSANTARA",
+          primaryColor: "#6b2a7f",
+          textColor: "#4c4d4e",
+          websiteUrl: "www.binus.edu",
+          websiteMb: 6,
+          websiteMr: 98,
+          nameMarginLeft: 23,
+          nameMarginTop: 23,
+          logoWidth: 130,
+          logoHeight: "auto",
+          logoMarginTop: 0,
+          logoMarginLeft: 8,
+          col1Width: 138,
+          sizes: {
+            450: {
+              logoMarginLeft: 10,
+              logoMarginTop: 0,
+              col1Width: 104,
+              nameMarginLeft: 0,
+              nameMarginTop: 19,
+              deptMl: 2,
+              deptMt: 1,
+              tableMl: 2,
+              tableMt: 9,
+              textPl: 3,
+              divPl: 4,
+              divPr: 7,
+              addrPt: 4,
+              supergraphicWidth: 188,
+              supergraphicHeight: 20,
+              annivPr: 24,
+              annivPt: 10,
+            },
+            320: {
+              logoMarginLeft: 10,
+              logoMarginTop: 0,
+              col1Width: 94,
+              nameMarginLeft: 0,
+              nameMarginTop: 14,
+              tableMt: 12,
+              textPl: 3,
+              divPl: 5,
+              divPr: 5,
+              addrPt: 5,
+              supergraphicWidth: 183,
+              supergraphicHeight: 16,
+              annivPr: 23,
+              annivPt: 9,
+            },
+          },
+        },
+      };
+
+      // ============================
+      //  SIZE DIMENSIONS MAP
+      // ============================
+      const SIZE_CONFIG = {
+        600: {
+          total: 600,
+          scale: 1.0,
+          nameFontSize: "6.5pt",
+          textFontSize: "5.3pt",
+          supergraphicHeight: 26,
+          annivLogoWidth: 50,
+          annivLogoHeight: 45,
+          annivPt: 15,
+          annivPr: 23,
+          iconsWidth: 8,
+          dividerHeight: 32,
+          tableMt: 9,
+          divPl: 11,
+          divPr: 6,
+          col3Width: 73,
+        },
+        450: {
+          total: 450,
+          totalHeight: 104,
+          scale: 0.75,
+          nameFontSize: "6pt",
+          deptFontSize: "4.6pt",
+          contactFontSize: "4.6pt",
+          addrFontSize: "4.6pt",
+          annivLogoWidth: 37,
+          annivLogoHeight: 34,
+          iconsWidth: 6,
+          dividerHeight: 27,
+          col3Width: 61,
+        },
+        320: {
+          total: 320,
+          totalHeight: 104,
+          scale: 0.533,
+          nameFontSize: "5.5pt",
+          deptFontSize: "4.2pt",
+          contactFontSize: "3.9pt",
+          addrFontSize: "3.5pt",
+          annivLogoWidth: 26,
+          annivLogoHeight: 24,
+          iconsWidth: 4,
+          dividerHeight: 26,
+          col3Width: 49,
+        },
+      };
+
+      let currentSize = 600;
+
+      function setSize(size) {
+        currentSize = size;
+        document.querySelectorAll(".size-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        document.getElementById(`btn-size-${size}`).classList.add("active");
+        renderSignature();
       }
-    }
 
-    function getSelectedCampus() {
-      const campusId = document.getElementById("inputCampus").value;
-      return CAMPUS_DATA.find((c) => c.id === campusId) || null;
-    }
+      // ============================
+      //  POPULATE ALAMAT DROPDOWN
+      // ============================
+      function populateCampusDropdown(preserveValue) {
+        const campusSelect = document.getElementById("inputCampus");
+        const previousValue = preserveValue || "";
 
-    function onCampusChange() {
-      const campus = getSelectedCampus();
-      const preview = document.getElementById("addressPreview");
-      if (campus) {
-        preview.innerHTML =
-          "<strong>" +
-          campus.name +
-          "</strong><br>" +
-          campus.address.replace(/\n/g, "<br>");
-        preview.classList.add("show");
-      } else {
-        preview.classList.remove("show");
-        preview.textContent = "";
-      }
-      renderSignature();
-    }
+        // Rebuild options
+        campusSelect.innerHTML = `<option value="" data-i18n="selectLocation">${i18n[currentLang].selectLocation}</option>`;
+        CAMPUS_DATA.forEach((c) => {
+          const opt = document.createElement("option");
+          opt.value = c.id;
+          opt.textContent = c.name;
+          campusSelect.appendChild(opt);
+        });
 
-    // ============================
-    //  UNIFIED CONFIG CHANGE
-    // ============================
-    function onConfigChange() {
-      const currentCampus = document.getElementById("inputCampus").value;
-      populateCampusDropdown(currentCampus);
-      renderSignature();
-    }
-
-    // ============================
-    //  RENDER SIGNATURE
-    // ============================
-    function renderSignature() {
-      const templateId = document.getElementById("inputTemplate").value;
-      if (!templateId) {
-        document.getElementById("signature-preview").innerHTML =
-          `<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;" data-i18n="noTemplate">${i18n[currentLang].noTemplate}</div>`;
-        return;
+        // Restore previous selection if valid
+        if (previousValue && CAMPUS_DATA.find((c) => c.id === previousValue)) {
+          campusSelect.value = previousValue;
+          onCampusChange();
+        } else {
+          // Reset preview
+          document.getElementById("addressPreview").classList.remove("show");
+          document.getElementById("addressPreview").textContent = "";
+        }
       }
 
-      const tpl = TEMPLATES[templateId];
-      const sz = SIZE_CONFIG[currentSize];
-
-      const name =
-        document.getElementById("inputName").value || i18n[currentLang].placeholderName;
-      const title =
-        document.getElementById("inputTitle").value || i18n[currentLang].placeholderTitle;
-      const phone = document.getElementById("inputPhone").value.trim();
-      const mobile = document.getElementById("inputMobile").value.trim();
-      const email = document.getElementById("inputEmail").value.trim();
-
-      const campus = getSelectedCampus();
-      const campusName = campus ? campus.name : i18n[currentLang].placeholderLocation;
-      const campusAddr = campus
-        ? campus.address.replace(/\n/g, "<br>")
-        : i18n[currentLang].placeholderAddress;
-
-      // Build Image Paths with Absolute Public URLs for Outlook compatibility
-      // Uses the GitHub Raw URL so images load on mobile phones and for recipients
-      const baseUrl = "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
-
-      const baseDir = `Asset/Image/${tpl.dir}`;
-      const logoLeftUrl =
-        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
-      const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
-      const supergraphicUrl =
-        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} supergraphic_with_text.png`);
-      const iconPhoneUrl =
-        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
-      const iconMobileUrl =
-        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
-      const iconEmailUrl =
-        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
-
-      // Icon builder — uses images provided
-      const iconSz = currentSize >= 600 ? 12 : 9;
-      function renderIcon(url) {
-        return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
+      function getSelectedCampus() {
+        const campusId = document.getElementById("inputCampus").value;
+        return CAMPUS_DATA.find((c) => c.id === campusId) || null;
       }
 
-      const iconPhone = renderIcon(iconPhoneUrl);
-      const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
-
-      // Precompute Scaled Layout Variables
-      const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
-      const getVal = (prop) => tplOverride[prop] !== undefined ? tplOverride[prop] : (sz[prop] !== undefined ? sz[prop] : Math.round(tpl[prop] * sz.scale));
-
-      const s_col1Width = getVal("col1Width");
-      const s_logoWidth = getVal("logoWidth");
-
-      let s_logoHeight = "auto";
-      if (tplOverride.logoHeight !== undefined) {
-        s_logoHeight = typeof tplOverride.logoHeight === "number" ? tplOverride.logoHeight + "px" : tplOverride.logoHeight;
-      } else if (typeof tpl.logoHeight === "number") {
-        s_logoHeight = Math.round(tpl.logoHeight * sz.scale) + "px";
-      } else {
-        s_logoHeight = tpl.logoHeight;
+      function onCampusChange() {
+        const campus = getSelectedCampus();
+        const preview = document.getElementById("addressPreview");
+        if (campus) {
+          preview.innerHTML =
+            "<strong>" +
+            campus.name +
+            "</strong><br>" +
+            campus.address.replace(/\n/g, "<br>");
+          preview.classList.add("show");
+        } else {
+          preview.classList.remove("show");
+          preview.textContent = "";
+        }
+        renderSignature();
       }
 
-      const s_logoMt = getVal("logoMarginTop");
-      const s_logoMl = getVal("logoMarginLeft");
+      // ============================
+      //  UNIFIED CONFIG CHANGE
+      // ============================
+      function onConfigChange() {
+        const currentCampus = document.getElementById("inputCampus").value;
+        populateCampusDropdown(currentCampus);
+        renderSignature();
+      }
 
-      const s_nameMt = getVal("nameMarginTop");
-      const s_nameMl = getVal("nameMarginLeft");
+      // ============================
+      //  RENDER SIGNATURE
+      // ============================
+      function renderSignature() {
+        const templateId = document.getElementById("inputTemplate").value;
+        if (!templateId) {
+          document.getElementById("signature-preview").innerHTML =
+            `<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;" data-i18n="noTemplate">${i18n[currentLang].noTemplate}</div>`;
+          return;
+        }
 
-      const s_col3Width = sz.col3Width;
-      const s_col2Width = sz.total - s_col1Width - s_col3Width;
+        const tpl = TEMPLATES[templateId];
+        const sz = SIZE_CONFIG[currentSize];
 
-      const s_supergraphicWidth = getVal("supergraphicWidth") || Math.round(200 * sz.scale);
-      const s_supergraphicHeight = getVal("supergraphicHeight") || sz.supergraphicHeight;
+        const name =
+          document.getElementById("inputName").value ||
+          i18n[currentLang].placeholderName;
+        const title =
+          document.getElementById("inputTitle").value ||
+          i18n[currentLang].placeholderTitle;
+        const phone = document.getElementById("inputPhone").value.trim();
+        const mobile = document.getElementById("inputMobile").value.trim();
+        const email = document.getElementById("inputEmail").value.trim();
 
-      const s_tableMt = getVal("tableMt");
-      const s_divPl = getVal("divPl");
-      const s_divPr = getVal("divPr");
+        const campus = getSelectedCampus();
+        const campusName = campus
+          ? campus.name
+          : i18n[currentLang].placeholderLocation;
+        const campusAddr = campus
+          ? campus.address.replace(/\n/g, "<br>")
+          : i18n[currentLang].placeholderAddress;
 
-      const s_tableHeight = sz.totalHeight ? `height="${sz.totalHeight}"` : ``;
-      const s_tableHeightStyle = sz.totalHeight ? `height:${sz.totalHeight}px; max-height:${sz.totalHeight}px;` : ``;
+        // Build Image Paths with Absolute Public URLs for Outlook compatibility
+        // Uses the GitHub Raw URL so images load on mobile phones and for recipients
+        const baseUrl =
+          "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
 
-      const html = `
+        const baseDir = `Asset/Image/${tpl.dir}`;
+        const logoLeftUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
+        const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
+        const supergraphicUrl =
+          baseUrl +
+          encodeURI(
+            `${baseDir}/${tpl.prefix}_${sz.total} supergraphic_with_text.png`,
+          );
+        const iconPhoneUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
+        const iconMobileUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
+        const iconEmailUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+
+        // Icon builder — uses images provided
+        const iconSz = currentSize >= 600 ? 12 : 9;
+        function renderIcon(url) {
+          return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
+        }
+
+        const iconPhone = renderIcon(iconPhoneUrl);
+        const iconMailUrl =
+          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+
+        // Precompute Scaled Layout Variables
+        const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
+        const getVal = (prop) =>
+          tplOverride[prop] !== undefined
+            ? tplOverride[prop]
+            : sz[prop] !== undefined
+              ? sz[prop]
+              : Math.round(tpl[prop] * sz.scale);
+
+        const s_col1Width = getVal("col1Width");
+        const s_logoWidth = getVal("logoWidth");
+
+        let s_logoHeight = "auto";
+        if (tplOverride.logoHeight !== undefined) {
+          s_logoHeight =
+            typeof tplOverride.logoHeight === "number"
+              ? tplOverride.logoHeight + "px"
+              : tplOverride.logoHeight;
+        } else if (typeof tpl.logoHeight === "number") {
+          s_logoHeight = Math.round(tpl.logoHeight * sz.scale) + "px";
+        } else {
+          s_logoHeight = tpl.logoHeight;
+        }
+
+        const s_logoMt = getVal("logoMarginTop");
+        const s_logoMl = getVal("logoMarginLeft");
+
+        const s_nameMt = getVal("nameMarginTop");
+        const s_nameMl = getVal("nameMarginLeft");
+
+        const s_col3Width = sz.col3Width;
+        const s_col2Width = sz.total - s_col1Width - s_col3Width;
+
+        const s_supergraphicWidth =
+          getVal("supergraphicWidth") || Math.round(200 * sz.scale);
+        const s_supergraphicHeight =
+          getVal("supergraphicHeight") || sz.supergraphicHeight;
+
+        const s_tableMt = getVal("tableMt");
+        const s_divPl = getVal("divPl");
+        const s_divPr = getVal("divPr");
+
+        const s_tableHeight = sz.totalHeight
+          ? `height="${sz.totalHeight}"`
+          : ``;
+        const s_tableHeightStyle = sz.totalHeight
+          ? `height:${sz.totalHeight}px; max-height:${sz.totalHeight}px;`
+          : ``;
+
+        const html = `
 <table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" ${s_tableHeight} style="width:${sz.total}px; max-width:${sz.total}px; ${s_tableHeightStyle} background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt; -webkit-text-size-adjust:none; text-size-adjust:none;">
     <tr>
         <!-- Col 1: Left Logo -->
@@ -1670,26 +2056,38 @@
             <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.nameFontSize}; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
             
             <!-- Department: margin left 1 (139-138), margin top 2 from nama -->
-            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:${getVal('deptMt') !== undefined ? getVal('deptMt') : 2}px; padding:0; margin-left:${getVal('deptMl') !== undefined ? getVal('deptMl') : 1}px; mso-line-height-rule:exactly;">${title}</div>
+            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:${getVal("deptMt") !== undefined ? getVal("deptMt") : 2}px; padding:0; margin-left:${getVal("deptMl") !== undefined ? getVal("deptMl") : 1}px; mso-line-height-rule:exactly;">${title}</div>
             
             <!-- Kontak & Alamat Nested Table -->
-            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:${getVal('tableMl') !== undefined ? getVal('tableMl') : 1}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:${getVal("tableMl") !== undefined ? getVal("tableMl") : 1}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                 <tr>
                     <!-- Phone numbers -->
                     <td valign="top" style="padding-top:2px; padding-right:0px;">
                         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-                            ${phone ? `<tr>
+                            ${
+                              phone
+                                ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${phone.replace(/\\s+/g, '')}" style="color:${tpl.textColor}; text-decoration:none;">${phone}</a></td>
-                            </tr>` : ''}
-                            ${mobile ? `<tr>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : getVal("textPl") || 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${phone.replace(/\\s+/g, "")}" style="color:${tpl.textColor}; text-decoration:none;">${phone}</a></td>
+                            </tr>`
+                                : ""
+                            }
+                            ${
+                              mobile
+                                ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${mobile.replace(/[\\s\\(\\)]+/g, '')}" style="color:${tpl.textColor}; text-decoration:none;">${mobile}</a></td>
-                            </tr>` : ''}
-                            ${email ? `<tr>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : getVal("textPl") || 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${mobile.replace(/[\\s\\(\\)]+/g, "")}" style="color:${tpl.textColor}; text-decoration:none;">${mobile}</a></td>
+                            </tr>`
+                                : ""
+                            }
+                            ${
+                              email
+                                ? `<tr>
                                 <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="mailto:${email}" style="color:${tpl.textColor}; text-decoration:none;">${email}</a></td>
-                            </tr>` : ''}
+                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : getVal("textPl") || 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="mailto:${email}" style="color:${tpl.textColor}; text-decoration:none;">${email}</a></td>
+                            </tr>`
+                                : ""
+                            }
                         </table>
                     </td>
                     
@@ -1703,7 +2101,7 @@
                     </td>
                     
                     <!-- Alamat -->
-                    <td valign="top" style="padding-top:${getVal('addrPt') || 0}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.addrFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
+                    <td valign="top" style="padding-top:${getVal("addrPt") || 0}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.addrFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
                         <div style="font-weight:bold; color:${tpl.textColor}; margin-bottom:1px;">${campusName}</div>
                         <div>${campusAddr}</div>
                     </td>
@@ -1712,7 +2110,7 @@
         </td>
 
         <!-- Col 3: 45 Years Logo -->
-        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; padding-top:${getVal('annivPt') || sz.annivPt}px; padding-right:${getVal('annivPr') || sz.annivPr}px;">
+        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; padding-top:${getVal("annivPt") || sz.annivPt}px; padding-right:${getVal("annivPr") || sz.annivPr}px;">
             <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; width:${sz.annivLogoWidth}px; height:${sz.annivLogoHeight}px; max-width:${sz.annivLogoWidth}px;">
         </td>
     </tr>
@@ -1730,98 +2128,102 @@
     </tr>
 </table>`;
 
-      document.getElementById("signature-preview").innerHTML = html;
-    }
+        document.getElementById("signature-preview").innerHTML = html;
+      }
 
-    // ============================
-    //  COPY TO CLIPBOARD
-    // ============================
-    async function copySignature() {
-      const templateId = document.getElementById("inputTemplate").value;
-      const name = document.getElementById("inputName").value.trim();
-      const title = document.getElementById("inputTitle").value.trim();
-      const phone = document.getElementById("inputPhone").value.trim();
-      const email = document.getElementById("inputEmail").value.trim();
-      const campus = document.getElementById("inputCampus").value;
+      // ============================
+      //  COPY TO CLIPBOARD
+      // ============================
+      async function copySignature() {
+        const templateId = document.getElementById("inputTemplate").value;
+        const name = document.getElementById("inputName").value.trim();
+        const title = document.getElementById("inputTitle").value.trim();
+        const phone = document.getElementById("inputPhone").value.trim();
+        const email = document.getElementById("inputEmail").value.trim();
+        const campus = document.getElementById("inputCampus").value;
 
-      // Validation
-      const toast = document.getElementById("toast");
-      
-      const showToastError = (messageKey) => {
-        toast.textContent = i18n[currentLang][messageKey];
-        toast.style.background = "#dc2626";
-        toast.classList.add("show");
-        setTimeout(() => {
-          toast.classList.remove("show");
+        // Validation
+        const toast = document.getElementById("toast");
+
+        const showToastError = (messageKey) => {
+          toast.textContent = i18n[currentLang][messageKey];
+          toast.style.background = "#dc2626";
+          toast.classList.add("show");
           setTimeout(() => {
-            toast.style.background = "#10b981";
-            toast.textContent = i18n[currentLang].toastSuccess;
-          }, 300);
-        }, 3000);
-      };
+            toast.classList.remove("show");
+            setTimeout(() => {
+              toast.style.background = "#10b981";
+              toast.textContent = i18n[currentLang].toastSuccess;
+            }, 300);
+          }, 3000);
+        };
 
-      if (!templateId || !name || !title || !phone || !email || !campus) {
-        return showToastError("validationError");
-      }
-
-      // Email format validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        return showToastError("invalidEmail");
-      }
-
-      // Phone format validation (must start with 62 or +62 after stripping non-digits)
-      const cleanPhone = phone.replace(/\D/g, '');
-      if (!cleanPhone.startsWith('62')) {
-        return showToastError("invalidPhone");
-      }
-
-      // Mobile format validation (optional, but if filled must start with 62)
-      const mobile = document.getElementById("inputMobile").value.trim();
-      if (mobile) {
-        const cleanMobile = mobile.replace(/\D/g, '');
-        if (!cleanMobile.startsWith('62')) {
-          return showToastError("invalidMobile");
+        if (!templateId || !name || !title || !phone || !email || !campus) {
+          return showToastError("validationError");
         }
-      }
 
-      const signatureTable = document.querySelector("#signature-preview table");
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          return showToastError("invalidEmail");
+        }
 
-      try {
-        // Use modern Clipboard API to preserve HTML comments (VML for Outlook)
-        const htmlContent = signatureTable.outerHTML;
-        const blobHtml = new Blob([htmlContent], { type: "text/html" });
-        const clipboardItem = new ClipboardItem({ "text/html": blobHtml });
-        await navigator.clipboard.write([clipboardItem]);
-        showToast();
-      } catch (err) {
-        console.warn("ClipboardItem API failed, falling back to execCommand", err);
-        // Fallback for older browsers
-        const range = document.createRange();
-        range.selectNode(signatureTable);
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
+        // Phone format validation (must start with 62 or +62 after stripping non-digits)
+        const cleanPhone = phone.replace(/\D/g, "");
+        if (!cleanPhone.startsWith("62")) {
+          return showToastError("invalidPhone");
+        }
+
+        // Mobile format validation (optional, but if filled must start with 62)
+        const mobile = document.getElementById("inputMobile").value.trim();
+        if (mobile) {
+          const cleanMobile = mobile.replace(/\D/g, "");
+          if (!cleanMobile.startsWith("62")) {
+            return showToastError("invalidMobile");
+          }
+        }
+
+        const signatureTable = document.querySelector(
+          "#signature-preview table",
+        );
+
         try {
-          document.execCommand("copy");
+          // Use modern Clipboard API to preserve HTML comments (VML for Outlook)
+          const htmlContent = signatureTable.outerHTML;
+          const blobHtml = new Blob([htmlContent], { type: "text/html" });
+          const clipboardItem = new ClipboardItem({ "text/html": blobHtml });
+          await navigator.clipboard.write([clipboardItem]);
           showToast();
-        } catch (e) {
-          alert("Gagal menyalin. Silakan seleksi manual dan copy.");
+        } catch (err) {
+          console.warn(
+            "ClipboardItem API failed, falling back to execCommand",
+            err,
+          );
+          // Fallback for older browsers
+          const range = document.createRange();
+          range.selectNode(signatureTable);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+          try {
+            document.execCommand("copy");
+            showToast();
+          } catch (e) {
+            alert("Gagal menyalin. Silakan seleksi manual dan copy.");
+          }
+          window.getSelection().removeAllRanges();
         }
-        window.getSelection().removeAllRanges();
       }
-    }
 
-    function showToast() {
-      const t = document.getElementById("toast");
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 2500);
-    }
+      function showToast() {
+        const t = document.getElementById("toast");
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 2500);
+      }
 
-    // ============================
-    //  INIT
-    // ============================
-    setLang(currentLang);
-  </script>
-</body>
-
+      // ============================
+      //  INIT
+      // ============================
+      setLang(currentLang);
+    </script>
+  </body>
 </html>
