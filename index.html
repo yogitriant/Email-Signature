@@ -734,6 +734,12 @@
           </svg>
           <span data-i18n="guideMac">Panduan Mac</span>
         </button>
+        <button class="btn-guide" onclick="openGuide('mobile')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17,1.01L7,1C5.9,1,5,1.9,5,3v18c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V3C19,1.9,18.1,1.01,17,1.01z M17,21H7v-1h10V21z M17,18H7V6h10V18z M17,4H7V3h10V4z"/>
+          </svg>
+          <span data-i18n="guideMobile">Panduan Mobile</span>
+        </button>
       </div>
     </div>
   </div>
@@ -873,6 +879,40 @@
     </div>
   </div>
 
+  <!-- Guide Modal Mobile -->
+  <div class="modal-overlay" id="modal-mobile" onclick="closeGuideOutside(event, 'mobile')">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path d="M17,1.01L7,1C5.9,1,5,1.9,5,3v18c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2V3C19,1.9,18.1,1.01,17,1.01z M17,21H7v-1h10V21z M17,18H7V6h10V18z M17,4H7V3h10V4z"/>
+          </svg>
+          <span data-i18n="guideMobileTitle">Panduan Outlook (Mobile)</span>
+        </h3>
+        <button class="modal-close" onclick="closeGuide('mobile')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="guide-stage">
+          <div class="stage-title"><span class="stage-badge">1</span> <span data-i18n="stage1Title">Generate & Salin Signature</span></div>
+          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="wmo1">Buka generator di Desktop/Laptop Anda, pilih template dan <strong>ukuran Mobile (320px) / Tablet (450px)</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="wmo2">Klik tombol biru <strong>"Salin Signature"</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="wmo3">Buka email Anda di Desktop (Outlook/Web), buat email baru (New Email).</span></div>
+          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="wmo4"><strong>Paste</strong> signature ke isi email kosong, lalu kirim email tersebut <strong>ke alamat Anda sendiri</strong>.</span></div>
+        </div>
+
+        <div class="guide-stage">
+          <div class="stage-title"><span class="stage-badge">2</span> <span data-i18n="stage4Title">Tambah Signature di Outlook (Mobile)</span></div>
+          <div class="guide-step"><span class="step-number">1</span><span class="step-text" data-i18n="wmo5">Buka aplikasi <strong>Outlook Mobile</strong> di HP (Android/iOS) dan buka email yang baru dikirim ke diri sendiri.</span></div>
+          <div class="guide-step"><span class="step-number">2</span><span class="step-text" data-i18n="wmo6">Tekan dan tahan pada bagian signature, pilih <strong>Select All</strong>, lalu <strong>Copy</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">3</span><span class="step-text" data-i18n="wmo7">Ketuk ikon profil/menu di pojok kiri atas aplikasi, lalu ketuk ikon <strong>Settings</strong> (⚙️) di pojok kiri bawah.</span></div>
+          <div class="guide-step"><span class="step-number">4</span><span class="step-text" data-i18n="wmo8">Cari dan pilih opsi <strong>Signature</strong>.</span></div>
+          <div class="guide-step"><span class="step-number">5</span><span class="step-text" data-i18n="wmo9">Hapus teks bawaan (misal "Get Outlook for iOS"), lalu <strong>Paste</strong> signature Anda.</span></div>
+          <div class="step-tip" data-i18n="wmo10tip">💡 <strong>Catatan:</strong> Outlook Mobile tidak mendukung paste langsung format kompleks dari web, oleh karena itu signature harus dikirim via email terlebih dahulu agar format tetap rapi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="footer-copyright">
     Copyright &copy; 2026 IT Asset & Services Delivery
   </footer>
@@ -951,7 +991,20 @@
         wm8a: 'Pilih akun email Anda (jika diminta).',
         wm8b: 'Untuk <strong>New messages</strong>, pilih signature yang baru dibuat.',
         wm8c: 'Untuk <strong>Replies/forwards</strong>, pilih signature yang sama.',
-        wm9: 'Tutup jendela pengaturan.'
+        wm9: 'Tutup jendela pengaturan.',
+        guideMobile: "Panduan Mobile",
+        guideMobileTitle: "Panduan Outlook (Mobile)",
+        stage4Title: "Tambah Signature di Outlook (Mobile)",
+        wmo1: 'Buka generator di Desktop/Laptop Anda, pilih template dan <strong>ukuran Mobile (320px) / Tablet (450px)</strong>.',
+        wmo2: 'Klik tombol biru <strong>"Salin Signature"</strong>.',
+        wmo3: 'Buka email Anda di Desktop (Outlook/Web), buat pesan email baru (New Email).',
+        wmo4: '<strong>Paste</strong> signature ke isi pesan email kosong, lalu kirim email tersebut <strong>ke alamat Anda sendiri</strong>.',
+        wmo5: 'Buka aplikasi <strong>Outlook Mobile</strong> di HP (Android/iOS) dan buka email yang baru dikirim ke diri sendiri.',
+        wmo6: 'Tekan dan tahan pada bagian signature, pilih <strong>Select All</strong>, lalu <strong>Copy</strong>.',
+        wmo7: 'Ketuk ikon profil/menu di pojok kiri atas aplikasi, lalu ketuk ikon <strong>Settings</strong> (⚙️) di pojok kiri bawah.',
+        wmo8: 'Cari dan pilih opsi <strong>Signature</strong>.',
+        wmo9: 'Hapus teks bawaan (misal "Get Outlook for iOS"), lalu <strong>Paste</strong> signature Anda.',
+        wmo10tip: '💡 <strong>Catatan:</strong> Outlook Mobile tidak mendukung paste langsung format kompleks dari web, oleh karena itu signature harus dikirim via email terlebih dahulu agar format tetap rapi.'
       },
       en: {
         title: "BINUS Email Signature Generator",
@@ -1022,7 +1075,20 @@
         wm8a: 'Select your email account (if prompted).',
         wm8b: 'For <strong>New messages</strong>, select the newly created signature.',
         wm8c: 'For <strong>Replies/forwards</strong>, select the same signature.',
-        wm9: 'Close the settings window.'
+        wm9: 'Close the settings window.',
+        guideMobile: "Mobile Guide",
+        guideMobileTitle: "Outlook Guide (Mobile)",
+        stage4Title: "Add Signature in Outlook (Mobile)",
+        wmo1: 'Open the generator on your Desktop/Laptop, select your template, and choose the <strong>Mobile (320px) or Tablet (450px) size</strong>.',
+        wmo2: 'Click the blue <strong>"Copy Signature"</strong> button.',
+        wmo3: 'Open your email client on Desktop (Outlook or Web) and create a New Email.',
+        wmo4: '<strong>Paste</strong> the signature into the empty email body, then send that email <strong>to your own address</strong>.',
+        wmo5: 'Open the <strong>Outlook Mobile</strong> app on your phone (Android/iOS) and open the email you just sent to yourself.',
+        wmo6: 'Tap and hold on the signature area, tap <strong>Select All</strong>, then tap <strong>Copy</strong>.',
+        wmo7: 'Tap your profile icon/menu in the top left corner of the app, then tap the <strong>Settings</strong> icon (⚙️) in the bottom left corner.',
+        wmo8: 'Find and tap the <strong>Signature</strong> option.',
+        wmo9: 'Delete the default text (e.g., "Get Outlook for iOS"), then <strong>Paste</strong> your signature.',
+        wmo10tip: '💡 <strong>Note:</strong> Outlook Mobile does not support pasting complex layouts directly from the web, which is why the signature must be sent via email first to preserve the layout.'
       }
     };
 
