@@ -2010,7 +2010,11 @@
             <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:${getVal("deptMt") !== undefined ? getVal("deptMt") : 2}px; padding:0; margin-left:${getVal("deptMl") !== undefined ? getVal("deptMl") : 1}px; mso-line-height-rule:exactly;">${title}</div>
             
             <!-- Kontak & Alamat Nested Table -->
-            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:${getVal("tableMl") !== undefined ? getVal("tableMl") : 1}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+            ${(() => {
+                const tableMl = getVal("tableMl") !== undefined ? getVal("tableMl") : 1;
+                const nestedWidth = s_col2Width - s_nameMl - tableMl;
+                return `<table cellpadding="0" cellspacing="0" border="0" width="${nestedWidth}" style="width:${nestedWidth}px; margin-top:${s_tableMt}px; margin-left:${tableMl}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">`;
+            })()}
                 <tr>
                     <!-- Phone numbers -->
                     <td valign="top" style="padding-top:2px; padding-right:0px;">
