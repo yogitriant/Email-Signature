@@ -1768,8 +1768,8 @@
         600: {
           total: 600,
           scale: 1.0,
-          nameFontSize: "6.5pt",
-          textFontSize: "5.3pt",
+          nameFontSize: "9px",
+          textFontSize: "7px",
           supergraphicHeight: 26,
           annivLogoWidth: 50,
           annivLogoHeight: 45,
@@ -1786,10 +1786,10 @@
           total: 450,
           totalHeight: 104,
           scale: 0.75,
-          nameFontSize: "6pt",
-          deptFontSize: "4.6pt",
-          contactFontSize: "4.6pt",
-          addrFontSize: "4.6pt",
+          nameFontSize: "8px",
+          deptFontSize: "6px",
+          contactFontSize: "6px",
+          addrFontSize: "6px",
           annivLogoWidth: 37,
           annivLogoHeight: 34,
           iconsWidth: 6,
@@ -1800,10 +1800,10 @@
           total: 320,
           totalHeight: 104,
           scale: 0.533,
-          nameFontSize: "5.5pt",
-          deptFontSize: "4.2pt",
-          contactFontSize: "3.9pt",
-          addrFontSize: "3.5pt",
+          nameFontSize: "7px",
+          deptFontSize: "6px",
+          contactFontSize: "5px",
+          addrFontSize: "5px",
           annivLogoWidth: 26,
           annivLogoHeight: 24,
           iconsWidth: 4,
@@ -2017,15 +2017,15 @@
                         <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
                             ${phone ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${phone}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${phone.replace(/\\s+/g, '')}" style="color:${tpl.textColor}; text-decoration:none;">${phone}</a></td>
                             </tr>` : ''}
                             ${mobile ? `<tr>
                                 <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${mobile}</td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${mobile.replace(/[\\s\\(\\)]+/g, '')}" style="color:${tpl.textColor}; text-decoration:none;">${mobile}</a></td>
                             </tr>` : ''}
                             ${email ? `<tr>
                                 <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${email}</td>
+                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="mailto:${email}" style="color:${tpl.textColor}; text-decoration:none;">${email}</a></td>
                             </tr>` : ''}
                         </table>
                     </td>
