@@ -1994,15 +1994,19 @@
           : ``;
 
         const html = `
-<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" ${s_tableHeight} style="width:${sz.total}px; max-width:${sz.total}px; ${s_tableHeightStyle} background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt; -webkit-text-size-adjust:none; text-size-adjust:none;">
+<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" ${s_tableHeight} style="width:${sz.total}px; max-width:${sz.total}px; ${s_tableHeightStyle} background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; table-layout:fixed; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt; -webkit-text-size-adjust:none; text-size-adjust:none;">
     <tr>
         <!-- Col 1: Left Logo -->
-        <td width="${s_col1Width}" rowspan="2" valign="top" align="left" style="width:${s_col1Width}px; padding-top:${s_logoMt}px; padding-left:${s_logoMl}px;">
+        <td width="${s_col1Width}" rowspan="2" valign="top" align="left" style="width:${s_col1Width}px; min-width:${s_col1Width}px; padding-top:${s_logoMt}px; padding-left:${s_logoMl}px;">
             <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; width:${s_logoWidth}px; max-width:${s_logoWidth}px; height:${s_logoHeight};">
+            ${(() => {
+                const spacerWidth = s_col1Width - s_logoMl;
+                return `<div style="width:${spacerWidth}px; min-width:${spacerWidth}px; max-width:${spacerWidth}px; height:1px; line-height:1px; font-size:1px; padding:0; margin:0;">&nbsp;</div>`;
+            })()}
         </td>
         
         <!-- Col 2: Center Content -->
-        <td width="${s_col2Width}" valign="top" align="left" style="width:${s_col2Width}px; padding-top:${s_nameMt}px; padding-left:${s_nameMl}px;">
+        <td width="${s_col2Width}" valign="top" align="left" style="width:${s_col2Width}px; min-width:${s_col2Width}px; padding-top:${s_nameMt}px; padding-left:${s_nameMl}px;">
             <!-- Nama -->
             <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.nameFontSize}; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
             
@@ -2062,11 +2066,20 @@
                     </td>
                 </tr>
             </table>
+            <!-- Spacer to enforce width in Outlook Web -->
+            ${(() => {
+                const spacerWidth = s_col2Width - s_nameMl;
+                return `<div style="width:${spacerWidth}px; min-width:${spacerWidth}px; max-width:${spacerWidth}px; height:1px; line-height:1px; font-size:1px; padding:0; margin:0;">&nbsp;</div>`;
+            })()}
         </td>
 
         <!-- Col 3: 45 Years Logo -->
-        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; padding-top:${getVal("annivPt") || sz.annivPt}px; padding-right:${getVal("annivPr") || sz.annivPr}px;">
+        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; min-width:${s_col3Width}px; padding-top:${getVal("annivPt") || sz.annivPt}px; padding-right:${getVal("annivPr") || sz.annivPr}px;">
             <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; width:${sz.annivLogoWidth}px; height:${sz.annivLogoHeight}px; max-width:${sz.annivLogoWidth}px;">
+            ${(() => {
+                const spacerWidth = s_col3Width - (getVal("annivPr") || sz.annivPr);
+                return `<div style="width:${spacerWidth}px; min-width:${spacerWidth}px; max-width:${spacerWidth}px; height:1px; line-height:1px; font-size:1px; padding:0; margin:0;">&nbsp;</div>`;
+            })()}
         </td>
     </tr>
     <tr>
