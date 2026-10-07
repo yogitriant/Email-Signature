@@ -1885,115 +1885,92 @@
       //  RENDER SIGNATURE
       // ============================
       function renderSignature() {
-        const templateId = document.getElementById("inputTemplate").value;
-        if (!templateId) {
-          document.getElementById("signature-preview").innerHTML =
-            `<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;" data-i18n="noTemplate">${i18n[currentLang].noTemplate}</div>`;
-          return;
-        }
+      const templateId = document.getElementById("inputTemplate").value;
+      if (!templateId) {
+        document.getElementById("signature-preview").innerHTML =
+          `<div style="padding:20px; text-align:center; color:#94a3b8; border:1px dashed #cbd5e1; border-radius:8px;" data-i18n="noTemplate">${i18n[currentLang].noTemplate}</div>`;
+        return;
+      }
 
-        const tpl = TEMPLATES[templateId];
-        const sz = SIZE_CONFIG[currentSize];
+      const tpl = TEMPLATES[templateId];
+      const sz = SIZE_CONFIG[currentSize];
 
-        const name =
-          document.getElementById("inputName").value ||
-          i18n[currentLang].placeholderName;
-        const title =
-          document.getElementById("inputTitle").value ||
-          i18n[currentLang].placeholderTitle;
-        const phone = document.getElementById("inputPhone").value.trim();
-        const mobile = document.getElementById("inputMobile").value.trim();
-        const email = document.getElementById("inputEmail").value.trim();
+      const name =
+        document.getElementById("inputName").value || i18n[currentLang].placeholderName;
+      const title =
+        document.getElementById("inputTitle").value || i18n[currentLang].placeholderTitle;
+      const phone = document.getElementById("inputPhone").value.trim();
+      const mobile = document.getElementById("inputMobile").value.trim();
+      const email = document.getElementById("inputEmail").value.trim();
 
-        const campus = getSelectedCampus();
-        const campusName = campus
-          ? campus.name
-          : i18n[currentLang].placeholderLocation;
-        const campusAddr = campus
-          ? campus.address.replace(/\n/g, "<br>")
-          : i18n[currentLang].placeholderAddress;
+      const campus = getSelectedCampus();
+      const campusName = campus ? campus.name : i18n[currentLang].placeholderLocation;
+      const campusAddr = campus
+        ? campus.address.replace(/\n/g, "<br>")
+        : i18n[currentLang].placeholderAddress;
 
-        // Build Image Paths with Absolute Public URLs for Outlook compatibility
-        // Uses the GitHub Raw URL so images load on mobile phones and for recipients
-        const baseUrl =
-          "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
+      // Build Image Paths with Absolute Public URLs for Outlook compatibility
+      // Uses the GitHub Raw URL so images load on mobile phones and for recipients
+      const baseUrl = "https://raw.githubusercontent.com/yogitriant/Email-Signature/master/";
 
-        const baseDir = `Asset/Image/${tpl.dir}`;
-        const logoLeftUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
-        const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
-        const supergraphicUrl =
-          baseUrl +
-          encodeURI(
-            `${baseDir}/${tpl.prefix}_${sz.total} supergraphic_with_text.png`,
-          );
-        const iconPhoneUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
-        const iconMobileUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
-        const iconEmailUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+      const baseDir = `Asset/Image/${tpl.dir}`;
+      const logoLeftUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} logo.png`);
+      const logoRightUrl = baseUrl + encodeURI(`${baseDir}/logo 45.png`);
+      const supergraphicUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_${sz.total} supergraphic_with_text.png`);
+      const iconPhoneUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon telephone.png`);
+      const iconMobileUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon phone.png`);
+      const iconEmailUrl =
+        baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
 
-        // Icon builder — uses images provided
-        const iconSz = currentSize >= 600 ? 12 : 9;
-        function renderIcon(url) {
-          return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
-        }
+      // Icon builder — uses images provided
+      const iconSz = currentSize >= 600 ? 12 : 9;
+      function renderIcon(url) {
+        return `<img src="${url}" width="${iconSz}" height="${iconSz}" style="display:inline-block; vertical-align:middle; margin-right:4px; border:none; outline:none; width:${iconSz}px; height:${iconSz}px;">`;
+      }
 
-        const iconPhone = renderIcon(iconPhoneUrl);
-        const iconMailUrl =
-          baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
+      const iconPhone = renderIcon(iconPhoneUrl);
+      const iconMailUrl = baseUrl + encodeURI(`${baseDir}/${tpl.prefix}_icon mail.png`);
 
-        // Precompute Scaled Layout Variables
-        const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
-        const getVal = (prop) =>
-          tplOverride[prop] !== undefined
-            ? tplOverride[prop]
-            : sz[prop] !== undefined
-              ? sz[prop]
-              : Math.round(tpl[prop] * sz.scale);
+      // Precompute Scaled Layout Variables
+      const tplOverride = (tpl.sizes && tpl.sizes[currentSize]) || {};
+      const getVal = (prop) => tplOverride[prop] !== undefined ? tplOverride[prop] : (sz[prop] !== undefined ? sz[prop] : Math.round(tpl[prop] * sz.scale));
 
-        const s_col1Width = getVal("col1Width");
-        const s_logoWidth = getVal("logoWidth");
+      const s_col1Width = getVal("col1Width");
+      const s_logoWidth = getVal("logoWidth");
 
-        let s_logoHeight = "auto";
-        if (tplOverride.logoHeight !== undefined) {
-          s_logoHeight =
-            typeof tplOverride.logoHeight === "number"
-              ? tplOverride.logoHeight + "px"
-              : tplOverride.logoHeight;
-        } else if (typeof tpl.logoHeight === "number") {
-          s_logoHeight = Math.round(tpl.logoHeight * sz.scale) + "px";
-        } else {
-          s_logoHeight = tpl.logoHeight;
-        }
+      let s_logoHeight = "auto";
+      if (tplOverride.logoHeight !== undefined) {
+        s_logoHeight = typeof tplOverride.logoHeight === "number" ? tplOverride.logoHeight + "px" : tplOverride.logoHeight;
+      } else if (typeof tpl.logoHeight === "number") {
+        s_logoHeight = Math.round(tpl.logoHeight * sz.scale) + "px";
+      } else {
+        s_logoHeight = tpl.logoHeight;
+      }
 
-        const s_logoMt = getVal("logoMarginTop");
-        const s_logoMl = getVal("logoMarginLeft");
+      const s_logoMt = getVal("logoMarginTop");
+      const s_logoMl = getVal("logoMarginLeft");
 
-        const s_nameMt = getVal("nameMarginTop");
-        const s_nameMl = getVal("nameMarginLeft");
+      const s_nameMt = getVal("nameMarginTop");
+      const s_nameMl = getVal("nameMarginLeft");
 
-        const s_col3Width = sz.col3Width;
-        const s_col2Width = sz.total - s_col1Width - s_col3Width;
+      const s_col3Width = sz.col3Width;
+      const s_col2Width = sz.total - s_col1Width - s_col3Width;
 
-        const s_supergraphicWidth =
-          getVal("supergraphicWidth") || Math.round(200 * sz.scale);
-        const s_supergraphicHeight =
-          getVal("supergraphicHeight") || sz.supergraphicHeight;
+      const s_supergraphicWidth = getVal("supergraphicWidth") || Math.round(200 * sz.scale);
+      const s_supergraphicHeight = getVal("supergraphicHeight") || sz.supergraphicHeight;
 
-        const s_tableMt = getVal("tableMt");
-        const s_divPl = getVal("divPl");
-        const s_divPr = getVal("divPr");
+      const s_tableMt = getVal("tableMt");
+      const s_divPl = getVal("divPl");
+      const s_divPr = getVal("divPr");
 
-        const s_tableHeight = sz.totalHeight
-          ? `height="${sz.totalHeight}"`
-          : ``;
-        const s_tableHeightStyle = sz.totalHeight
-          ? `height:${sz.totalHeight}px; max-height:${sz.totalHeight}px;`
-          : ``;
+      const s_tableHeight = sz.totalHeight ? `height="${sz.totalHeight}"` : ``;
+      const s_tableHeightStyle = sz.totalHeight ? `height:${sz.totalHeight}px; max-height:${sz.totalHeight}px;` : ``;
 
-        const html = `
+      const html = `
 <table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" ${s_tableHeight} style="width:${sz.total}px; max-width:${sz.total}px; ${s_tableHeightStyle} background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt; -webkit-text-size-adjust:none; text-size-adjust:none;">
     <tr>
         <!-- Col 1: Left Logo -->
@@ -2066,104 +2043,11 @@
         </td>
     </tr>
 </table>`;
-            })()}
-        </td>
-        
-        <!-- Col 2: Center Content -->
-        <td width="${s_col2Width}" valign="top" align="left" style="width:${s_col2Width}px; min-width:${s_col2Width}px; padding-top:${s_nameMt}px; padding-left:${s_nameMl}px;">
-            <!-- Nama -->
-            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.nameFontSize}; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
-            
-            <!-- Department: margin left 1 (139-138), margin top 2 from nama -->
-            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:${getVal("deptMt") !== undefined ? getVal("deptMt") : 2}px; padding:0; margin-left:${getVal("deptMl") !== undefined ? getVal("deptMl") : 1}px; mso-line-height-rule:exactly;">${title}</div>
-            
-            <!-- Kontak & Alamat Nested Table -->
-            ${(() => {
-                const tableMl = getVal("tableMl") !== undefined ? getVal("tableMl") : 1;
-                const nestedWidth = s_col2Width - s_nameMl - tableMl;
-                return `<table cellpadding="0" cellspacing="0" border="0" width="${nestedWidth}" style="width:${nestedWidth}px; margin-top:${s_tableMt}px; margin-left:${tableMl}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">`;
-            })()}
-                <tr>
-                    <!-- Phone numbers -->
-                    <td valign="top" style="padding-top:2px; padding-right:0px;">
-                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-                            ${
-                              phone
-                                ? `<tr>
-                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : getVal("textPl") || 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${phone.replace(/\\s+/g, "")}" style="color:${tpl.textColor}; text-decoration:none;">${phone}</a></td>
-                            </tr>`
-                                : ""
-                            }
-                            ${
-                              mobile
-                                ? `<tr>
-                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : getVal("textPl") || 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="tel:${mobile.replace(/[\\s\\(\\)]+/g, "")}" style="color:${tpl.textColor}; text-decoration:none;">${mobile}</a></td>
-                            </tr>`
-                                : ""
-                            }
-                            ${
-                              email
-                                ? `<tr>
-                                <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
-                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : getVal("textPl") || 4}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;"><a href="mailto:${email}" style="color:${tpl.textColor}; text-decoration:none;">${email}</a></td>
-                            </tr>`
-                                : ""
-                            }
-                        </table>
-                    </td>
-                    
-                    <!-- Divider -->
-                    <td valign="top" style="padding-left:${s_divPl}px; padding-right:${s_divPr}px;">
-                        <table cellpadding="0" cellspacing="0" border="0" width="1" height="${sz.dividerHeight}" style="width:1px; height:${sz.dividerHeight}px; background-color:#cccccc; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                            <tr>
-                                <td width="1" height="${sz.dividerHeight}" bgcolor="#cccccc" style="width:1px; height:${sz.dividerHeight}px; background-color:#cccccc; font-size:1px; line-height:1px; padding:0;">&nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
-                    
-                    <!-- Alamat -->
-                    <td valign="top" style="padding-top:${getVal("addrPt") || 0}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.addrFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
-                        <div style="font-weight:bold; color:${tpl.textColor}; margin-bottom:1px;">${campusName}</div>
-                        <div>${campusAddr}</div>
-                    </td>
-                </tr>
-            </table>
-            <!-- Spacer to enforce width in Outlook Web -->
-            ${(() => {
-                const spacerWidth = s_col2Width - s_nameMl;
-                return `<div style="width:${spacerWidth}px; min-width:${spacerWidth}px; max-width:${spacerWidth}px; height:1px; line-height:1px; font-size:1px; padding:0; margin:0;">&nbsp;</div>`;
-            })()}
-        </td>
 
-        <!-- Col 3: 45 Years Logo -->
-        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; min-width:${s_col3Width}px; padding-top:${getVal("annivPt") || sz.annivPt}px; padding-right:${getVal("annivPr") || sz.annivPr}px;">
-            <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; width:${sz.annivLogoWidth}px; height:${sz.annivLogoHeight}px; max-width:${sz.annivLogoWidth}px;">
-            ${(() => {
-                const spacerWidth = s_col3Width - (getVal("annivPr") || sz.annivPr);
-                return `<div style="width:${spacerWidth}px; min-width:${spacerWidth}px; max-width:${spacerWidth}px; height:1px; line-height:1px; font-size:1px; padding:0; margin:0;">&nbsp;</div>`;
-            })()}
-        </td>
-    </tr>
-    <tr>
-        <!-- Row 2: Supergraphic spanning Col 2 & 3 -->
-        <td colspan="2" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0;">
-            <table cellpadding="0" cellspacing="0" border="0" width="${s_supergraphicWidth}" style="width:${s_supergraphicWidth}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin-left:auto; margin-right:0; margin-bottom:0;">
-                <tr>
-                    <td width="${s_supergraphicWidth}" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0; width:${s_supergraphicWidth}px;">
-                        <img src="${supergraphicUrl}" alt="www.binus.edu" width="${s_supergraphicWidth}" style="display:block; width:${s_supergraphicWidth}px; height:auto; border:none; outline:none;">
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>`;
+      document.getElementById("signature-preview").innerHTML = html;
+    }
 
-        document.getElementById("signature-preview").innerHTML = html;
-      }
-
-      // ============================
+    // ============================
       //  COPY TO CLIPBOARD
       // ============================
       async function copySignature() {
