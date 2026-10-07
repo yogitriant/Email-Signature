@@ -1994,14 +1994,78 @@
           : ``;
 
         const html = `
-<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" ${s_tableHeight} style="width:${sz.total}px; max-width:${sz.total}px; ${s_tableHeightStyle} background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; table-layout:fixed; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt; -webkit-text-size-adjust:none; text-size-adjust:none;">
+<table cellpadding="0" cellspacing="0" border="0" width="${sz.total}" ${s_tableHeight} style="width:${sz.total}px; max-width:${sz.total}px; ${s_tableHeightStyle} background-color:#ffffff; border-collapse:collapse; border:1px solid #d1d5db; position:relative; overflow:hidden; font-family:Interstate,Arial,sans-serif; color:${tpl.textColor}; mso-table-lspace:0pt; mso-table-rspace:0pt; -webkit-text-size-adjust:none; text-size-adjust:none;">
     <tr>
         <!-- Col 1: Left Logo -->
-        <td width="${s_col1Width}" rowspan="2" valign="top" align="left" style="width:${s_col1Width}px; min-width:${s_col1Width}px; padding-top:${s_logoMt}px; padding-left:${s_logoMl}px;">
+        <td width="${s_col1Width}" rowspan="2" valign="top" align="left" style="width:${s_col1Width}px; padding-top:${s_logoMt}px; padding-left:${s_logoMl}px;">
             <img src="${logoLeftUrl}" alt="${tpl.name} Logo" style="display:block; border:none; outline:none; width:${s_logoWidth}px; max-width:${s_logoWidth}px; height:${s_logoHeight};">
-            ${(() => {
-                const spacerWidth = s_col1Width - s_logoMl;
-                return `<div style="width:${spacerWidth}px; min-width:${spacerWidth}px; max-width:${spacerWidth}px; height:1px; line-height:1px; font-size:1px; padding:0; margin:0;">&nbsp;</div>`;
+        </td>
+        
+        <!-- Col 2: Center Content -->
+        <td width="${s_col2Width}" valign="top" align="left" style="width:${s_col2Width}px; padding-top:${s_nameMt}px; padding-left:${s_nameMl}px;">
+            <!-- Nama -->
+            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.nameFontSize}; font-weight:bold; color:${tpl.primaryColor}; line-height:1.2; margin:0; padding:0; mso-line-height-rule:exactly;">${name}</div>
+            
+            <!-- Department: margin left 1 (139-138), margin top 2 from nama -->
+            <div style="font-family:Interstate,Arial,sans-serif; font-size:${sz.deptFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; margin-top:${getVal('deptMt') !== undefined ? getVal('deptMt') : 2}px; padding:0; margin-left:${getVal('deptMl') !== undefined ? getVal('deptMl') : 1}px; mso-line-height-rule:exactly;">${title}</div>
+            
+            <!-- Kontak & Alamat Nested Table -->
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-top:${s_tableMt}px; margin-left:${getVal('tableMl') !== undefined ? getVal('tableMl') : 1}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                <tr>
+                    <!-- Phone numbers -->
+                    <td valign="top" style="padding-top:2px; padding-right:0px;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                            ${phone ? `<tr>
+                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconPhoneUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${phone}</td>
+                            </tr>` : ''}
+                            ${mobile ? `<tr>
+                                <td valign="middle" style="padding-bottom:3px;"><img src="${iconMobileUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
+                                <td valign="middle" style="padding-bottom:3px; padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${mobile}</td>
+                            </tr>` : ''}
+                            ${email ? `<tr>
+                                <td valign="middle"><img src="${iconMailUrl}" width="${sz.iconsWidth}" style="display:block; border:none; max-width:${sz.iconsWidth}px;"></td>
+                                <td valign="middle" style="padding-left:${sz.textPl !== undefined ? sz.textPl : (getVal('textPl') || 4)}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.contactFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1; mso-line-height-rule:exactly; white-space:nowrap;">${email}</td>
+                            </tr>` : ''}
+                        </table>
+                    </td>
+                    
+                    <!-- Divider -->
+                    <td valign="top" style="padding-left:${s_divPl}px; padding-right:${s_divPr}px;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="1" height="${sz.dividerHeight}" style="width:1px; height:${sz.dividerHeight}px; background-color:#cccccc; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                            <tr>
+                                <td width="1" height="${sz.dividerHeight}" bgcolor="#cccccc" style="width:1px; height:${sz.dividerHeight}px; background-color:#cccccc; font-size:1px; line-height:1px; padding:0;">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                    
+                    <!-- Alamat -->
+                    <td valign="top" style="padding-top:${getVal('addrPt') || 0}px; font-family:Interstate,Arial,sans-serif; font-size:${sz.addrFontSize || sz.textFontSize}; color:${tpl.textColor}; line-height:1.2; mso-line-height-rule:exactly;">
+                        <div style="font-weight:bold; color:${tpl.textColor}; margin-bottom:1px;">${campusName}</div>
+                        <div>${campusAddr}</div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <!-- Col 3: 45 Years Logo -->
+        <td width="${s_col3Width}" valign="top" align="right" style="width:${s_col3Width}px; padding-top:${getVal('annivPt') || sz.annivPt}px; padding-right:${getVal('annivPr') || sz.annivPr}px;">
+            <img src="${logoRightUrl}" alt="45 Years BINUS" style="display:block; border:none; outline:none; width:${sz.annivLogoWidth}px; height:${sz.annivLogoHeight}px; max-width:${sz.annivLogoWidth}px;">
+        </td>
+    </tr>
+    <tr>
+        <!-- Row 2: Supergraphic spanning Col 2 & 3 -->
+        <td colspan="2" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0;">
+            <table cellpadding="0" cellspacing="0" border="0" width="${s_supergraphicWidth}" style="width:${s_supergraphicWidth}px; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; margin-left:auto; margin-right:0; margin-bottom:0;">
+                <tr>
+                    <td width="${s_supergraphicWidth}" valign="bottom" align="right" style="padding:0; margin:0; font-size:0; line-height:0; width:${s_supergraphicWidth}px;">
+                        <img src="${supergraphicUrl}" alt="www.binus.edu" width="${s_supergraphicWidth}" style="display:block; width:${s_supergraphicWidth}px; height:auto; border:none; outline:none;">
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>`;
             })()}
         </td>
         
