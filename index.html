@@ -1768,8 +1768,8 @@
         600: {
           total: 600,
           scale: 1.0,
-          nameFontSize: "6.5pt",
-          textFontSize: "5.3pt",
+          nameFontSize: "9px",
+          textFontSize: "7px",
           supergraphicHeight: 26,
           annivLogoWidth: 50,
           annivLogoHeight: 45,
@@ -1786,7 +1786,7 @@
           total: 450,
           totalHeight: 104,
           scale: 0.75,
-          nameFontSize: "6pt",
+          nameFontSize: "8px",
           deptFontSize: "6px",
           contactFontSize: "6px",
           addrFontSize: "6px",
@@ -1800,10 +1800,10 @@
           total: 320,
           totalHeight: 104,
           scale: 0.533,
-          nameFontSize: "5.5pt",
-          deptFontSize: "4.2pt",
-          contactFontSize: "3.9pt",
-          addrFontSize: "3.5pt",
+          nameFontSize: "7px",
+          deptFontSize: "6px",
+          contactFontSize: "5px",
+          addrFontSize: "5px",
           annivLogoWidth: 26,
           annivLogoHeight: 24,
           iconsWidth: 4,
@@ -2040,6 +2040,12 @@
                     </td>
                 </tr>
             </table>
+        </td>
+    </tr>
+    <!-- Spacer row: transparent 1px image forces Outlook Web to maintain full table width -->
+    <tr>
+        <td colspan="3" style="padding:0; margin:0; line-height:0; font-size:0; height:0; overflow:hidden;">
+            <div style="width:${sz.total}px; min-width:${sz.total}px; max-width:${sz.total}px; height:0; line-height:0; font-size:0; overflow:hidden; mso-hide:all;">&nbsp;</div>
         </td>
     </tr>
 </table>`;
